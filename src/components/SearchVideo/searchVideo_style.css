@@ -1,0 +1,36 @@
+.player{
+    margin: 3rem;
+    text-align: center;
+    background-color: rgb(27, 16, 16);
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.infoVideo{
+    margin: auto;
+}
+.infoVideo h2{
+    font-size: 3rem;
+    text-align: center;
+    margin: auto;
+}
+.infoVideoBlock{
+    background-color:  rgb(41, 26, 54);
+    padding: 3rem;
+    border-radius: 3rem;
+    display: flex;
+    margin: 0;
+    flex-wrap: nowrap;
+}
+
+.infoVideoBlock_post img{
+    padding-left: 23rem;
+    max-width: 10rem;
+}
+.infoVideoBlock_text{
+    margin: -2rem 2rem;
+    font-size: 2rem;
+}
+.infoVideoBlock_text p{
+    margin: 2rem 0;
+}

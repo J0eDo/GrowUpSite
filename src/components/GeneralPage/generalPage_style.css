@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:700&display=swap');
+.generalPage_conteiner{
+   margin-top: 2rem;
+}
+
+/* .gp_head{
+
+} */
+.gp_head__logoBG{
+    border-radius: 40% 1% 1% 40%;
+    left: 4rem;
+    z-index: -2;
+    position: absolute;
+    background-color: brown;
+    width: 20rem;
+    height: 5rem;
+}
+.gp_head__logo{
+    padding: 2rem;
+    font-family: 'Libre Baskerville', serif;
+    margin-bottom: 3rem;
+}
+.gp_logo__circle{
+    z-index: -1;
+    position: absolute;
+    top: 5.5rem;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    background-color: blueviolet;  
+}
+.gp_head__logo  h1{
+    text-shadow: 1px 1px 3px black;
+    z-index: 3;
+    color: blanchedalmond;
+    font-size: 4.3rem;
+}
+.gp_head p{
+    background-color: rgb(141, 42, 42);
+    border: 5px inherit blue;
+    border-radius: 13px;
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    margin-bottom: -3rem;
+}
+.gp_content{
+    display: flex;
+    justify-content: space-between;
+}
+.gp_hotNews{
+  
+}
