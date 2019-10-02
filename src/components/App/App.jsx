@@ -7,7 +7,7 @@ import Navigation from '../Navigation/Navigation';
 import Studios from '../Studios/Studios';
 import News from '../News/News';
 import SearchVideo from '../SearchVideo/SearchVideo';
-import Videoteka from '../GeneralPage/Videoteka/Videoteka';
+import Videoteka from '../Videoteka/Videoteka';
 import NewsRead from '../News/NewsRead/NewsRead'
 
 class App extends Component {

@@ -1,8 +1,7 @@
 import React,{Component} from 'react';
-import {render} from 'react-dom';
 import './videoteka_style.css';
-import videoteca from '../../../contentData/video.json';
-import SearchVideo from '../../SearchVideo/SearchVideo';
+import videoteca from '../../contentData/video.json';
+
    
 
 
@@ -61,9 +60,23 @@ class Videoteka extends Component{
         }
    }
 
+   searchVideo(){
+       const _src = `${window.location.origin}/ui/man.png`
+       let searchBliock = null;
+  
+       return(
+           <form className="searc_VideoForm" action="submit">
+               <img src={_src} alt="MAN"/>
+               <button>Искать</button>
+               <input type="text"/>
+           </form>
+       )
+   }
+
     render(){
         return(
             <div className="newVideo_block">
+                {this.searchVideo()}
                {this.getTextElement()}
                 <div className="video_conteiner">
                     {this.getVideos()}

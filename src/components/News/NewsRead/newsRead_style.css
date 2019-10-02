@@ -1,7 +1,8 @@
 .articleNews{
-    margin-top:-2rem;
+    width: 70%;
+    margin:auto;
     padding-top: 2rem;
-    background: linear-gradient(90deg, rgba(105,9,9,0.5) 10%, rgba(41,26,54,0.5) 20%, rgba(41,26,54,0.1) 50%, rgba(41,26,54,0.5) 80%, rgba(105,9,9,0.5) 90%);
+    background: linear-gradient(90deg, rgba(105, 9, 9, 0.1) 10%, rgba(41,26,54,0.5) 20%, rgba(41,26,54,0.1) 50%, rgba(41,26,54,0.5) 80%, rgba(105,9,9,0.1) 90%);
 }
 
 .article_head{

@@ -4,7 +4,7 @@ import GirlWeek from './GirlWeek/GirlWeek'
 import archiveNews from '../../contentData/archive_news.json'
 import modelBase from '../../contentData/modelsBase';
 import News from '../News/News';
-import Videoteka from './Videoteka/Videoteka'
+import Videoteka from '../Videoteka/Videoteka'
 
 
 class GeneralPage extends Component{
