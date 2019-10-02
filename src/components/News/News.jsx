@@ -40,7 +40,7 @@ class News extends Component{
         }
         return(
             <div key={news.id} className="theNews">
-                    <img src={window.location.origin + "/news/" +news.id + "/" + news.photos[0]} alt={news.head}></img>
+                    <img src={window.location.origin + "/news/" +news.num + "/" + news.photos[0]} alt={news.head}></img>
                     <div className="theNews_conteiner">
                         <h3 onClick={readModeHandler} href="#">читать</h3>
                         <p className="theNews_dateTime">{Element.dataTime}</p> 

@@ -9,6 +9,7 @@ class NewsRead extends Component{
     constructor(props){
         super(props);
         this.news = props.news;
+        this.photoIndex = 0;
         this.linksImg = this.getLinc("photos");
         this.linksFirstBlockText = this.getLinc("first_text"); 
         this.linksSecondBlockText = this.getLinc("second_text");   
@@ -27,31 +28,50 @@ class NewsRead extends Component{
     }
 
     
-    constructBlockNews(arrText){
-        
-        if(arrText.isArray()){
-       return( arrText.map(element =>
-                <div>{element}</div>
-            )
+    getPhoto(className){
+        const _src = `${window.location.origin}/news/${this.news.num}/${this.news.photos[this.photoIndex]}`
+        this.photoIndex++;
+        let imgBlock = null;
+        if(this.linksImg.length!=0){
+            this.linksImg.shift()
+            imgBlock = (
+            <div className={className}>
+                    <img  src={_src} alt="PHOTO"/>
+            </div>)
+        }
+        return imgBlock;
+    }
+
+    constructBlockNews(first){
+        let linkBlock = null;
+        if(this.linksSecondBlockText.length!=0){
+            const img = this.getPhoto("")
+            const link= <div className="article_link">{this.linksSecondBlockText.shift()}</div>;
+            linkBlock = <div>{img}{link}</div>
+        }
+        return(
+            <div>
+                <div className = "article_block">{first}</div>
+                {linkBlock}
+            </div>   
         )
-       } 
     }
 
     constructNews(){
-
         return (
             this.linksFirstBlockText.map(element=>
-                <div className = "news_block">{element}</div>   
+                this.constructBlockNews(element)
             )
-        )
-       
+        ) 
     }
+
 
     render(){       
         return(
             <div>
-                <h1 className="news_head">{this.news.head}</h1>
-               {this.constructNews()}
+                <h1 className="article_head">{this.news.head}</h1>
+                {this.getPhoto("article_img__general")}
+                {this.constructNews()}
             </div>
         )
     }
