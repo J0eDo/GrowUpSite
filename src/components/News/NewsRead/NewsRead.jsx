@@ -5,6 +5,7 @@ import './newsRead_style.css';
 
 
 class NewsRead extends Component{
+    
     constructor(props){
         super(props);
         this.news = props.news;
@@ -26,16 +27,23 @@ class NewsRead extends Component{
     }
 
     
-    constructNews(){
-        let a = <h1>some text</h1>;
-        let b = <h2>some text2</h2>;
-        let c ;
+    constructBlockNews(arrText){
         
-        for (let indexFT = 0; indexFT < this.linksFirstBlockText.length; indexFT++) {
-            const c = this.linksFirstBlockText[indexFT];
-            
-        }
-        return c;
+        if(arrText.isArray()){
+       return( arrText.map(element =>
+                <div>{element}</div>
+            )
+        )
+       } 
+    }
+
+    constructNews(){
+
+        return (
+            this.linksFirstBlockText.map(element=>
+                <div className = "news_block">{element}</div>   
+            )
+        )
        
     }
 
