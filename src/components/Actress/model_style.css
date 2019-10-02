@@ -2,15 +2,18 @@
 .solomodel_conteiner{ 
     display: flex;
 }
+
 .sm_article{
     display: flex;
 }
+
 .sm_content{
     justify-content: center;
     align-items: center;
     max-width: 45%;
     padding: 1em 10em 3em 1em;
 }
+
 .sm_avatar__conteiner{
     display: flex;
     align-items: center;;
@@ -23,6 +26,7 @@
     width: 3rem;
     height: 10rem;
 }
+
 .sm_avatar__conteiner .buttonR{
     border-radius: 0 50% 50% 0;
     width: 3rem;
@@ -52,22 +56,27 @@
     font-size: 1.1em;
     margin: .5em 0em;
 }
+
 .sm_midleConteiner{
     width: 200%;
     display: flex;
     flex-wrap: nowrap;
 }
+
 .sm_midleConteiner ul{
     flex-basis: 48%;
 }
+
 .sm_biography{
     font-size: 1.8em;
     list-style-type: none;
 }
+
 .sm_biography li{
     
     margin: 0.7em auto;
-} 
+}
+
 .sm_rating{
     margin: 1rem 0 3rem 0;
 }

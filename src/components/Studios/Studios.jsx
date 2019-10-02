@@ -38,7 +38,6 @@ class Studios extends Component{
             <div>
                 <div className="pornowood">
                     <h1>Porno WOOOD </h1>
-                    <p>Фабрика полюций</p>
                 </div>
                 {this.getStudiosElements(this.studios)}
             </div>

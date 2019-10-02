@@ -2,8 +2,6 @@ import React,{Component} from 'react';
 import './newsRead_style.css';   
 
 
-
-
 class NewsRead extends Component{
     
     constructor(props){
@@ -45,7 +43,7 @@ class NewsRead extends Component{
     constructBlockNews(first){
         let linkBlock = null;
         if(this.linksSecondBlockText.length!=0){
-            const img = this.getPhoto("")
+            const img = this.getPhoto("article_img__link")
             const link= <div className="article_link">{this.linksSecondBlockText.shift()}</div>;
             linkBlock = <div>{img}{link}</div>
         }
@@ -65,13 +63,24 @@ class NewsRead extends Component{
         ) 
     }
 
+    getAllPhotos(){
+        
+        return(
+            <div className="article_img__bottom">{
+                this.linksImg.map(element =>
+                        <img src={`${window.location.origin}/news/${this.news.num}/${element}`} alt=""/>
+                )
+            }</div>
+        )
+    }
 
     render(){       
         return(
-            <div>
-                <h1 className="article_head">{this.news.head}</h1>
+            <div className="articleNews">
                 {this.getPhoto("article_img__general")}
+                <h1 className="article_head">{this.news.head}</h1> 
                 {this.constructNews()}
+                {this.getAllPhotos()}
             </div>
         )
     }
