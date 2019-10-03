@@ -16,7 +16,7 @@ class App extends Component {
         super(props);
         this.setStatePage.bind(this);
         this.state={
-            page:"Главная",
+            page:"general",
             searchState:"none",
             film:"someFilm",
             news:"someNews"
@@ -33,22 +33,22 @@ class App extends Component {
 
     setSearchElementState(str){
         switch(str){
-            case("Студии"):{return null;}
-            case("Модели"):{return <Navigation mode={"actress"}/>}
-            case("Новости Индустрии"):{return null;}
-            case("Главная"):{return null}
+            case("studio"):{return null;}
+            case("models"):{return <Navigation mode={"actress"}/>}
+            case("news"):{return null;}
+            case("general"):{return null}
         } 
     }
 
   
     getPageContent(str,content){
         switch(str){
-            case("Студии"):{return <Studios/>;}
-            case("Модели"):{return <Model_Index/>;}
-            case("Новости Индустрии"):{return <News handler={this.setStatePage}/>; }
-            case("Порнотека"):{return <Videoteka handler={this.setStatePage} numberGet={3}/>;}
+            case("studio"):{return <Studios/>;}
+            case("models"):{return <Model_Index/>;}
+            case("news"):{return <News handler={this.setStatePage}/>; }
+            case("porn"):{return <Videoteka handler={this.setStatePage} numberGet={3}/>;}
             case("Просмотр"):{return <SearchVideo video={content}/>;}
-            case("Главная"):{return <GeneralPage handler={this.setStatePage}/>;}
+            case("general"):{return <GeneralPage handler={this.setStatePage}/>;}
             case("Чтение Новости"):{return <NewsRead news={content}/>}
         } 
     }

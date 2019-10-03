@@ -1,10 +1,11 @@
 .newVideo_block{
     background-color: rgb(41, 26, 54);
-    margin: 5rem 1rem;
-    /* height: 37.5rem;; */
+    margin: 1rem 1rem;
+    min-height: 37.8rem;
     text-align: center;
     border-radius: 3px;
 }
+
 
 .newVideo_block h2{
     padding-top: 1.5rem;
@@ -76,4 +77,5 @@
     background-color: rgb(41, 26, 54);
     padding: 1rem 0 0 1rem;
     border-radius: 50% 50% 0 0;
+    border-top:12px solid #690909
 }

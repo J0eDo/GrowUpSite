@@ -25,6 +25,7 @@ class GeneralPage extends Component{
         
     }
 
+
     render(){
         return(
            <div className="generalPage_conteiner">
