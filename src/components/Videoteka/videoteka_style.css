@@ -1,7 +1,7 @@
 .newVideo_block{
     background-color: rgb(41, 26, 54);
-    margin: 1rem;
-    height: 37.5rem;;
+    margin: 5rem 1rem;
+    /* height: 37.5rem;; */
     text-align: center;
     border-radius: 3px;
 }
@@ -46,4 +46,34 @@
 .theNewVideo img:hover{
     cursor: pointer;
     border: 2px solid gold; 
+}
+
+.search_videoForm{
+    margin-left: -10rem;
+}
+
+.search_videoForm button{
+    background-color: #690909;
+    color:  gold;
+    border: 1px solid #701313;
+    border-radius: 25%;
+    font-size: 1.2rem;
+    padding: .8rem;
+    margin-left: -2rem;
+    cursor: pointer;
+}
+
+.search_videoForm input{
+    border: 3px solid #420000;
+    margin: .2rem;
+    font-size: 1.2rem;
+    height: 1.5rem;
+}
+
+.search_videoForm img{
+    width: 5rem;
+    margin: -4.59rem 4rem;
+    background-color: rgb(41, 26, 54);
+    padding: 1rem 0 0 1rem;
+    border-radius: 50% 50% 0 0;
 }

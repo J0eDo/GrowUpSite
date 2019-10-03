@@ -60,17 +60,25 @@ class Videoteka extends Component{
         }
    }
 
+   responeOnServer =(e)=>{
+       e.preventDefault();
+       /**TO DO BACK respone */
+   }
+
    searchVideo(){
-       const _src = `${window.location.origin}/ui/man.png`
+       const _src = `${window.location.origin}/ui/whore1p.png`
        let searchBliock = null;
-  
-       return(
-           <form className="searc_VideoForm" action="submit">
-               <img src={_src} alt="MAN"/>
-               <button>Искать</button>
-               <input type="text"/>
-           </form>
-       )
+       if(!this.textBlock){
+            return(
+                <form className="search_videoForm" action="submit">
+                    <img src={_src} alt="PNG"/>
+                    <button onClick={this.responeOnServer}>Искать</button>
+                    <input type="text"/>
+                </form>
+            )
+        }else{
+            return null;
+        }
    }
 
     render(){

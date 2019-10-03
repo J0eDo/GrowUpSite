@@ -21,6 +21,12 @@
     padding: 4% 4% 4% 19%;;
 }
 
+.sm_avatar__conteiner img{
+    margin: 1rem;
+    padding: .5rem;
+    background-color: rgba(129, 9, 9, 0.219);
+}
+
 .sm_avatar__conteiner .buttonL{
     border-radius: 50% 0 0 50%;
     width: 3rem;
