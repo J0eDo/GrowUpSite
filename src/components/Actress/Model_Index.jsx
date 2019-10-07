@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import modelBase from '../../contentData/modelsBase';
+import modelBase from '../../contentData/modelsBase.json';
 import './model_style.css';
 import Prises from './Prises/Prises';
 import RatingBar from './RatingBar/RatingBar';
@@ -10,10 +10,19 @@ class Model_Page extends Component{
     
     constructor(props){
         super(props);
+        this.model = this.modelChange(props.model)
         this. state = {
             numPage:0,
         }
         this.getNumPage = this.getNumPage.bind(this);
+    }
+
+    modelChange(model){
+        if(model){
+           this.setState({numPage:model.num}) 
+        }else{
+            this.setState({numPage:0})
+        }
     }
 
     getNumPage(){

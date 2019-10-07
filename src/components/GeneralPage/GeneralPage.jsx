@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import './generalPage_style.css'
 import GirlWeek from './GirlWeek/GirlWeek'
 import archiveNews from '../../contentData/archive_news.json'
-import modelBase from '../../contentData/modelsBase';
+import modelBase from '../../contentData/modelsBase.json';
 import News from '../News/News';
 import Videoteka from '../Videoteka/Videoteka'
 
@@ -49,7 +49,7 @@ class GeneralPage extends Component{
                         </div>
                     </div>
                     <div className="gp_girlWeek">
-                        <GirlWeek girl={modelBase[2]}/>
+                        <GirlWeek model={modelBase[2]}/>
                     </div>       
                 </div>
            </div>

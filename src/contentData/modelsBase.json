@@ -1,5 +1,6 @@
-export default[
+[
     {
+        "num":"0",   
         "name":"Каролина Абриль",
         "age":"19 июля 1992 (27лет)",
         "country":" Испания",
@@ -7,7 +8,7 @@ export default[
         "buste":" натуральная (B)",
         "weight":" 53кг",
         "height":" 170см",
-        "site":" carolinaabril.com",      
+        "site":" carolinaabril.com",   
         "prises":[
             {
                 "year":"2014",
@@ -36,6 +37,7 @@ export default[
         }  
     },
     {
+        "num":"1", 
         "name":"Бри Бенет",
         "age":" 7 февраля 1987 (32 года)",
         "ethnic" : "европейка",
@@ -71,13 +73,14 @@ export default[
         }  
     },
     {
+        "num":"2",  
         "name":"Дженис Грифит",
         "age":" 7 июля 1995 (24 года)",
         "ethnic" : "индейские корни",
         "country":"Нью-Йорк США",
         "buste":"натуральная (B+)",
         "weight":" 40кг",
-        "height":" 160см",
+        "height":" 160см",    
         "prises":[
             {
                 "year":"2015",
@@ -121,6 +124,7 @@ export default[
         }  
     },
     {
+        "num":"3",   
         "name":"Одетт Делакруа",
         "age":" 7 июля 1995 (24 года)",
         "ethnic" : "индейские корни",
@@ -166,7 +170,7 @@ export default[
             "Начинает сниматься в фильмах для взрослых в 2011 году, в возрасте 22 лет. Работала с такими студиями, как FM Concepts, Filly Films, New Sensations и Girlfriends Films, а также для сайтов Twistys, Babes.com, ATK Petites и JustCuteGirls.com.",
             "В 2014 году первый раз номинируется на премию XBIZ за лучшую сексуальную сцену в лесбийском фильме.",
             "Некоторые фильмы с её участием: ATK Babes In Toyland, ATK Hairy Muff Munchers, In-Room Rubdown, Lesbian Masseuse 3, Violation of Odette Delacroix, Cheer Squad Sleepovers 4 o Girl On Girl Fantasies 6.",
-            "Снялась в более чем 90 фильмах." ,
+            "Снялась в более чем 90 фильмах." 
         ],
         "photo":{
             "p": "2",
@@ -174,6 +178,7 @@ export default[
         }   
     },
     {
+        "num":"4",   
         "name":"Эми Дейли",
         "age":" 7 июля 1995 (24 года)",
         "ethnic" : "индейские корни",
@@ -224,6 +229,7 @@ export default[
         }  
     },
     {
+        "num":"5",   
         "name":"Дайана Дево",
         "age":" 7 июля 1995 (24 года)",
         "ethnic" : "индейские корни",
@@ -274,6 +280,7 @@ export default[
         }   
     },
     {
+        "num":"6",   
         "name":"Тришия Деверо",
         "age":" 7 июля 1995 (24 года)",
         "ethnic" : "индейские корни",
@@ -322,6 +329,5 @@ export default[
             "p": "2",
             "sp":"4"
         }  
-    },
-
+    }
 ]

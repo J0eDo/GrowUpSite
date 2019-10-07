@@ -6,13 +6,18 @@ import './girlWeek_style.css';
 class GirlWeek extends Component{    
    constructor(props){
         super(props);
-        this.model = props.girl
+        this.model = props.model;
+        this.modelNumber = props.model.num;
    }
    
+   setModelPage=()=>{
+        console.log(this.model);
+   }
+
     render() {
         const _src =`${window.location.origin}/models/${this.model.name}/avatar.jpg`;
         return (
-            <div className="girlWeek_conteiner">
+            <div onClick={this.setModelPage} className="girlWeek_conteiner">
                 <h2><span>&#9733;</span>ЗВЕЗДА МЕСЯЦА<span>&#9733;</span></h2>
                 <h1>{this.model.name}</h1>
                 <img src={_src} alt={this.model.name}></img>
