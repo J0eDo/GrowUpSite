@@ -39,7 +39,7 @@ class News extends Component{
             readTheNews(news);
         }
         return(
-            <div key={news.id} className="theNews">
+            <div key={news.num} className="theNews">
                     <img src={window.location.origin + "/news/" +news.num + "/" + news.photos[0]} alt={news.head}></img>
                     <div className="theNews_conteiner">
                         <h3 onClick={readModeHandler} href="#">читать</h3>

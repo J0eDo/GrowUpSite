@@ -44,7 +44,7 @@ class App extends Component {
     getPageContent(str,content){
         switch(str){
             case("studio"):{return <Studios/>;}
-            case("models"):{return <Model_Index/>;}
+            case("models"):{return <Model_Index model={content}/>;}
             case("news"):{return <News handler={this.setStatePage}/>; }
             case("porn"):{return <Videoteka handler={this.setStatePage} numberGet={3}/>;}
             case("Просмотр"):{return <SearchVideo video={content}/>;}

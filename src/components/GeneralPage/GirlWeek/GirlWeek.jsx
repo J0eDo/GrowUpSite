@@ -7,11 +7,12 @@ class GirlWeek extends Component{
    constructor(props){
         super(props);
         this.model = props.model;
-        this.modelNumber = props.model.num;
+        this.modelNumber = props.model;
+        this.appHandler = props.appHandler;
    }
    
    setModelPage=()=>{
-        console.log(this.model);
+        this.appHandler("models",this.model);
    }
 
     render() {

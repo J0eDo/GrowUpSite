@@ -10,12 +10,13 @@ class Model_Page extends Component{
     
     constructor(props){
         super(props);
-        this.model = this.modelChange(props.model)
-        this. state = {
+        this.state = {
             numPage:0,
         }
-        this.getNumPage = this.getNumPage.bind(this);
+        this.getNumPage = this.getNumPage.bind(this); 
     }
+    
+
 
     modelChange(model){
         if(model){
@@ -78,8 +79,10 @@ class Model_Page extends Component{
                 </div>
             </div>)
     }
-
-    render() {
+    componentDidMount(){
+        this.modelChange(this.props.model);
+    }
+    render() {  
         const model = modelBase[this.state.numPage];
         const srcImg = `${window.location.origin}/models/${model.name}/avatar.jpg`;
         return (

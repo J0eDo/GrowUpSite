@@ -49,7 +49,7 @@ class GeneralPage extends Component{
                         </div>
                     </div>
                     <div className="gp_girlWeek">
-                        <GirlWeek model={modelBase[2]}/>
+                        <GirlWeek appHandler={this.appHandler} model={modelBase[1]}/>
                     </div>       
                 </div>
            </div>
