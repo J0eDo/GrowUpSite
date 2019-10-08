@@ -13,13 +13,17 @@ class Menu extends Component{
     }
     render(){
         return(
-            <nav>
-                <div><a className="menu_btn" action="general" onClick={this.handlerRef}>Главная</a></div>
-                <div><a className="menu_btn" action="models" onClick={this.handlerRef}>Модели</a></div>
-                <div><a className="menu_btn" action="studio" onClick={this.handlerRef}>Студии</a></div>
-                <div><a className="menu_btn" action="news" onClick={this.handlerRef}>Новости Индустрии</a></div>
-                <div><a className="menu_btn" action="porn" onClick={this.handlerRef}>Порнотека</a></div>
-            </nav>
+            <div className="menu">
+                <ul className="menuItems">
+                    <li><a className="menuBtn" action="general" onClick={this.handlerRef}>Главная</a></li>
+                    <li><a className="menuBtn" action="models" onClick={this.handlerRef}>Модели</a></li>
+                    <li><a className="menuBtn" action="studio" onClick={this.handlerRef}>Студии</a></li>
+                    <li><a className="menuBtn" action="news" onClick={this.handlerRef}>Новости</a></li>
+                    <li><a className="menuBtn" action="porn" onClick={this.handlerRef}>Порнотека</a></li>
+                </ul>
+                <input type="checkbox" className="navBtn"></input>
+                <label for="navBtn"></label>
+            </div>
         )
     }
 }

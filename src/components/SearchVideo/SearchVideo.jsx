@@ -19,10 +19,10 @@ class SearchVideo extends Component{
     }
 
     getPlayer(){
-        const _src = `${window.location.origin}/video/${this.video.name}/video.mp4` 
         return(
             <div className="player" >
-            <video src={_src} width="960px" height="540px" poster="poster.gif" controls /> 
+            <video href={this.video.url} width="100%" height="100%" poster="poster.gif" controls /> 
+            <source src="video/duel.ogvhttps://youtu.be/MSc9pbtTrxU" type='video/ogg; codecs="theora, vorbis"'></source>
             </div>
         )
     }

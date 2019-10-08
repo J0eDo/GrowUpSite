@@ -2,8 +2,6 @@ import React,{Component} from 'react';
 import './videoteka_style.css';
 import videoteca from '../../contentData/video.json';
 
-   
-
 
 class Videoteka extends Component{
     

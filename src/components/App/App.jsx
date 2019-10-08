@@ -56,12 +56,12 @@ class App extends Component {
     render(){
         return(
             <div className="app">
-                <Menu parentHandler={this.setStatePage} className="myMenu"/>
-                <div>
+                <Menu parentHandler={this.setStatePage}/>
+                <content>
                     {this.setSearchElementState(this.state.page)}
                     {this.getPageContent(this.state.page,this.state.video)}
-                </div>
-                <footer></footer>
+                </content>
+                {/* <footer></footer> */}
             </div>)
     }
 }
