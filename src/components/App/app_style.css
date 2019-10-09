@@ -6,8 +6,6 @@
     padding: 0;
 }
 
-
-
 body{
     font-size: 1.1rem;
     font-family: roboto;
@@ -18,9 +16,6 @@ body{
 
 .app{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap
 }
 
-content{
-    margin-left: 3.5%;
-}

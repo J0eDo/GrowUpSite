@@ -3,38 +3,41 @@
    margin-top: 2rem;
 }
 
-/* .gp_head{
-
-} */
 .gp_head__logoBG{
     border-radius: 40% 1% 1% 40%;
-    left: 4rem;
+    top: .5rem;
+    left: 2rem;
     z-index: -2;
     position: absolute;
     background-color: brown;
-    width: 20rem;
-    height: 5rem;
+    width: 32vh;
+    height: 3rem;
 }
+
 .gp_head__logo{
-    padding: 2rem;
+    position: relative;
+    left: 70vw;
     font-family: 'Libre Baskerville', serif;
-    margin-bottom: 3rem;
+    margin: 3rem;
 }
+
 .gp_logo__circle{
     z-index: -1;
     position: absolute;
-    top: 5.5rem;
-    width: 10rem;
-    height: 10rem;
+    top: -1.8rem;
+    width: 8.3rem;
+    height: 8.3rem;
     border-radius: 50%;
     background-color: blueviolet;  
 }
+
 .gp_head__logo  h1{
     text-shadow: 1px 1px 3px black;
     z-index: 3;
     color: blanchedalmond;
-    font-size: 4.3rem;
+    font-size: 3.3rem;
 }
+
 .gp_head p{
     background-color: rgb(141, 42, 42);
     border: 5px inherit blue;
@@ -43,10 +46,12 @@
     font-size: 2rem;
     margin-bottom: -3rem;
 }
+
 .gp_content{
     display: flex;
     justify-content: space-between;
 }
+
 .gp_hotNews{
   
 }

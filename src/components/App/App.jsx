@@ -57,7 +57,7 @@ class App extends Component {
         return(
             <div className="app">
                 <Menu parentHandler={this.setStatePage}/>
-                <content>
+                <content className="site-wrap">
                     {this.setSearchElementState(this.state.page)}
                     {this.getPageContent(this.state.page,this.state.video)}
                 </content>

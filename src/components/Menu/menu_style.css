@@ -1,75 +1,119 @@
 @import url('https://fonts.googleapis.com/css?family=Stalinist+One&display=swap');
 .menu{
     list-style: none;
-    animation: reduceBtnMenu 2s ease-in-out 1;
-    animation-fill-mode: forwards; 
     position: fixed;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: stretch;
-    justify-items: center;
-    flex-wrap: nowrap;
-    width: 19%;
-    height: 100vh;
 }
 
-.menuItems{
-    padding-top:6rem; 
-    background-color:  rgba(41, 26, 54, 0.863);
-    width: 100%;
+.personal{
+    margin-bottom: 5vh;
 }
-.navBtn{
-    height: 100vh; 
-    background-color: rgb(245, 229, 229);
+
+.personal img{
+    margin: auto;
+    display: block;
+    width: 9vw;
+    height: 6vw;
+    border-radius: 60% 60%;
+}
+
+.personal form{
+    margin: 2vh auto;
     text-align: center;
-    width: 16rem;
+    max-width: 12vw;
+}
+
+.personal>div{
+    text-align: center;
+}
+
+.personal>div>a{
+    left: 3vw;
+    font-size: .9rem;
+}
+
+.personal>div>button{
+    color: rgb(187, 174, 158);
+    background-color:  rgb(26, 14, 36);
+    border: 1px solid rgb(28, 11, 43);;
+    width: 4vw;
+    margin: auto 2vw;
+}
+.menuItems{
+    position: relative;
+    bottom: 2.5vh;
+    left: -16vw;
+    padding-top:3rem; 
+    background-color:  rgba(41, 26, 54, 0.952);
+    width: 15vw;
+    height:65.5vh;
+    border-radius: 0 2% 2% 0;
+    border: 4px solid rgb(34, 20, 46);
+}
+
+.menuBtn{
+    margin-left: .5vw;
+    cursor: pointer;
+    vertical-align: 1rem;
+    border-bottom: 1px solid black;
+    padding: 1rem 2vh 0 2vh;
+    font-size: 2vw;
+    color: whitesmoke;  
+}
+
+.nav-trigger{
+    position: absolute;
+    transition: all 1s ease 0s;
+    background-color: rgb(245, 229, 229);
     color :black;
     border: 1px solid black;
     clip: rect(0, 0, 0, 0);
     cursor: pointer;
 }
 
-.menuBtn{
-    cursor: pointer;
-    vertical-align: 3rem;
-    border-bottom: 1px solid black;
-    padding: 0 .5rem;
-    margin-top: 3rem;
-    font-size: 2.8rem;
-    color: whitesmoke;
-    height: 5rem; 
-  
-}
 
-menu:hover{
-animation: reduceBtnMenu 2s ease 2s 2 normal alternate;
-}
-
-label[for="navBtn"] {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' version='1.1' x='0px' y='0px' width='30px' height='30px' viewBox='0 0 30 30' enable-background='new 0 0 30 30' xml:space='preserve'><rect width='30' height='6'/><rect y='24' width='30' height='6'/><rect y='12' width='30' height='6'/></svg>");
+label[for="nav-trigger"] {
+    border: 4px solid rgb(34, 20, 46);
+    z-index: 5;
+    position: fixed;
+    top:2vh;
+    width: 4vw;
+    height: 8vh;
+    background-color: rgba(41, 26, 54, 0.918);
     background-size: contain;
+    border-radius: 25%;
 }
 
-.navBtn:checked + label {
-    left: 215px;
+.nav-trigger:checked + label, ul {
+    transition: all .4s ease 0s;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0);
+    border: none;
+    left: 15vw;
 }
  
-.navBtn:checked ~ .site-wrap {
-    left: 200px;
-    box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+.iconer{
+    animation: blink 5s 1;
+    position: absolute;
+    text-align: center;
+    margin: -1vh .45vw;
+    font-size: 3em;
 }
 
-	
-.navBtn + label, .site-wrap {
-    transition: left 0.2s;
+.menuBtn:hover{
+    transition: all .4s ease 0s;
+    color: rgb(231, 248, 136);
+    font-size: 2.5rem;
 }
 
-@keyframes reduceBtnMenu{
-75% {left: -4%;}
-50% {left: 0%;}
-100%{left: 0%}
+@keyframes blink{
+    50%{
+       color: rgb(234, 241, 241);
+    }
+    50%{
+        color:rgb(243, 158, 158);
+    }
+    100%{
+        color:rgb(234, 241, 241);
+    
+    }
 }
