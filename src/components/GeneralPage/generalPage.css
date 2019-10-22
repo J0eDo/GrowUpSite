@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:700&display=swap');
+
+.generalPage_conteiner{
+   margin: 1rem;
+}
+
+.head__logoBG{
+    border-radius: 40% 1% 1% 40%;
+    top: .5rem;
+    left:  2.2rem;
+    z-index: -2;
+    position: absolute;
+    background-color: brown;
+    width: 15vw;
+    height: 3rem;
+}
+
+.head__logo{
+    max-width: 15rem;;
+    position: relative;
+    left: 70vw;
+    font-family: 'Libre Baskerville', serif;
+    margin: 3rem;
+}
+
+.logo__circle{
+    z-index: -1;
+    position: absolute;
+    top: -2rem;
+    width: 8.3rem;
+    height: 8.3rem;
+    border-radius: 50%;
+    background-color: blueviolet;  
+}
+
+.head__logo  h1{
+    text-shadow: 1px 1px 3px black;
+    z-index: 3;
+    color: blanchedalmond;
+    font-size: 3.3rem;
+}
+
+
+.gp_head p{
+    background-color: rgb(141, 42, 42);
+    border: 5px inherit blue;
+    border-radius: 13px;
+    padding: .5rem 2rem;
+    font-size: 2rem;
+    margin-bottom: -3rem;
+}
+
+.gp_content{
+    display: flex;
+    justify-content: space-between;
+}
+

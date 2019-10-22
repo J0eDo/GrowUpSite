@@ -1,0 +1,21 @@
+.girlWeek_conteiner{
+    background-color:  rgb(41, 26, 54);
+    border-radius: 2px;
+    padding: 2rem;
+    margin:4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.girlWeek_conteiner img{
+    max-width: 30rem;
+    padding-bottom: 1.5rem;
+}
+
+.girlWeek_conteiner:hover{
+    color: rgb(245, 223, 195);
+    text-shadow: 2px -2px 2px gold;
+    cursor: pointer;
+}

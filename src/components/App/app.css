@@ -1,0 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400);
+
+*{
+    font-family: roboto;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-size: 1.1rem;
+    font-family: roboto;
+    background-image: url(../../imgElements/bg3.jpg);
+    color: beige;
+}
+
+.app{
+    display: flex;
+    flex-wrap: nowrap
+}
+
