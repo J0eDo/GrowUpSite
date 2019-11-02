@@ -1,29 +1,25 @@
-import React,{Component} from 'react';
+/**Libarys */
+import React,{Component} from 'react'
 import './generalPage.css'
-import GirlWeek from './GirlWeek/GirlWeek'
-import archiveNews from '../../contentData/news.json'
-import models from '../../contentData/models.json';
-import News from '../News/News';
-import Videoteka from '../Videoteka/Videoteka'
+import {connect} from 'react-redux'
+/**Components */
+import GirlWeek    from './GirlWeek/GirlWeek'
+import News        from '../News/News'
+import Videoteka   from '../Videoteka/Videoteka'
+
 
 
 class GeneralPage extends Component{
     
     constructor(props){
         super(props);
-        this.hotNews = this.getHotNews();
-        this.modelWeek = this.getModelWeek(); 
-        this.appHandler = props.handler;
+        this.modelWeek=props.store.modelWeek;
+        this.newsWeek = props.store.newsWeek;
     }
 
-    getHotNews(){
-        //**to DO BACKEND */
-        return archiveNews[0];
-    }
-    
-    getModelWeek(){
-        //**TO DO BACKEND */
-        return models[1];
+
+    modelChange(){
+        this.props.modelChange(this.modelWeek);
     }
 
 
@@ -42,14 +38,14 @@ class GeneralPage extends Component{
                <div className ="gp_content">
                    <div className="gp_content__left">
                        <div className="gp_hotNews">
-                           <News handler={this.appHandler} flag={true}/>
+                           <News newsWeek={this.props.store.newsWeek} flag={true}/>
                        </div>
                        <div>
                            <Videoteka textBlock="Лидеры Просмотра" handler={this.appHandler} numberGet={3}/>
                         </div>
                     </div>
-                    <div className="gp_girlWeek">
-                        <GirlWeek appHandler={this.appHandler} model={this.modelWeek}/>
+                    <div onClick={this.modelChange.bind(this)} className="gp_girlWeek">
+                        <GirlWeek  model={this.props.store.modelWeek}/> 
                     </div>       
                 </div>
            </div>
@@ -57,4 +53,15 @@ class GeneralPage extends Component{
     }
 }
 
-export default GeneralPage;
+
+
+export default connect(
+    state=>({
+        store: state.models
+    }), 
+    dispatch =>({
+        modelChange : (model) =>{
+            dispatch({type : 'modelChange', modelSearched:model });
+        },
+    })
+)(GeneralPage);

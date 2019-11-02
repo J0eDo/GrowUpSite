@@ -6,10 +6,6 @@ import studios from '../../contentData/studios.json';
 
 class Studios extends Component{
     
-    constructor(props){
-        super(props);
-    }
-
     getStudiosElements(arr){
         const _src = `${window.location.origin}/studios_logo/`;
         return(

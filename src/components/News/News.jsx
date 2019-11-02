@@ -1,6 +1,10 @@
-import React,{Component} from 'react';
 import './news.css';
-import news from '../../contentData/news.json'
+/**Libarys */
+import React,{Component} from 'react';
+import {Link} from "react-router-dom";
+import {connect} from 'react-redux'
+/**JSON */
+import news from '../../contentData/news.json';
 
 
 
@@ -8,15 +12,19 @@ class News extends Component{
     
     constructor(props){
         super(props);
-        this.miniVersion = props.flag; 
-        this.handler = props.handler;
+        this.modelWeek = props.flag; 
         this.news = this.paragraphsParse();
+    }
+    
+    newsChange=(event)=>{
+        const newsIndex = event.target.getAttribute("index");
+        this.props.newsChange(news[newsIndex]);
     }
 
     paragraphsParse(){
         let paragraphs = [];    
-        if(this.miniVersion){
-            paragraphs.push(news[0])
+        if(this.modelWeek){
+            paragraphs.push(news[2])
         }else{
             news.forEach(element => {
             paragraphs.push(element)
@@ -25,23 +33,15 @@ class News extends Component{
         return paragraphs;
     }
 
-    readTheNews=(event)=>{
-        this.handler("newsRead", event)
-        
-    }
+
 
     getTheNewsPoster(news){
-        const readTheNews = this.readTheNews.bind(this); 
-        function openTheNews(){
-            readTheNews(news);
-        }
-
         const titleImgSrc = `${window.location.origin}/news/${news.num}/${news.photos[0]}`
         return(
             <div key={news.num} className="theNews">
                     <img src={titleImgSrc} alt={news.head}></img>
                     <div className="theNews_conteiner">
-                        <h3 onClick={openTheNews} href="#">читать</h3>
+                        <Link onClick={this.newsChange.bind(this)}  to="/newsRead"><h3 index={news.num}>читать</h3></Link>
                         <p className="theNews_dateTime">{Element.dataTime}</p> 
                         <h2>{news.head}</h2>
                         <p>{news.second_text[0[0]]||news.second_text[0]}</p>
@@ -58,7 +58,7 @@ class News extends Component{
         )
     }
 
-    render(){       
+    render(){
         return(
             <div className="newsConteiner">
                 {this.getAllNewsPosters()}
@@ -67,4 +67,13 @@ class News extends Component{
     }
 }
 
-export default News;
+export default connect(
+    state=>({
+        store: state.news
+    }),
+    dispatch =>({
+        newsChange : (news) =>{
+            dispatch({type : 'newsChange', newsSearched:news });
+        },
+    })
+)(News);
