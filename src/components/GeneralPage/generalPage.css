@@ -1,57 +1,97 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:700&display=swap');
-
-.generalPage_conteiner{
-   margin: 1rem;
+.generalPage{
+    margin: .35rem;
+    font-weight: 500;
 }
-
-.head__logoBG{
-    border-radius: 40% 1% 1% 40%;
-    top: .5rem;
-    left:  2.2rem;
-    z-index: -2;
-    position: absolute;
-    background-color: brown;
-    width: 15vw;
-    height: 3rem;
-}
-
-.head__logo{
-    max-width: 15rem;;
-    position: relative;
-    left: 70vw;
-    font-family: 'Libre Baskerville', serif;
-    margin: 3rem;
-}
-
-.logo__circle{
-    z-index: -1;
-    position: absolute;
-    top: -2rem;
-    width: 8.3rem;
-    height: 8.3rem;
-    border-radius: 50%;
-    background-color: blueviolet;  
-}
-
-.head__logo  h1{
-    text-shadow: 1px 1px 3px black;
-    z-index: 3;
-    color: blanchedalmond;
-    font-size: 3.3rem;
-}
-
-
-.gp_head p{
-    background-color: rgb(141, 42, 42);
-    border: 5px inherit blue;
-    border-radius: 13px;
-    padding: .5rem 2rem;
-    font-size: 2rem;
-    margin-bottom: -3rem;
-}
-
-.gp_content{
+.generalPage header{
+    margin: .05rem;
     display: flex;
-    justify-content: space-between;
+    width: 98vw;
+}
+header>.header_column{
+    height: 30rem;
+    min-width: 33%;
+    flex-grow: 1;
+    margin:0 .1rem ;  
 }
 
+header>.header_column__center{
+    background-color: teal;
+    border: 2px solid rgb(6, 6, 32);
+    min-width: 33.33%;
+    flex-grow: 1;  
+}
+
+header>.header_column .header_button__M {
+    background-color: teal;
+    border: 2px solid rgb(7, 9, 17);
+    height: 50%;
+}
+
+span .header_button__M .last{
+    margin-top: 5rem ;
+   
+}
+
+.header_column span{
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 12rem 0 0 1rem;
+    font-size: 2rem;
+    display: block;
+}
+
+.header_column__center p{
+    margin: 27rem 0 0 1rem;
+    font-size: 2rem;
+}
+
+.header_column__center:hover{
+    background-color: rgb(29, 138, 138);
+}
+
+.header_button__M:hover{
+    color: wheat;
+    filter: hue-rotate(17deg);
+}
+
+.subheader{
+    height: 25rem;
+    width: 100%;
+    background-color: rgb(27, 24, 27);
+    background-image: url("../../imgElements/generalPage/subheader.png");
+    background-repeat: no-repeat;
+    background-size:  100% 100%;
+}
+
+
+
+.bookmaker{
+    background-image: url("../../imgElements/generalPage/mma-stavki.jpg");
+    background-size: 100% 100%;
+}
+
+.fighters{
+    background-image: url("../../imgElements/generalPage/ex4.jpg");
+    background-size:   cover;
+    background-repeat: no-repeat;
+}
+
+.merch{
+    background-image: url("../../imgElements/generalPage/ex5.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.news{
+    background-image: url("../../imgElements/generalPage/news.jpg");
+    background-size: cover;
+     background-repeat: no-repeat;
+}
+
+footer{
+    height: 4rem;
+    width: 100%;
+    border-top: 1px solid rgb(43, 38, 51);
+    background-color: black;
+}

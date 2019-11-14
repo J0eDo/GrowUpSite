@@ -8,28 +8,26 @@ import {
 } from "react-router-dom";
 /**Components*/
 import GeneralPage from '../GeneralPage/GeneralPage';
-import Menu        from '../Menu/Menu';
-import Model_Index from '../Actress/Model_Index'; 
-import Studios     from '../Studios/Studios';
-import News        from '../News/News';
-import NewsRead    from '../News/NewsRead/NewsRead'
-import Videoteka   from '../Videoteka/Videoteka';
+import FighterInfo from '../Fighters/Fighters'; 
+
 
 
 class App extends Component {
+
+    constructor(props){
+        super(props);
+        this.state={
+            
+        }
+    }
 
     render(){
         return(
             <div className="app">          
                 <Router className = "content">
-                <Menu/>
                     <Switch>
                         <Route exact path="/" component ={GeneralPage}/>
-                        <Route path="/news"  component ={News}/>
-                        <Route path="/newsRead" component ={NewsRead}/>
-                        <Route path="/studios" component ={Studios}/>
-                        <Route path="/models" component={Model_Index}/>
-                        <Route path="/videoteka" component={Videoteka}/>
+                        <Route path="/fighters"  component ={FighterInfo}/>
                     </Switch>
                 </Router>      
                 {/* <footer></footer> */}

@@ -15,8 +15,6 @@ class NewsRead extends Component{
         this.linksSecondBlockText = this.parametrParser("second_text");   
     }
 
-
-
     parametrParser(param){
         let params = [];
         for(let key in this.news){

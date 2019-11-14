@@ -31,9 +31,9 @@ class Menu extends Component{
                         <li>{this.getPersonal()}</li>
                         <li><Link to="/"         className="menuBtn">Главная</Link></li>
                         <li><Link to="news"      className="menuBtn">Новости</Link></li>
-                        <li><Link to="studios"   className="menuBtn">Студии</Link></li>
-                        <li><Link to="models"    className="menuBtn">Модели</Link></li>
-                        <li><Link to="videoteka" className="menuBtn">Порнотека</Link></li>        
+                        <li><Link to="fights"   className="menuBtn">Бои</Link></li>
+                        <li><Link to="fighter"    className="menuBtn">Бойцы</Link></li>
+                        <li><Link to="gallery" className="menuBtn">Галлерея</Link></li>        
                     </ul>       
                 </label>
             </div>
