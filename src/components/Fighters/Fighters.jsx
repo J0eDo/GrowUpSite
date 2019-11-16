@@ -3,6 +3,7 @@ import React,{Component} from 'react'
 import './fighters.css'
 /*Components */
 import Diagram from '../DiagramFights/Diagram'
+import FighterSideBar from '../FightersSideBar/FightersSideBar'
 /*JSON */
 import fighters from '../../contentData/fighters.json'
 
@@ -19,8 +20,7 @@ class Fighters extends Component{
     }
 
     getFighter(){
-        return fighters[2];
-
+        return fighters[1];
     }
 
     objectToArray(obj){
@@ -62,11 +62,12 @@ class Fighters extends Component{
                         </div>                  
                     </div>
                     <div className="f_second">
-                        <Diagram fighter={this.state.fighter}/>
+                        <Diagram fightHistory={this.state.fighter.fightHistory}/>
                         {this.constructImg(this.state.fighter, "1.png")}
                     </div>
                 </div>
                 <div className="f_sidebar">
+                    <FighterSideBar/>
                 </div>
             </div> 
         );

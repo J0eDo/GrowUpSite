@@ -1,8 +1,10 @@
- import {combineReducers} from 'redux';
+import {combineReducers} from 'redux';
 
- import news from './news'
+import fighters from './fighters'
+import news from './news'
 
  export default combineReducers({
-     news
+     news,
+     fighters
  })
 

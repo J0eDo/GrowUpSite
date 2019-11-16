@@ -1,3 +1,53 @@
 .diagram{
     width: 100%;
+    display: flex;
+    flex-direction: column;
 }
+.diagram>div{
+    margin: 5rem 0 0 2rem;
+}
+.diagram h3{
+    text-align: center;
+}
+.diagram_content{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: scretch;
+}
+.diagram_numOf{
+    font-size: 5rem;
+    display: block;
+    width: 10rem;
+    text-align: center;
+}
+
+.diagram_row{
+    font-size: 1.7rem;
+    width: 30vw;
+    background-color: rgb(68, 124, 126);
+}
+
+
+.diagram_percent{
+    height: 2rem;
+    position: relative;
+    border: 1px solid black;
+    background-color: #f20;
+}
+.diagram_percent div{
+    top: 1%;
+    left: 10vw;
+    position: absolute;
+    z-index: 3;
+
+}
+
+.diagram_numOfCase{
+    text-align: center;
+    border:1px solid none;
+    font-size: 1.7rem;
+    width: 5rem;
+}
+

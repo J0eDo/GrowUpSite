@@ -1,7 +1,8 @@
 /*f==fighter*/
 
 .fighterPage{
-    background-color:  rgb(11, 11, 19);
+    background: rgb(11,11,18);
+    background: linear-gradient(90deg, rgba(11,11,18,1) 2%, rgba(26,28,31,1) 21%, rgba(0,0,0,1) 63%, rgba(25,26,27,1) 88%, rgba(34,36,37,1) 100%);
     color:wheat;
     display: flex;
     justify-content: space-between;
@@ -9,14 +10,19 @@
 
 .f_content{
     min-width: 80vw;
-    margin-top: 2rem;
+   
 }
 
 .f_first{
+    padding-top: 2rem;
     display: flex;
-    width: 100%;
+    width: 105%;
     align-items: center;
     justify-content:space-around;
+    background-image: url('../../imgElements/zigzagwool.png');
+    background-size: contain;
+    border-bottom: 1px solid gray;
+
 }
 
 .f_parametrs{
@@ -25,12 +31,19 @@
 }
 
 .f_second{
-    margin: 2rem 0;
     display: flex;
-    width: 80%;
-    justify-content: space-between;
-    
+    justify-content: flex-start;
 }
+
+.f_second img{
+    margin-left: -5rem;
+    justify-self: start;
+    align-self: center;
+    width: 40rem;
+    margin-top: 2rem;
+    box-shadow: rgb(26, 17, 26) 3px 2px;
+}
+
 
 .f_about{
     font-size: 1.5rem;
@@ -43,10 +56,7 @@
     flex-direction: column;
 }
 
-.f_second img{
-    width: 40%;
-    padding: 0rem;
-}
+
 
 .f_diagram__block{
     display: flex;
@@ -55,8 +65,11 @@
 }
 
 .f_sidebar{
-    background-color: teal;
-    width: 15vw;
+    position: relative;
+    border-left: 1px solid black;
+    background-image: url('../../imgElements/carbon_fibre/carbon_fibre.png');
+    width: 18vw;
+    margin-left: 2rem;
 }
 
 .tester{
