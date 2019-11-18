@@ -1,6 +1,7 @@
 /**Libarys */
 import React,{Component} from 'react'
 import './fighters.css'
+import {connect} from 'react-redux'
 /*Components */
 import Diagram from '../DiagramFights/Diagram'
 import FighterSideBar from '../FightersSideBar/FightersSideBar'
@@ -76,4 +77,8 @@ class Fighters extends Component{
 
 
 
-export default Fighters;
+export default connect(
+    state=>({fighter:state}),
+    dispatch => ({changeFighter:(name)=>dispatch({"type":"fighterChange", fighter:name})
+})
+)(Fighters);
