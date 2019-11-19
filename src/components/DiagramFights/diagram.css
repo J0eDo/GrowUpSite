@@ -26,7 +26,12 @@
 .diagram_row{
     font-size: 1.7rem;
     width: 30vw;
-    background-color: rgb(68, 124, 126);
+    background: rgb(53,86,125);
+    background: -moz-linear-gradient(90deg, rgba(53,86,125,1) 13%, rgba(32,133,230,1) 53%, rgba(14,160,190,1) 81%);
+    background: -webkit-linear-gradient(90deg, rgba(53,86,125,1) 13%, rgba(32,133,230,1) 53%, rgba(14,160,190,1) 81%);
+    background: linear-gradient(90deg, rgba(53,86,125,1) 13%, rgba(32,133,230,1) 53%, rgba(14,160,190,1) 81%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#35567d",endColorstr="#0ea0be",GradientType=1);
+    
 }
 
 
@@ -38,16 +43,16 @@
 }
 .diagram_percent div{
     top: 1%;
-    left: 13vw;
+    left: 11vw;
     position: absolute;
+    text-align: center;
     z-index: 3;
-
 }
 
 .diagram_numOfCase{
-    text-align: center;
-    border:1px solid none;
+    margin-left: 1rem;
+    text-align: left;
     font-size: 1.7rem;
-    width: 5rem;
+    width: 15rem;
 }
 

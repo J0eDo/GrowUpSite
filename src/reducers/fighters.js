@@ -1,14 +1,16 @@
 import fightersList from "../contentData/fighters.json"
 
 const initialState = {
-    fighter:fightersList[0]
+    fighterSearchedID: fightersList[0].id
 }
 
 export default function fighters (state = initialState, action){
     if(action.type==="fighterChange"){
+        console.log(state ,"STATE");
+        
         return{
             ...state,
-            fighterSearched:action.fighterChange
+            fighterSearchedID: state.fighterID
         }
     }
     return state; 

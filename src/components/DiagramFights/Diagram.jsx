@@ -2,8 +2,6 @@ import React,{Component} from 'react'
 import './diagram.css'
 
 
-
-
 class Diagram extends Component{    
 
     constructor(props){
@@ -54,7 +52,7 @@ class Diagram extends Component{
            this.rowConstructor(element,index)
         )
         let numOfCaseDiagram = numOfCase.map((element,index)=>
-           this.numOfCaseConstructor(element,FIGHT_CASES[index])
+           this.numOfCaseConstructor(element,index,FIGHT_CASES[index])
         )
         return(
             <div className="diagram_content">

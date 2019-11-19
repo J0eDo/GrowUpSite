@@ -1,7 +1,9 @@
 import React, {Component} from "react"
+import {connect} from "react-redux"
 import "./fightersSideBar.css"
 
 import fighters from '../../contentData/fighters.json'
+import { log } from "util";
 
 
 class FightersSideBar extends Component{
@@ -14,9 +16,14 @@ class FightersSideBar extends Component{
         numPage:0
     }
 
+    fighterDisputher=(e)=>{
+       let changeFighterID = e.currentTarget.getAttribute("fighter");
+       this.props.changeFighter(changeFighterID);
+    }
+
     constructIconFighter(fighters){
         let fightersList = fighters.map((element,index)=>
-            <div className="sb_blockFighter"  key={`iconFighter${index}`}>
+            <div className="sb_blockFighter" fighter={element.id}  onClick={this.fighterDisputher}  key={`iconFighter${index}`}>
                 <img src={`${document.location.origin}/img/fighters/${element.about["Имя англ"]}/avatar.png`} alt=""/>
                 {element.name}
             </div>
@@ -41,4 +48,8 @@ class FightersSideBar extends Component{
     }
 }
 
-export default FightersSideBar;
+export default connect(
+    state=>({test:state.fighters}),
+    dispatch => ({changeFighter:(fighterID)=>dispatch({"type":"fighterChange", fighterSearchedID:fighterID})
+})
+)(FightersSideBar);

@@ -13,7 +13,7 @@ class Fighters extends Component{
 
     constructor(props){
        super(props);
-       this.fighter = this.getFighter();
+       this.fighter = this.getFighter();   
     }
 
     state ={
@@ -50,6 +50,7 @@ class Fighters extends Component{
 
 
     render() {
+        console.log(this.state.fighter)
         return (
             <div className="fighterPage">
                 <div className="f_content">
@@ -78,7 +79,6 @@ class Fighters extends Component{
 
 
 export default connect(
-    state=>({fighter:state}),
-    dispatch => ({changeFighter:(name)=>dispatch({"type":"fighterChange", fighter:name})
-})
+    state=>({test:state.fighters}),
+    disputch=>({})
 )(Fighters);
