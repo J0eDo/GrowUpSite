@@ -11,14 +11,11 @@ class FightersSideBar extends Component{
         super(props);
         this.constructIconFighter(fighters)
     }
-    state={
-        numPage:0
-    }
 
     fighterDisputher=(e)=>{
        let changeFighterID = e.currentTarget.getAttribute("fighter");
        this.props.changeFighter.bind(this);
-       this.props.changeFighter(1);
+       this.props.changeFighter(changeFighterID);
     }
 
     constructIconFighter(fighters){
@@ -49,8 +46,9 @@ class FightersSideBar extends Component{
 }
 
 export default connect(
-    state=>({test:state.fighters}),
-    dispatch => ({changeFighter:(fighterID)=>
-        dispatch({"type":"fighterChange", fighterSearchedID:fighterID})
+    state=>({fighter:state.fighters}),
+    dispatch => ({
+        changeFighter:(fighterID)=>
+            dispatch({type:"fighterChange", fighterSearchedID:fighterID})
 })
 )(FightersSideBar);

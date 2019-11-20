@@ -50,22 +50,21 @@ class Fighters extends Component{
 
 
     render() {
-        console.log(this.state.fighter)
         return (
             <div className="fighterPage">
                 <div className="f_content">
                     <div className="f_first">
-                        {this.constructImg(this.state.fighter, "avatar.png")}
+                        {this.constructImg(this.props.fighter, "avatar.png")}
                         <div className="f_parametrs">
-                            {this.ParametrFighterMaper(this.state.fighter.parametrs)}
+                            {this.ParametrFighterMaper(this.props.fighter.parametrs)}
                         </div>
                         <div className="f_parametrs">
-                            {this.ParametrFighterMaper(this.state.fighter.about)}
+                            {this.ParametrFighterMaper(this.props.fighter.about)}
                         </div>                  
                     </div>
                     <div className="f_second">
-                        <Diagram fightHistory={this.state.fighter.fightHistory}/>
-                        {this.constructImg(this.state.fighter, "1.png")}
+                        <Diagram fightHistory={this.props.fighter.fightHistory}/>
+                        {this.constructImg(this.props.fighter, "1.png")}
                     </div>
                 </div>
                 <div className="f_sidebar">
@@ -79,6 +78,6 @@ class Fighters extends Component{
 
 
 export default connect(
-    state=>({test:state.fighters}),
+    state=>({fighter:state.fighters.searched}),
     disputch=>({})
 )(Fighters);
