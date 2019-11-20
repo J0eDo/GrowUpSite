@@ -19,8 +19,7 @@ class Diagram extends Component{
     }
 
     numOfFightCase(fighterStatistick){
-        let numOf = fighterStatistick.shift();
-        return(<p className="diagram_numOf">{numOf}</p>)
+        return(<p className="diagram_numOf">{fighterStatistick[0]}</p>)
     }
     
     rowConstructor(percent,_index){
@@ -42,6 +41,7 @@ class Diagram extends Component{
         let numOfCase = [];
         const FIGHT_CASES = ["КО/ТКО","САБМИШЕН","РЕШЕНИЕ"]
         let sumFight = this.numOfFightCase(data);
+        data =  data.slice(1);
         data.forEach(element => {
             const statisticData =  element.split('/');
             precentData.push(statisticData[1]);

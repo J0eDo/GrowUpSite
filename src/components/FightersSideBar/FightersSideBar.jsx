@@ -3,7 +3,6 @@ import {connect} from "react-redux"
 import "./fightersSideBar.css"
 
 import fighters from '../../contentData/fighters.json'
-import { log } from "util";
 
 
 class FightersSideBar extends Component{
@@ -18,7 +17,8 @@ class FightersSideBar extends Component{
 
     fighterDisputher=(e)=>{
        let changeFighterID = e.currentTarget.getAttribute("fighter");
-       this.props.changeFighter(changeFighterID);
+       this.props.changeFighter.bind(this);
+       this.props.changeFighter(1);
     }
 
     constructIconFighter(fighters){
@@ -50,6 +50,7 @@ class FightersSideBar extends Component{
 
 export default connect(
     state=>({test:state.fighters}),
-    dispatch => ({changeFighter:(fighterID)=>dispatch({"type":"fighterChange", fighterSearchedID:fighterID})
+    dispatch => ({changeFighter:(fighterID)=>
+        dispatch({"type":"fighterChange", fighterSearchedID:fighterID})
 })
 )(FightersSideBar);
