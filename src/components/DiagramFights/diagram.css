@@ -43,7 +43,7 @@
 }
 .diagram_percent div{
     top: 1%;
-    left: 11vw;
+    left: 9vw;
     position: absolute;
     text-align: center;
     z-index: 3;
@@ -53,6 +53,7 @@
     margin-left: 1rem;
     text-align: left;
     font-size: 1.7rem;
-    width: 15rem;
+    min-width: 15rem;
+    max-width: 20rem;
 }
 

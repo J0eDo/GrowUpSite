@@ -6,10 +6,15 @@ class Diagram extends Component{
 
     constructor(props){
         super(props);
-        this.wins = this.convertToArray(props.fightHistory["Победы"]);
-        this.loses = this.convertToArray(props.fightHistory["Поражения"]);
+        this.wins = this.convertToArray(props.fighter.fightHistory["Победы"]);
+        this.loses = this.convertToArray(props.fighter.fightHistory["Поражения"]);
     }
     
+    componentDidUpdate(){
+        this.wins = this.convertToArray(this.props.fighter.fightHistory["Победы"]);
+        this.loses = this.convertToArray(this.props.fighter.fightHistory["Поражения"]);
+        
+    }
     convertToArray(fightCase){
        let dataFight = []
        for(let key in fightCase){

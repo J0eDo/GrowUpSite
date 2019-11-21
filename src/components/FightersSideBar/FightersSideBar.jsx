@@ -12,6 +12,10 @@ class FightersSideBar extends Component{
         this.constructIconFighter(fighters)
     }
 
+    state={
+        page:0
+    }
+
     fighterDisputher=(e)=>{
        let changeFighterID = e.currentTarget.getAttribute("fighter");
        this.props.changeFighter.bind(this);
@@ -37,8 +41,8 @@ class FightersSideBar extends Component{
                 </div>
                 {this.constructIconFighter(fighters)}
                 <div>
-                    <button>назад</button>
-                    <button>вперед</button>
+                    <button>+</button>
+                    <button>-</button>
                 </div>
             </div>
         )

@@ -63,7 +63,7 @@ class Fighters extends Component{
                         </div>                  
                     </div>
                     <div className="f_second">
-                        <Diagram fightHistory={this.props.fighter.fightHistory}/>
+                        <Diagram fighter={this.props.fighter}/>
                         {this.constructImg(this.props.fighter, "1.png")}
                     </div>
                 </div>
