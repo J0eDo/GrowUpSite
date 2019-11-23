@@ -10,7 +10,7 @@ export default function filterFighters (state = initialState, action){
     if(action.type==="findFighter"){     
         return{
             searchedPart : action.searchedPart,
-            fightersListSort: fightersData.filter(key=> key.name.includes(action.partName))
+            fightersListSort: fightersData.filter(key=> key.name.toLowerCase().includes(action.partName.toLowerCase()))
         }
     }
     return state; 

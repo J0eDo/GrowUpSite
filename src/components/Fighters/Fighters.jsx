@@ -1,6 +1,6 @@
-/**Libarys */
 import React,{Component} from 'react'
 import './fighters.css'
+/*Libarys */
 import {connect} from 'react-redux'
 /*Components */
 import Diagram from '../DiagramFights/Diagram'
@@ -43,13 +43,20 @@ class Fighters extends Component{
             <div className="fighterPage">
                 <div className="f_content">
                     <div className="f_first">
-                        {this.constructImg(this.props.fighter, "avatar.png")}
-                        <div className="f_parametrs">
-                            {this.ParametrFighterMaper(this.props.fighter.parametrs)}
-                        </div>
-                        <div className="f_parametrs">
-                            {this.ParametrFighterMaper(this.props.fighter.about)}
-                        </div>                  
+                        <div className="f_first__avatar">
+                            {this.constructImg(this.props.fighter, "avatar.png")}
+                        </div> 
+                        <div className="f_infoConteiner">
+                            <h2>{this.props.fighter.name}</h2>
+                            <div className="f_infoConteiner__block">
+                                <div className="f_parametrs">
+                                    {this.ParametrFighterMaper(this.props.fighter.parametrs)}
+                                </div>
+                                <div className="f_parametrs">
+                                    {this.ParametrFighterMaper(this.props.fighter.about)}
+                                </div>        
+                            </div>    
+                        </div>       
                     </div>
                     <div className="f_second">
                         <Diagram fighter={this.props.fighter}/>

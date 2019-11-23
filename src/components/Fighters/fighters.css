@@ -1,5 +1,6 @@
 /*f==fighter*/
 
+
 .fighterPage{
     background: rgb(11,11,18);
     background: linear-gradient(90deg, rgba(11,11,18,1) 2%, rgba(26,28,31,1) 21%, rgba(0,0,0,1) 63%, rgba(25,26,27,1) 88%, rgba(34,36,37,1) 100%);
@@ -10,12 +11,12 @@
 
 .f_content{
     min-width: 80vw;
-   
 }
 
 .f_first{
     padding-top: 2rem;
     display: flex;
+    flex-flow: row wrap;
     width: 105%;
     align-items: center;
     justify-content:space-around;
@@ -25,7 +26,30 @@
 
 }
 
+.f_first__avatar img{
+    align-self: flex-end;
+    max-width: 90vw;
+}
+
+
+.f_infoConteiner{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.f_infoConteiner h2{
+    margin:0  1rem;
+    font-size: 2rem;
+    color:white;
+}
+
+.f_infoConteiner__block{
+    display: flex;
+    flex-flow: row wrap;
+}
+
 .f_parametrs{
+    margin: 1rem;
     font-size: 1.5rem;
     line-height: 2rem;   
 }
@@ -45,25 +69,6 @@
 }
 
 
-.f_about{
-    font-size: 1.5rem;
-    line-height: 2rem; 
-}
-
-.f_diagram{
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-}
-
-
-
-.f_diagram__block{
-    display: flex;
-    flex-wrap: nowrap;
-    
-}
-
 .f_sidebar{
     position: relative;
     border-left: 1px solid black;
@@ -72,8 +77,7 @@
     margin-left: 2rem;
 }
 
-.tester{
-    background-color: red;
-    height:3rem;
-    border: 1px solid black;
+.TEST{
+    background-color: red !important;
+    border: 3px solid black !important;
 }

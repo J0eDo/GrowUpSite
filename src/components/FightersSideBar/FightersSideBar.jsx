@@ -2,8 +2,6 @@ import React, {Component} from "react"
 import "./fightersSideBar.css"
 /*Libarys*/
 import {connect} from "react-redux"
-/*JSON */
-import fighters from '../../contentData/fighters.json'
 
 
 
@@ -47,19 +45,25 @@ class FightersSideBar extends Component{
 
     }
     swipePageAction(flippingSide){
-        const maxPage =Math.ceil(Object.keys(fighters).length/this.MAX_NUMBER_ICONS_SHOW);
+        const maxPage =Math.ceil(Object.keys(this.props.fighters.fightersListSort).length/this.MAX_NUMBER_ICONS_SHOW);
         const nextPage = this.state.numPage + +flippingSide;
         if(nextPage<maxPage&&nextPage>=0){
             this.setState({numPage:nextPage})       
         }
     }
 
-    search=()=>{
+    search(){
         const searchPart =this.searchFighterName.value;
-        console.log(searchPart,"method searc");
-        let onFind = this.props.onFindFighter.bind(this)
-        onFind(searchPart) 
+        this.props.onFindFighter(searchPart);
+        this.setState({numPage:0})
     }
+
+    restartSearch(){
+        const searchPart =this.searchFighterName.value="";
+        this.props.onFindFighter(searchPart);
+        this.setState({numPage:0});
+    }
+
 
     render(){
         return(
@@ -68,7 +72,7 @@ class FightersSideBar extends Component{
                     <div className="sb_searchBar">
                         <input type="text" ref={(input)=>this.searchFighterName=input}
                         placeholder="Fighter Name" 
-                        onFocus={()=>this.searchFighterName.value=''}/>
+                        onFocus={this.restartSearch.bind(this)}/>
                         <button onClick={this.search.bind(this)}>поиск</button>
                     </div>
                     {this.constructIconFighter(this.state.numPage)}
