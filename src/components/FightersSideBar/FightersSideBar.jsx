@@ -28,6 +28,8 @@ class FightersSideBar extends Component{
     constructIconFighter(numPage){
         const startList = numPage*this.MAX_NUMBER_ICONS_SHOW;
         const endList = startList+this.MAX_NUMBER_ICONS_SHOW;
+        console.log(this.props.fighters);
+        
         let newFightersList = this.props.fighters.fightersListSort.slice(startList,endList);
         
         return (newFightersList.map((element,index)=>
@@ -52,9 +54,11 @@ class FightersSideBar extends Component{
         }
     }
 
-    search(){
+    search=()=>{
         const searchPart =this.searchFighterName.value;
-        this.props.onFindFighter(searchPart)
+        console.log(searchPart,"method searc");
+        let onFind = this.props.onFindFighter.bind(this)
+        onFind(searchPart) 
     }
 
     render(){
