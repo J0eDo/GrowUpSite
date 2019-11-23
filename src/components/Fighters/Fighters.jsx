@@ -5,23 +5,13 @@ import {connect} from 'react-redux'
 /*Components */
 import Diagram from '../DiagramFights/Diagram'
 import FighterSideBar from '../FightersSideBar/FightersSideBar'
-/*JSON */
-import fighters from '../../contentData/fighters.json'
+
 
 
 class Fighters extends Component{    
 
-    constructor(props){
-       super(props);
-       this.fighter = this.getFighter();   
-    }
-
     state ={
-        fighter:this.getFighter()
-    }
-
-    getFighter(){
-        return fighters[1];
+        fighter:this.props.fighter
     }
 
     objectToArray(obj){
@@ -38,8 +28,7 @@ class Fighters extends Component{
         return(
         parametrs.map(element => 
             <p  key={key++}>{element[0]}:  <span>{element[1]}</span></p>
-        )
-        ) 
+        )) 
     }
     constructImg(fighter, fileName){
         let url = `${document.location.origin}/img/fighters/${fighter.about["Имя англ"]}/${fileName}`;
@@ -78,6 +67,6 @@ class Fighters extends Component{
 
 
 export default connect(
-    state=>({fighter:state.fighters.searched}),
+    state=>({fighter:state.fighterChange}),
     disputch=>({})
 )(Fighters);

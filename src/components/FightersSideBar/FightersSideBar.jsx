@@ -1,19 +1,22 @@
 import React, {Component} from "react"
-import {connect} from "react-redux"
 import "./fightersSideBar.css"
-
+/*Libarys*/
+import {connect} from "react-redux"
+/*JSON */
 import fighters from '../../contentData/fighters.json'
+
+
 
 
 class FightersSideBar extends Component{
 
     constructor(props){
         super(props);
-        this.constructIconFighter(fighters)
+        this.MAX_NUMBER_ICONS_SHOW = 3;
     }
 
     state={
-        page:0
+        numPage:0
     }
 
     fighterDisputher=(e)=>{
@@ -22,37 +25,65 @@ class FightersSideBar extends Component{
        this.props.changeFighter(changeFighterID);
     }
 
-    constructIconFighter(fighters){
-        let fightersList = fighters.map((element,index)=>
+    constructIconFighter(numPage){
+        const startList = numPage*this.MAX_NUMBER_ICONS_SHOW;
+        const endList = startList+this.MAX_NUMBER_ICONS_SHOW;
+        let newFightersList = this.props.fighters.fightersListSort.slice(startList,endList);
+        
+        return (newFightersList.map((element,index)=>
             <div className="sb_blockFighter" fighter={element.id}  onClick={this.fighterDisputher}  key={`iconFighter${index}`}>
                 <img src={`${document.location.origin}/img/fighters/${element.about["Имя англ"]}/avatar.png`} alt=""/>
                 {element.name}
             </div>
-        )
-        return fightersList;
+        ))
     }
 
+    swipePage =(e)=>{
+        const swipeSign = e.target.getAttribute("value");
+        this.swipePageAction(swipeSign)
+        
+
+    }
+    swipePageAction(flippingSide){
+        const maxPage =Math.ceil(Object.keys(fighters).length/this.MAX_NUMBER_ICONS_SHOW);
+        const nextPage = this.state.numPage + +flippingSide;
+        if(nextPage<maxPage&&nextPage>=0){
+            this.setState({numPage:nextPage})       
+        }
+    }
+
+    search(){
+        const searchPart =this.searchFighterName.value;
+        this.props.onFindFighter(searchPart)
+    }
 
     render(){
         return(
             <div className="sb">
-                <div className="sb_searchBar">
-                    <input type="text" placeholder="Fighter Name"/>
-                </div>
-                {this.constructIconFighter(fighters)}
-                <div>
-                    <button>+</button>
-                    <button>-</button>
-                </div>
+                <div className="sb_fighters__conteiner">
+                    <div className="sb_searchBar">
+                        <input type="text" ref={(input)=>this.searchFighterName=input}
+                        placeholder="Fighter Name" 
+                        onFocus={()=>this.searchFighterName.value=''}/>
+                        <button onClick={this.search.bind(this)}>поиск</button>
+                    </div>
+                    {this.constructIconFighter(this.state.numPage)}
+                    <div className = "sb_swipe">
+                        <button value={-1}  onClick={this.swipePage}>след</button>
+                        <button value={1 }  onClick={this.swipePage}>пред</button>
+                    </div>
+                </div>              
             </div>
         )
     }
 }
 
 export default connect(
-    state=>({fighter:state.fighters}),
+    state=>({fighters: state.findFighters}),
     dispatch => ({
         changeFighter:(fighterID)=>
-            dispatch({type:"fighterChange", fighterSearchedID:fighterID})
+            dispatch({type:"fighterChange", fighterSearchedID:fighterID}),
+        onFindFighter :(searchedPart)=>
+            dispatch({type:"findFighter", partName:searchedPart})
 })
 )(FightersSideBar);
