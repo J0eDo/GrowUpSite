@@ -29,8 +29,9 @@ class FightersSideBar extends Component{
         console.log(this.props.fighters);
         
         let newFightersList = this.props.fighters.fightersListSort.slice(startList,endList);
-        
+        // eslint-disable-next-line
         return (newFightersList.map((element,index)=>
+        // eslint-disable-next-line
             <div className="sb_blockFighter" fighter={element.id}  onClick={this.fighterDisputher}  key={`iconFighter${index}`}>
                 <img src={`${document.location.origin}/img/fighters/${element.about["Имя англ"]}/avatar.png`} alt=""/>
                 {element.name}

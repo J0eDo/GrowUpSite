@@ -3,7 +3,7 @@ import React,{Component} from 'react'
 import './generalPage.css'
 import {Link} from "react-router-dom";
 /*Component*/
-import RegisterForm "./"
+
 
 
 
