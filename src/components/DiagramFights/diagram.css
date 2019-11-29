@@ -1,31 +1,31 @@
 .diagram{
-    width: 100%;
+    flex: 1  1 900px;
     display: flex;
-    flex-direction: column;
+    flex-flow: column nowrap;
+    justify-content: baseline;
 }
 .diagram>div{
-    margin: 5rem 0 0 2rem;
+    margin: 2rem auto;
+    margin: auto;
 }
 .diagram h3{
     text-align: center;
 }
 .diagram_content{
-    width: 80%;
+    max-width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     align-items: center;
-    justify-content: scretch;
 }
 .diagram_numOf{
-    font-size: 5rem;
-    display: block;
-    width: 10rem;
     text-align: center;
+    font-size: 3rem;
+    width: 5rem;
 }
 
 .diagram_row{
+    min-width: 30vw;
     font-size: 1.7rem;
-    width: 30vw;
     background: rgb(53,86,125);
     background: -moz-linear-gradient(90deg, rgba(53,86,125,1) 13%, rgba(32,133,230,1) 53%, rgba(14,160,190,1) 81%);
     background: -webkit-linear-gradient(90deg, rgba(53,86,125,1) 13%, rgba(32,133,230,1) 53%, rgba(14,160,190,1) 81%);
@@ -34,6 +34,9 @@
     
 }
 
+.diagram_row__percent{
+    text-align: center;
+}
 
 .diagram_percent{
     height: 2rem;

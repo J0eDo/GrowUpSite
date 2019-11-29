@@ -1,0 +1,59 @@
+.initialForm{
+    margin: auto;
+    min-width: 40vw;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.initialForm_type{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: stretch;
+
+}
+
+.initialForm_type div{
+    background-color: rgba(84, 84, 228, 0.356);
+    flex: auto 1 1;
+    text-align: center;
+    border-radius: 9px 9px 0 0;
+    border-top: 1px solid gray;
+
+}
+
+.initialForm_input{
+    background-color: rgba(84, 84, 228, 0.356);
+    border-radius:0 0 9px 9px;
+    padding: 2rem;
+    display: flex;
+    flex-flow: column;
+}
+
+.initialForm_input div input{
+    width: 70%;
+    margin: .2rem;
+    height: 1.5rem;
+    background-color: rgba(245, 222, 179, 0.336);
+}
+
+
+
+.initialForm_sub{
+    height: 10rem;
+}
+
+.initialForm_button__conteiner{
+    justify-self: flex-end;
+    font-size: 2rem;
+}
+.initialForm_sub div input{
+    width: auto;
+    height: auto;
+    justify-self: flex-start;
+}
+
+.initialForm button{
+    width: 80%;
+    justify-self: center;
+    margin: auto;
+}

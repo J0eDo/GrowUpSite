@@ -1,30 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:700&display=swap');
 .generalPage{
-    margin: .35rem;
-    font-weight: 500;
+  /*   margin: .35rem; */
+   
 }
 .generalPage header{
+    font-weight: 500;
     margin: .05rem;
     display: flex;
-    width: 98vw;
+    width: 100%;
+    flex-flow: row wrap;
 }
 header>.header_column{
     height: 30rem;
-    min-width: 33%;
-    flex-grow: 1;
-    margin:0 .1rem ;  
+    flex: 1 1 300px;
 }
 
 header>.header_column__center{
     background-color: teal;
-    border: 2px solid rgb(6, 6, 32);
-    min-width: 33.33%;
-    flex-grow: 1;  
+    border: 1px solid rgb(6, 6, 32);
+    flex: 1 1 300px;
+    
 }
 
 header>.header_column .header_button__M {
     background-color: teal;
-    border: 2px solid rgb(7, 9, 17);
+    border: 1px solid rgb(7, 9, 17);
     height: 50%;
 }
 
@@ -56,6 +56,9 @@ span .header_button__M .last{
 }
 
 .subheader{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 25rem;
     width: 100%;
     background-color: rgb(27, 24, 27);

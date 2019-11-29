@@ -3,7 +3,7 @@ import React,{Component} from 'react'
 import './generalPage.css'
 import {Link} from "react-router-dom";
 /*Component*/
-
+import RegistrationForm from "../RegistrationForm/RegistrationForm"
 
 
 
@@ -31,7 +31,9 @@ class GeneralPage extends Component{
                         </Link>
                     </div>
                </header>
-               <div className="subheader"></div>
+               <div className="subheader">
+                   <RegistrationForm/>
+               </div>
                <footer></footer>
            </div>
         )

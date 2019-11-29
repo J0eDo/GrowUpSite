@@ -29,7 +29,7 @@ class Diagram extends Component{
     
     rowConstructor(percent,_index){
         return (<div key={`rows${_index}`}  className="diagram_percent"  style={{width:percent}}>
-            <div>{percent}</div>
+            <div className="diagram_row__percent">{percent}</div>
         </div>)
 
     }

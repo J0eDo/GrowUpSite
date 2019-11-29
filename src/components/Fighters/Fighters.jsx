@@ -41,9 +41,12 @@ class Fighters extends Component{
     render() {
         return (
             <div className="fighterPage">
+                 <div className="f_sidebar">
+                    <FighterSideBar/>
+                </div> 
                 <div className="f_content">
                     <div className="f_first">
-                        <div className="f_first__avatar">
+                       <div className="f_first__avatar">
                             {this.constructImg(this.props.fighter, "avatar.png")}
                         </div> 
                         <div className="f_infoConteiner">
@@ -60,11 +63,8 @@ class Fighters extends Component{
                     </div>
                     <div className="f_second">
                         <Diagram fighter={this.props.fighter}/>
-                        {this.constructImg(this.props.fighter, "1.png")}
-                    </div>
-                </div>
-                <div className="f_sidebar">
-                    <FighterSideBar/>
+                        {this.constructImg(this.props.fighter, "1.png")}  
+                    </div> 
                 </div>
             </div> 
         );

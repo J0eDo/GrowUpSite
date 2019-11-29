@@ -1,23 +1,51 @@
 /*f==fighter*/
 
+@media (max-width: 1124px){
+    .f_infoConteiner h2{
+        color: blue;
+        text-align: center;
+    }
+    .f_second img{
+        max-width: 60vw;
+        margin: 0 0;
+    }
+    :root{
+        
+    }
+}
+
+@media (max-width: 669px){
+    .f_infoConteiner h2{
+        color: red;
+        text-align: center;
+    }
+      .f_second img{
+        margin: auto;
+        max-width: 70vw;
+    }
+    :root{
+        font-size: .7rem;
+    }
+}
+
 
 .fighterPage{
     background: rgb(11,11,18);
     background: linear-gradient(90deg, rgba(11,11,18,1) 2%, rgba(26,28,31,1) 21%, rgba(0,0,0,1) 63%, rgba(25,26,27,1) 88%, rgba(34,36,37,1) 100%);
     color:wheat;
     display: flex;
-    justify-content: space-between;
+    flex-flow: column nowrap;
 }
 
 .f_content{
-    min-width: 80vw;
+    width: 100%;
 }
 
 .f_first{
     padding-top: 2rem;
     display: flex;
     flex-flow: row wrap;
-    width: 105%;
+    width: 100%;
     align-items: center;
     justify-content:space-around;
     background-image: url('../../imgElements/zigzagwool.png');
@@ -40,7 +68,6 @@
 .f_infoConteiner h2{
     margin:0  1rem;
     font-size: 2rem;
-    color:white;
 }
 
 .f_infoConteiner__block{
@@ -55,29 +82,22 @@
 }
 
 .f_second{
+    width: 100vw;
     display: flex;
-    justify-content: flex-start;
+    flex-flow: row wrap;
+    justify-content: last baseline;
 }
 
 .f_second img{
-    margin-left: -5rem;
     justify-self: start;
     align-self: center;
-    width: 40rem;
-    margin-top: 2rem;
+    max-width: 40vw;
+    margin: 2rem auto;
     box-shadow: rgb(26, 17, 26) 3px 2px;
 }
 
 
 .f_sidebar{
-    position: relative;
     border-left: 1px solid black;
     background-image: url('../../imgElements/carbon_fibre/carbon_fibre.png');
-    width: 18vw;
-    margin-left: 2rem;
-}
-
-.TEST{
-    background-color: red !important;
-    border: 3px solid black !important;
 }
