@@ -98,6 +98,7 @@
 
 
 .f_sidebar{
+    display: none;
     border-left: 1px solid black;
     background-image: url('../../imgElements/carbon_fibre/carbon_fibre.png');
 }
