@@ -41,9 +41,6 @@ class Fighters extends Component{
     render() {
         return (
             <div className="fighterPage">
-                {/*  <div className="f_sidebar">
-                    <FighterSideBar/>
-                </div>  */}
                 <div className="f_content">
                     <div className="f_first">
                        <div className="f_first__avatar">
@@ -66,9 +63,12 @@ class Fighters extends Component{
                         {this.constructImg(this.props.fighter, "1.png")}  
                     </div> 
                 </div>
+                <div className="f_fsb__conteiner" >
+                    <FighterSideBar/>
+                </div>
             </div> 
         );
-    }
+     }
 }
 
 

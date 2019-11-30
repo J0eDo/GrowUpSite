@@ -76,7 +76,7 @@ class FightersSideBar extends Component{
                         onFocus={this.restartSearch.bind(this)}/>
                         <button onClick={this.search.bind(this)}>поиск</button>
                     </div>
-                    {this.constructIconFighter(this.state.numPage)}
+                   {/*  {this.constructIconFighter(this.state.numPage)} */}
                     <div className = "sb_swipe">
                         <button value={-1}  onClick={this.swipePage}>след</button>
                         <button value={1 }  onClick={this.swipePage}>пред</button>
