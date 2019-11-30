@@ -35,7 +35,7 @@ class Diagram extends Component{
     }
     numOfCaseConstructor(numOf, _index, _case){
         return (
-            <div key={`numOffight${_index}`} >
+            <div className="diagram_statistick"  key={`numOffight${_index}`} >
                 <div>{numOf} {_case}</div> 
             </div>)
            

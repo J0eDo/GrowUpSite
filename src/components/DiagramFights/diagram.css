@@ -1,9 +1,23 @@
+@media (max-width: 1124px){
+
+}
+
+@media (max-width: 669px){
+
+}
+
 .diagram{
-    flex: 1  1 900px;
+    margin: .5rem  auto;
+    padding: 1rem;
+    border: 1px inset tomato;
+    max-width: 80%;
+    flex: 1  1 400px;
     display: flex;
     flex-flow: column nowrap;
     justify-content: baseline;
 }
+
+
 .diagram>div{
     margin: 2rem auto;
     margin: auto;
@@ -60,3 +74,7 @@
     max-width: 20rem;
 }
 
+.diagram_statistick{
+    font-size: 1rem;
+    line-height: 2rem;
+}

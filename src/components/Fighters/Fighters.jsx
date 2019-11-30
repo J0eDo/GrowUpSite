@@ -41,9 +41,9 @@ class Fighters extends Component{
     render() {
         return (
             <div className="fighterPage">
-                 <div className="f_sidebar">
+                {/*  <div className="f_sidebar">
                     <FighterSideBar/>
-                </div> 
+                </div>  */}
                 <div className="f_content">
                     <div className="f_first">
                        <div className="f_first__avatar">
