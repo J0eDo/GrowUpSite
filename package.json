@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://https://j0edo.github.io/build",
   "dependencies": {
+    "axios": "^0.19.0",
     "gh-pages": "^2.1.1",
     "list-react-files": "^0.2.0",
     "react": "^16.9.0",

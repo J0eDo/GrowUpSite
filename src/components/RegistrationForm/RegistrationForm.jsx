@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import "./registrationForm.css"
+import "./registrationForm.css";
+import {SERVER_IP,LOGIN,REGGISTRATION} from '../../serverActions'
+import axios from 'axios'
 
 
 export default function RegistrationForm() {
@@ -14,6 +16,20 @@ export default function RegistrationForm() {
     setMode("login")
   }
 
+  const userEnterMode=()=>{
+
+  }
+
+  const login =()=>{
+    let login = document.querySelector("#login").value
+    let password = document.querySelector('#password').value
+    console.log(login,password)
+    axios.get(LOGIN(":VAxSIA","password"))
+      .then(res => {
+        console.log(res.data)
+      })
+  }
+
   const registrationModeInput=(type)=>{
     if(type === "registration"){
       return(
@@ -25,18 +41,23 @@ export default function RegistrationForm() {
               <p><input type="checkbox" ngchecked="selected=='male'" ng-ruevalue="'male'" ngmodel="selected"></input>мужской</p>
               <p><input type="checkbox" ngchecked="selected=='female'" ngtruevalue="'female'" ngmodel="selected"></input>женский</p>
               <p><input type="checkbox" ngchecked="selected=='other'" ngtruevalue="'other'" ngmodel="selected"></input>неважно</p>
-            </div>  
+            </div>
+            <button onClick={login}>Войти</button>  
         </div>
       )
     }
-    else{
-      return(<div className="initialForm_sub"></div>)
+    else if(type === "login"){
+      return(<div className="initialForm_sub">
+        <button onClick={login}>Войти</button>
+      </div>)
+    }else{
+      
     }
   }
 
   return (
     <div>
-      <form className="initialForm"  action="initial">
+      <div className="initialForm">
           <div className="initialForm_type">
             <div onClick={registrationMode}>Регистрация</div>
             <div onClick={loginMode}>Войти</div>
@@ -44,16 +65,15 @@ export default function RegistrationForm() {
           <div className="initialForm_input">
             <div>
               <h3>Логин</h3>
-              <input type="text" placeholder="login"/>
+              <input id="login"  type="text" placeholder="login"/>
             </div>
             <div>
               <h3>Пароль</h3>
-              <input type="password" placeholder="password"/>
+              <input id="password"  type="password" placeholder="password"/>
             </div>
             {registrationModeInput(mode)}
-            <button>Войти</button>
           </div>
-      </form>
+      </div>
     </div>
   );
 }
