@@ -14,6 +14,7 @@ class Fighters extends Component{
         fighter:this.props.fighter
     }
 
+
     objectToArray(obj){
         let array = [];
         for(let key in obj){

@@ -19,7 +19,7 @@ class FightersSideBar extends Component{
 
     fighterDisputher=(e)=>{
        let changeFighterID = e.currentTarget.getAttribute("fighter");
-       this.props.changeFighter.bind(this);
+/*     this.props.changeFighter.bind(this); */
        this.props.changeFighter(changeFighterID);
     }
 

@@ -2,6 +2,7 @@
 import React,{Component} from 'react'
 import './generalPage.css'
 import {Link} from "react-router-dom";
+import {connect} from 'react-redux'
 /*Component*/
 import RegistrationForm from "../RegistrationForm/RegistrationForm"
 
@@ -9,6 +10,25 @@ import RegistrationForm from "../RegistrationForm/RegistrationForm"
 
 class GeneralPage extends Component{
     
+constructor(props){
+    super(props)
+}
+
+    alter(stata){
+        console.log(stata.user);
+        
+        if(!stata.user){
+            return(<RegistrationForm/>)
+        }
+        else{
+            return(<h2>Привет {stata.user.name} </h2>)
+        }
+    }
+
+    getUserPanel(){
+
+    }
+
     render(){
         return(
            <div className="generalPage">
@@ -32,9 +52,12 @@ class GeneralPage extends Component{
                     </div>
                </header>
                <div className="subheader">
-                   <RegistrationForm/>
+                   {
+                    this.alter(this.props.user)
+                   }
                </div>
-               <footer></footer>
+               <footer>
+               </footer>
            </div>
         )
     }
@@ -42,4 +65,7 @@ class GeneralPage extends Component{
 
 
 
-export default GeneralPage;
+export default connect(
+    state=>({user: state.login}),
+    disputch=>({})
+  )(GeneralPage);
