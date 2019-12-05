@@ -19,9 +19,14 @@ class RegistrationForm extends Component {
   login =()=>{
     let login = document.querySelector("#login").value
     let password = document.querySelector('#password').value
-    axios.get(LOGIN(login,password))
+    axios.post(LOGIN(),{
+      loginUser:login,
+      passwordUser:password
+    })
       .then(res => {
       this.props.loginUser(res.data)
+      console.log(res ,"RES");
+      
       })
   }
 
