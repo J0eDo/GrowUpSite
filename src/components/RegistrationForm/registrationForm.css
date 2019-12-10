@@ -13,6 +13,7 @@
 }
 
 .initialForm_type div{
+    cursor: pointer;
     background-color: rgba(84, 84, 228, 0.356);
     flex: auto 1 1;
     text-align: center;

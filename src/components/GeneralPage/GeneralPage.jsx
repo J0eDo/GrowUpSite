@@ -1,28 +1,44 @@
 /*Libarys */
 import React,{Component} from 'react'
 import './generalPage.css'
+import '../animation.css'
 import {Link} from "react-router-dom";
 import {connect} from 'react-redux'
+import { Transition } from 'react-transition-group';
 /*Component*/
 import RegistrationForm from "../RegistrationForm/RegistrationForm"
+
+
+const visibleOn={
+
+}
+
+const visibleOff={
+
+}
 
 
 
 class GeneralPage extends Component{
     
-constructor(props){
-    super(props)
-}
 
-    alter(stata){
-        console.log(stata.user);
-        
-        if(!stata.user){
-            return(<RegistrationForm/>)
+
+
+
+    loginUser(inLogin){ 
+      /*   if(!inLogin){
+            return(
+                    <RegistrationForm/>
+            )
         }
-        else{
-            return(<h2>Привет {stata.user.name} </h2>)
-        }
+        else{ 
+            return(
+          
+                    <h2>Привет {this.props.user.user.name} </h2>
+           
+            )
+        } */
+        return <RegistrationForm/>
     }
 
     getUserPanel(){
@@ -53,7 +69,7 @@ constructor(props){
                </header>
                <div className="subheader">
                    {
-                    this.alter(this.props.user)
+                    this.loginUser(this.props.user.inLogin)
                    }
                </div>
                <footer>
