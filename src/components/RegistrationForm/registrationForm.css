@@ -54,7 +54,34 @@
 }
 
 .initialForm button{
+    margin: 1rem auto;
     width: 80%;
-    justify-self: center;
-    margin: auto;
+}
+
+.initialForm_danger{
+    padding: 1rem;
+}
+
+.initialForm_sub p{
+    animation: danger 1800ms linear;
+}
+
+@keyframes danger{
+    0%{
+        opacity: .5;
+        color:red;
+    }
+    25%{
+        opacity: 1;
+        color:black;
+    }
+    50%{
+        opacity: 1;
+        color:red;
+    }
+    100%{
+        opacity: .5;
+        color:black;
+    }
+
 }

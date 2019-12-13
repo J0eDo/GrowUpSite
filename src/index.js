@@ -1,17 +1,15 @@
 /**Libarys */
 import React from 'react';
-import {render} from 'react-dom';
-import {createStore} from 'redux';
-import {Provider} from 'react-redux';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 /**ReducersCombine*/
-import reducer from './reducers'
+import {store} from './reducer'
 /**Componenets */
 import App from './components/App/App';
 
 
-const store = createStore(reducer);
 
-render(
-    <Provider store = {store}>
-        <App/>
-    </Provider>, document.getElementById('root'));
+
+render( <Provider store = { store } >
+        <App />
+        </Provider>, document.getElementById('root'));
