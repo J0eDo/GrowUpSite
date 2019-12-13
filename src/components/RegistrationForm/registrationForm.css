@@ -66,6 +66,7 @@
     animation: danger 1800ms linear;
 }
 
+
 @keyframes danger{
     0%{
         opacity: .5;

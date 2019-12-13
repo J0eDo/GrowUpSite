@@ -1,17 +1,17 @@
 import React from 'react';
 
-export default function loginMode({submit,loginError}){
-  return(
+export default function loginMode({ submit, loginError }) {
+  return (
     <div className="initialForm_sub">
-      <div>
+      <div id="login" >
         <h3>Логин</h3>
-          <input id="logins"  type="text" placeholder="login"/>
-          </div>
-          <div>
-            <h3>Пароль</h3>
-            <input id="passwords"  type="password" placeholder="password"/>
-          </div>    
+        <input type="text" placeholder="login" />
+      </div>
+      <div id="password" >
+        <h3>Пароль</h3>
+        <input type="text" placeholder="login" />
+      </div>
       <button onClick={submit}>Войти</button>
-      {loginError?<p>неверные логин или пароль</p>:null}
-  </div>)
+      {loginError ? <p>неверные логин или пароль</p> : null}
+    </div>)
 }

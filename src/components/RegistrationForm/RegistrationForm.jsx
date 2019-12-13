@@ -17,15 +17,15 @@ class RegistrationForm extends Component {
   }
 
   registration() {
-    let login = document.querySelector("#login").value
-    let password = document.querySelector('#password').value
-    let name = document.querySelector('#name').value
+    let login = document.querySelector('#login>input').value
+    let password = document.querySelector('#password>input').value
+    let name = document.querySelector('#name>input').value
     this.props.registration(login, password, name)
   }
 
   login() {
-    let login = document.querySelector("#logins").value
-    let password = document.querySelector('#passwords').value
+    let login = document.querySelector('#login>input').value
+    let password = document.querySelector('#password>input').value
     this.props.autorization(login, password)
 
   }

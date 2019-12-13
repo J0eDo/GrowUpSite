@@ -19,11 +19,12 @@ export const registrated = props => dispatch => {
                 axios.defaults.headers.common["Authorization"] = token
                 localStorage.setItem("TOKEN", token)
                 dispatch({ type: "LOGIN", token: token })
+            }else{
+                console.log(res.data);
+                const {field,validation} = res.data[0]||res.data
+                dispatch({type:"ERROR_REGISTRATED", errorReg : {field,validation}})
             }
-            console.log(res);
-        })
-        .catch((e) => {
-            console.log(e);
+           
         })
 }
 
@@ -58,9 +59,15 @@ export const getUserData = () => dispatch =>
 
 
 export const exitedAccount = () => dispatch =>{
-    dispatch({ type: "EXIT_ACCOUNT" })
-    localStorage.removeItem("TOKEN")
-    window.location.reload();
+/*     
+    TO DO FIX
+    axios.get(USER_EXIT())
+        .then((res) => {
+            
+        }) */
+        localStorage.removeItem("TOKEN")
+        dispatch({ type: "EXIT_ACCOUNT"})
+        window.location.reload()
+       
 }
-    
-          
+           
