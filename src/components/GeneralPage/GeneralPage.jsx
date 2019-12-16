@@ -4,7 +4,6 @@ import './generalPage.css'
 import '../animation.css'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
-import { Transition } from 'react-transition-group';
 /*Component*/
 import RegistrationForm from "../RegistrationForm/RegistrationForm"
 import UserPanel from "../UserPanel/UserPanel"
@@ -38,8 +37,8 @@ class GeneralPage extends Component {
                     </div>
                     <div className="header_column__center "><p>БОЙ</p></div>
                     <div className="header_column">
-                        <Link to="/">
-                            <span className="merch header_button__M">МЕРЧ</span>
+                        <Link to="/chat">
+                            <span className="merch header_button__M">Чат</span>
                         </Link>
                         <Link to="/">
                             <span className="news header_button__M last">НОВОСТИ</span>

@@ -16,11 +16,11 @@ class UserPanel extends Component {
     render() {
         return (
             <div>
-                {this.props.user ?
+                {this.props.userName ?
                     <div className="usp">
                         <div className="imge"></div>
                         <div className="usp_panel">
-                            <h1>Васек32</h1>
+                            <h1>{this.props.userName}</h1>
                             <button onClick={this.props.exitAccount}>выйти</button>
                         </div>
                     </div> : <h1><strong>Loading</strong></h1>
@@ -33,7 +33,7 @@ class UserPanel extends Component {
 
 
 export default connect(
-    state => ({ user: state.user.user }),
+    state => ({ userName: state.user.userName }),
     dispatch => ({
         getData: () => dispatch(getUserData()),
         exitAccount:()=>dispatch(exitedAccount())

@@ -1,0 +1,24 @@
+$primary-color: rgba(84, 84, 228, 0.356);;
+$second-color:  rgb(21, 21, 218);;
+
+.chat_conteiner{
+    width: 85vw;
+    height: 80vh;
+    background-color: $primary-color;
+    margin:3rem auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    h1{
+        margin: 1rem;
+    }
+    .chat_messages__canvas{
+        background-color: $second-color;
+        width: 90%;
+        height: 75%;
+    }
+    .input_message{
+      width: 90%;
+    }
+}

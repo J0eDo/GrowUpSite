@@ -7,29 +7,30 @@ class RegistrationMode extends Component {
 
   errorConstruct(id, field, valid) {
     const fieldName = {
-      login: "логин",
-      password: "пароль",
-      name: "имя"
+      login:[ "логин","логином"],
+      password: ["пароль","паролем"],
+      name: ["имя","именем"]
     }
+    
     const errorMessageConstruct = (name, validMessage) => `${name} ${validMessage}`
     let errorMessage = ''
 
     if (id === field) {
       switch (valid) {
         case 'required':
-          errorMessage = errorMessageConstruct(fieldName[id], ": поле не может быть пустым")
+          errorMessage = errorMessageConstruct(fieldName[id][0], ": поле не может быть пустым")
           break;
         case 'min':
-          errorMessage = errorMessageConstruct(fieldName[id], ": слишком короткий")
+          errorMessage = errorMessageConstruct(fieldName[id][0], ": слишком короткий")
           break;
         case 'max':
-          errorMessage = errorMessageConstruct(fieldName[id], ": слишком длинный")
+          errorMessage = errorMessageConstruct(fieldName[id][0], ": слишком длинный")
           break;
-        case 'notunique':
-          errorMessage = errorMessageConstruct(fieldName[id], " должен быть уникальным")
+        case 'unique':
+          errorMessage = errorMessageConstruct(`Пользователь с таким ${fieldName[id][1]}`, "уже существует")
           break;
         default:
-          errorMessage = errorMessageConstruct(fieldName[id], ": неизвестная ошибка")
+          errorMessage = errorMessageConstruct(fieldName[id[0]], ": неизвестная ошибка")
           break;
       }
       return (

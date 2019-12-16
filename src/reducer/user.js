@@ -11,11 +11,10 @@ const userReducer = (state, action) => {
             }
         case "ERROR_REGISTRATED":
             console.log(action.errorReg);
-            
+
             return {
                 ...state,
-                errorReg:action.errorReg
-
+                errorReg: action.errorReg
             }
         case "LOGIN_ERROR":
             return {
@@ -25,11 +24,10 @@ const userReducer = (state, action) => {
         case "SET_USER_DATA":
             return {
                 ...state,
-                user: action.user
+                userName: action.userName
             }
         case "EXIT_ACCOUNT":
             return ({})
-
         default:
             if (localStorage.getItem("TOKEN")) {
                 const token = localStorage.getItem("TOKEN")

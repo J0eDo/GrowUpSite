@@ -1,7 +1,9 @@
 //Libary
 import axios from 'axios'
 //Routs server
-import { LOGIN, REGISTRATION, USER_DATA, USER_EXIT } from './routing'
+import { LOGIN, REGISTRATION, USER_DATA } from './routing'
+import { array } from 'prop-types'
+import { async } from 'q'
 
 
 export const registrated = props => dispatch => {
@@ -19,12 +21,12 @@ export const registrated = props => dispatch => {
                 axios.defaults.headers.common["Authorization"] = token
                 localStorage.setItem("TOKEN", token)
                 dispatch({ type: "LOGIN", token: token })
-            }else{
-                console.log(res.data);
-                const {field,validation} = res.data[0]||res.data
-                dispatch({type:"ERROR_REGISTRATED", errorReg : {field,validation}})
+            } else {
+
+                const { field, validation } = res.data[0] || res.data
+                dispatch({ type: "ERROR_REGISTRATED", errorReg: { field, validation } })
             }
-           
+
         })
 }
 
@@ -43,31 +45,24 @@ export const autorizated = props => dispatch => {
             localStorage.setItem("TOKEN", token)
             dispatch({ type: "LOGIN", token: token })
         })
-        .catch((res) => {
+        .catch(() => {
             dispatch({ type: "LOGIN_ERROR", loginError: true })
-            setTimeout(()=>{
+            setTimeout(() => {
                 dispatch({ type: "LOGIN_ERROR", loginError: false })
-            },2000)
+            }, 2000)
         })
 }
 
-export const getUserData = () => dispatch =>
+export const getUserData = () =>  dispatch =>
     axios.get(USER_DATA())
         .then((res) => {
-            dispatch({ type: "SET_USER_DATA", user: res.data.user })
+            const userData =  res.data.user
+            dispatch({ type: "SET_USER_DATA", userName: userData.name})
         })
 
 
-export const exitedAccount = () => dispatch =>{
-/*     
-    TO DO FIX
-    axios.get(USER_EXIT())
-        .then((res) => {
-            
-        }) */
-        localStorage.removeItem("TOKEN")
-        dispatch({ type: "EXIT_ACCOUNT"})
-        window.location.reload()
-       
+export const exitedAccount = () => dispatch => {
+    localStorage.removeItem("TOKEN")
+    dispatch({ type: "EXIT_ACCOUNT" })
+    window.location.reload()
 }
-           
