@@ -9,7 +9,7 @@ import {
 /**Components*/
 import GeneralPage from '../GeneralPage/GeneralPage';
 import FighterInfo from '../Fighters/Fighters';
-import Chat from '../Chat/Chat'
+import Messager from '../Messager/Messager'
 
 
 class App extends Component {
@@ -22,7 +22,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={GeneralPage} />
                         <Route path="/fighters" component={FighterInfo} />
-                        <Route path="/chat" component={Chat} />
+                        <Route path="/chat" component={Messager} />
                     </Switch>
                 </Router>
                 {/* <footer></footer> */}

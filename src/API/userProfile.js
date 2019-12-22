@@ -2,8 +2,7 @@
 import axios from 'axios'
 //Routs server
 import { LOGIN, REGISTRATION, USER_DATA } from './routing'
-import { array } from 'prop-types'
-import { async } from 'q'
+
 
 
 export const registrated = props => dispatch => {

@@ -3,25 +3,34 @@ import "./chat.scss";
 import TextField from '@material-ui/core/TextField';
 /*Libarys */
 import { connect } from 'react-redux'
+import Ws from 'react-websocket'
 /*Actions */
-/* import { autorizated, registrated } from '../../API/api'
- */
+
 import Messages from './Message'
 import { Link } from "react-router-dom";
 
-class RegistrationForm extends Component {
+class Chat extends Component {
 
     state = {
+        count:90,
         keyMessages: 0,
         messages: []
     }
 
+  
+
     componentDidMount() {
+        let ws = new WebSocket('ws://185.87.194.11:3333')
+        ws.onopen = () => {
+            // on connecting, do nothing but log it to the console
+            console.log('connected')
+          }
         const input = document.getElementById("inputMessage");
         const submit = this.handleChange.bind(this);
         input.addEventListener("keydown", function (event) {
-            if (event.key === "Enter") {
+            if (event.key === "Enter" && input.value !== "") {
                 submit(input.value)
+                /*  enterChat(input.value) */
                 input.value = ""
             }
         })
@@ -47,16 +56,15 @@ class RegistrationForm extends Component {
                 <Link to="/">назад</Link>
                 <h1>Бойцовский чат</h1>
                 <div className="chat_messages__canvas">
-                    { this.props.userName ?  this.state.messages.map(element => 
-                    <Messages key={"keyMes" + (++this.state.keyMessages)} dataMessage={element} />):
-                    <h2>Вы не автаризованны</h2>}
+                    {this.props.userName ? this.state.messages.map(element =>
+                        <Messages key={"keyMes" + (++this.state.keyMessages)} dataMessage={element} />) :
+                        <h2>Вы не автаризованны</h2>}
                 </div>
                 <TextField
                     id="inputMessage"
                     className="input_message"
                     label="Введите текст"
                 />
-
             </div>
         )
     }
@@ -64,6 +72,9 @@ class RegistrationForm extends Component {
 
 
 export default connect(
-    state => ({ userName: state.user.userName }),
+    state => ({
+        userName: state.user.userName,
+        panelMode: state.messager.panelMode
+    }),
     dispatch => ({})
-)(RegistrationForm);
+)(Chat);

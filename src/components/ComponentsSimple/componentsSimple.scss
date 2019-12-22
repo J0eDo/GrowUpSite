@@ -1,0 +1,50 @@
+$userRow-primary: rgba(207, 214, 203, 0.589);
+$userRow-secondary: rgb(240, 238, 238);
+
+.userRowIcons{
+    width: 98%;
+    display: flex;
+    height: 5rem;
+    background-color: $userRow-primary;
+    margin: .1rem auto;
+    border: 1px inset wheat;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    img{
+        background-color: wheat;
+        height: 4rem;
+        width: 30%;
+        justify-self: center;
+        align-self: center;
+        margin: .3rem;
+    }
+    div{
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: stretch;
+        align-content: stretch;
+        justify-content: space-between;
+        width: 40%;
+        p{
+            text-align: right;
+            font-size: small;
+            flex: 1;
+        }
+        h3{
+            flex: 2;
+            text-align: center;
+        }
+        .message{
+            flex: 1;
+            text-align: left;
+            word-wrap: none;
+            white-space: nowrap;
+            text-overflow: ellipsis; 
+        }
+    }
+   
+}
+.userRowIcons:hover{
+    background-color: $userRow-secondary;
+}

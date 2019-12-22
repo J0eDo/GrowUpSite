@@ -1,0 +1,16 @@
+.usp {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    min-width:70vw;
+    height: 20rem;
+    background-color: aliceblue;
+}
+
+.imge{
+    background-image: url('../../imgElements/man.png');
+    background-size: cover;
+    width: 12em;
+    background-position: center;
+    height: 18rem;
+}

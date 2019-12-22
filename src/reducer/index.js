@@ -2,10 +2,12 @@ import { combineReducers, createStore ,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk'
 import fighterChange from './fighterChange'
 import findFighters from './filterFighters'
-import userReducer from './user'
+import userProfile from './user'
+import messager from './messager'
 
  const reducer = combineReducers({
-   user: userReducer,
+   user: userProfile,
+   messager : messager,
    fighterChange,
    findFighters
 })

@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import Login from './LoginMode'
 import Registration from './RegistrationMode'
 /*Actions */
-import { autorizated, registrated } from '../../API/api'
+import { autorizated, registrated } from '../../API/userProfile'
 
 
 

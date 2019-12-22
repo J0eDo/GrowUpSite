@@ -12,6 +12,6 @@ body{
     font-size: 1.1rem;
     font-family: roboto;
     color: black;
-    background-color: rgb(11, 11, 19);
+    background: rgb(160, 160, 177) url('../../imgElements/squares/squares.png');
 }
 
