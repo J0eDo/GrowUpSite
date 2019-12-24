@@ -1,23 +1,15 @@
-import React, { Component } from 'react';
-/*Libarys */
-import { connect } from 'react-redux'
-/*Actions */
-/* import { autorizated, registrated } from '../../API/api'
- */
+import React from 'react';
 
 
-export default class Message extends Component {
-
-
-  render() {
-    
+const Message =({data})=> {
     return (
-      <div className="message">
-        <div className="message_userName">
-          <strong>{this.props.dataMessage.messageUserName}</strong>: {this.props.dataMessage.messageText}
-        </div>
+      <div className="message_chat">
+        <p>
+          <strong>{data.userName}</strong><br/>{data.body}
+        </p>
       </div>
     )
-  }
 }
 
+
+export default Message

@@ -3,28 +3,54 @@ import "./chat.scss";
 import TextField from '@material-ui/core/TextField';
 /*Libarys */
 import { connect } from 'react-redux'
-import Ws from 'react-websocket'
+import Ws from '@adonisjs/websocket-client'
 /*Actions */
 
 import Messages from './Message'
 import { Link } from "react-router-dom";
+import { stat } from 'fs';
 
 class Chat extends Component {
 
     state = {
-        count:90,
+        count: 90,
         keyMessages: 0,
         messages: []
     }
 
-  
+    subscribeToChannel(ws) {
+        const chat = ws.subscribe('chat')
+
+        chat.on('error', (res) => {
+            console.log(res, "ERRROR_SUB");
+
+        })
+
+        chat.on('message', (message) => {
+            const messages = this.state.messages
+            messages.push(message)
+            this.setState({ messages: messages })
+            document.querySelector(".chat_messages__canvas").scrollBy(0, 100);
+        })
+    }
+
+    startChat() {
+        let ws = Ws('ws://185.87.194.11:3333').connect()
+        this.ws = ws
+        ws.on('open', (res) => {
+            console.log(res, "OPEN");
+            this.subscribeToChannel(ws)
+        })
+
+        ws.on('error', (res) => {
+            console.log(res, "ERRROR");
+
+        })
+    }
+
 
     componentDidMount() {
-        let ws = new WebSocket('ws://185.87.194.11:3333')
-        ws.onopen = () => {
-            // on connecting, do nothing but log it to the console
-            console.log('connected')
-          }
+        this.startChat()
         const input = document.getElementById("inputMessage");
         const submit = this.handleChange.bind(this);
         input.addEventListener("keydown", function (event) {
@@ -38,15 +64,14 @@ class Chat extends Component {
 
     handleChange(inputText) {
         if (inputText.trim()) {
-            const messageTitle = this.dataMessage(inputText)
-            this.state.messages.push(messageTitle)
-            this.setState({})
+            const message = this.messageConstructor(inputText)
+            this.ws.getSubscription('chat').emit('message', this.messageConstructor(inputText))
         }
     };
 
-    dataMessage = (text) => ({
-        messageUserName: this.props.userName,
-        messageText: text
+    messageConstructor = (text) => ({
+        userName: this.props.userName,
+        body: text
     })
 
 
@@ -54,10 +79,10 @@ class Chat extends Component {
         return (
             <div className="chat_conteiner">
                 <Link to="/">назад</Link>
-                <h1>Бойцовский чат</h1>
+                <h1>Общий чат</h1>
                 <div className="chat_messages__canvas">
                     {this.props.userName ? this.state.messages.map(element =>
-                        <Messages key={"keyMes" + (++this.state.keyMessages)} dataMessage={element} />) :
+                        <Messages key={"keyMes" + (++this.state.keyMessages)} data={element} />) :
                         <h2>Вы не автаризованны</h2>}
                 </div>
                 <TextField

@@ -1,50 +1,67 @@
 $primary-color: rgb(149, 156, 146);
-$second-color:  rgb(52, 52, 65);
+$second-color: rgb(52, 52, 65);
 
-
-.messager{
+.messager {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  height: 100vh;
+  .contactPanel {
+    width: 25vw;
+    height: 80vh;
+    margin: auto;
+    border: 0.2rem solid $second-color;
+    background-color: $primary-color;
+    .searchResult {
+      width: 23vw;
+      min-height: 60vh;
+      background-color: $second-color;
+      margin: auto;
+      overflow: hidden;
+    }
+  }
+  .chat_conteiner {
+    margin: auto;
+    border: 0.2rem solid $second-color;
+    width: 65vw;
+    height: 80vh;
+    background-color: $primary-color;
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    height: 100vh;
-    .contactPanel{
-        width: 25vw;
-        height:80vh;
-        margin: auto;
-        border: .2rem solid $second-color;
-        background-color: $primary-color;
-        .searchResult{
-         width: 23vw;
-            min-height: 60vh;
-            background-color: $second-color;
-            margin: auto;
-            overflow: hidden;
-        }
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    h1 {
+      margin: 1rem;
+      color: white;
+      text-shadow: black 1px 2px 2px;
     }
-    .chat_conteiner{
-        margin: auto;
-        border: .2rem solid $second-color;
-        width: 65vw;
-        height: 80vh;
-        background-color: $primary-color;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: flex-start;
-        align-items: center;
-        h1{
-            margin: 1rem;
-        }
-        .chat_messages__canvas{
-            background-color: $second-color;
-            width: 90%;
-            height: 75%;
-        }
-        .input_message{
-          width: 90%;
-        }
-    }
-    
+    .chat_messages__canvas {
+      background-color: $second-color;
+      overflow-y: auto;
 
+      width: 90%;
+      height: 75%;
+    }
+    .input_message {
+      width: 90%;
+    }
+  }
+  .message_chat {
+    background: rgb(128, 141, 144);
+    background: -moz-linear-gradient(90deg, rgba(128, 141, 144, 1) 14%, rgba(167, 179, 182, 0.30885857761073177) 100%);
+    background: -webkit-linear-gradient(
+      90deg,
+      rgba(128, 141, 144, 1) 14%,
+      rgba(167, 179, 182, 0.30885857761073177) 100%
+    );
+    background: linear-gradient(90deg, rgba(128, 141, 144, 1) 14%, rgba(167, 179, 182, 0.30885857761073177) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#808d90",endColorstr="#a7b3b6",GradientType=1);
+    padding: 0.8rem;
+    margin: 0.3rem;
+    width: 80%;
+    border-radius: 3px;
+    p {
+      word-wrap: break-word;
+    }
+  }
 }
-
-
