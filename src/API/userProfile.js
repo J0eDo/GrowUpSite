@@ -1,7 +1,7 @@
 //Libary
 import axios from 'axios'
 //Routs server
-import { LOGIN, REGISTRATION, USER_DATA } from './routing'
+import { LOGIN, REGISTRATION, USER_DATA, USER_EDIT_SETTING } from './routing'
 
 
 
@@ -52,11 +52,16 @@ export const autorizated = props => dispatch => {
         })
 }
 
-export const getUserData = () =>  dispatch =>
+export const getUserData = () => dispatch =>
     axios.get(USER_DATA())
         .then((res) => {
-            const userData =  res.data.user
-            dispatch({ type: "SET_USER_DATA", userName: userData.name})
+            const userData = res.data.user
+            const profile = res.data.userProfile;
+            dispatch({
+                type: "SET_USER_DATA",
+                userName: userData.name,
+                avatar: profile.avatar
+            })
         })
 
 
@@ -64,4 +69,17 @@ export const exitedAccount = () => dispatch => {
     localStorage.removeItem("TOKEN")
     dispatch({ type: "EXIT_ACCOUNT" })
     window.location.reload()
+}
+
+export const changeSetting = props => dispatch => {
+    axios.get(USER_EDIT_SETTING(), {
+        params: {
+            avatar: props.avatar
+        }
+    })
+        .then(() => {
+            dispatch({ type: "SAVE_SETTINGS", avatar: props.avatar })
+
+        })
+
 }

@@ -10,8 +10,6 @@ const userReducer = (state, action) => {
                 ...state,
             }
         case "ERROR_REGISTRATED":
-            console.log(action.errorReg);
-
             return {
                 ...state,
                 errorReg: action.errorReg
@@ -24,7 +22,19 @@ const userReducer = (state, action) => {
         case "SET_USER_DATA":
             return {
                 ...state,
-                userName: action.userName
+                userName: action.userName,
+                avatarName:action.avatar,
+                panelMode: "primary"
+            }
+        case "SET_PANEL_MODE":
+            return {
+                ...state,
+                panelMode: action.panelMode
+            }
+        case "SAVE_SETTINGS":
+            return {
+                ...state,
+             avatarName:action.avatar
             }
         case "EXIT_ACCOUNT":
             return ({})
@@ -32,9 +42,10 @@ const userReducer = (state, action) => {
             if (localStorage.getItem("TOKEN")) {
                 const token = localStorage.getItem("TOKEN")
                 axios.defaults.headers.common["Authorization"] = token
-                return { token: token }
+                return { token: token, panelMode: "Loading" }
             }
-            return { token: null }
+            return { token: null ,
+                    avatar:"man"}
     }
 
 }
