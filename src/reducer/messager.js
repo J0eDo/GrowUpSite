@@ -1,14 +1,19 @@
 const defaultState = {
-    panelMode:"freind"
+    panelMode: "friends"
 }
 
-const  messager = (state, action) => {
+const messager = (state, action) => {
     switch (action.type) {
         case "PANEL_MODE":
-            return { ...state,
-                panelMode:action.mode }
+            return {
+                ...state,
+                barMode: action.mode,
+                users: action.users
+            }
         default:
-           return defaultState
+            return { 
+                ...state,
+                defaultState: "friends" }
     }
 
 }

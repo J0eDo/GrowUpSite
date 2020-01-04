@@ -1,54 +1,23 @@
 import React, { Component } from 'react';
 import "./chat.scss";
-
-/*Libarys */
+//Libarys
 import { connect } from 'react-redux'
-/*Actions */
-/*  import { autorizated, registrated } from '../../API/api' */
- 
+//Actions 
+import { getUsers,addFriend } from '../../API/messagerPanel'
 //Components//
 import UserRowIcon from '../ComponentsSimple/UserRowIcon'
-//MaterialUI// 
+//MaterialUI
 import { styled } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import GroupAddTwoToneIcon from '@material-ui/icons/GroupAddTwoTone';
+
 import SearchIcon from '@material-ui/icons/Search';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
 
-
-
-const users = [
-    {
-        id: "2",
-        name: "ALEX",
-        avatar: "man",
-        isFreind: "true",
-        message: "Some text of new text"
-    },
-    {
-        id: "3",
-        name: "Jon",
-        avatar: "man",
-        isFreind: "false",
-        message: "Short text "
-    },
-    {
-        id: "4",
-        name: "Jack",
-        avatar: "man",
-        isFreind: "false",
-        message: ":)"
-    },
-    {
-        id: "5",
-        name: "Irina",
-        avatar: "man",
-        isFreind: "is",
-        message: "Very very and very longed Mess"
-    },
-]
 
 const Search = styled(TextField)({
     width: '23vw',
@@ -57,36 +26,38 @@ const Search = styled(TextField)({
 
 class RegistrationForm extends Component {
 
-    state = {
-        panelMode: "friends"
-    }
-
     componentDidMount() {
-
+        this.props.setPanelMode("friends")
     }
-
 
     constructorUsersColumn(users, mode) {
-        switch (mode) {
-            case "friends":
-                return users.map(user =>
-                    <UserRowIcon key={`${user.id}`}
-                       /*  onClick={} */
+        console.log(users, "MATTER_USER");
+        if (users) {
+            switch (mode) {
+                case "friends":
+                    return users.map(user =>
+                        <UserRowIcon key={`${user.id}`}
+                            name={user.name}
+                            avatar={user.profile.avatar}
+                            idUser={user.id}
+                            message={null} />)
+                case "all":
+                    return users.map(user =>
+                        <UserRowIcon key={`${user.id}`}
                         name={user.name}
+                        avatar={user.profile.avatar}
                         idUser={user.id}
-                        message={null} />)
-            case "favorites":
-                return users.map(user =>
-                    <UserRowIcon key={`${user.id}`}
-                        name={user.name}
-                        idUser={user.id}
-                        message={user.message} />)
-            case "events":
-                return users.map(user =>
-                    <UserRowIcon key={`${user.id}`}
-                        name={user.name}
-                        idUser={user.id}
-                        message={user.message} />)
+                        message={null} 
+                        addFriend={addFriend}/>)
+                case "events":
+                    return users.map(user =>
+                        <UserRowIcon key={`${user.id}`}
+                            name={user.name}
+                            idUser={user.id}
+                            message={user.message} />)
+            }
+        } else {
+            return (<h3>Загрузка</h3>)
         }
     }
 
@@ -94,17 +65,17 @@ class RegistrationForm extends Component {
         return (
             <div className="contactPanel">
                 <div>
-                    <BottomNavigation value={this.state.panelMode} onChange={(event, newValue) => {
-                        this.setState({ panelMode: newValue });
+                    <BottomNavigation value={this.props.panelMode} 
+                    onChange={(event, newValue) => {
+                        this.props.setPanelMode(newValue)
                     }}>
-                        <BottomNavigationAction label="Друзья" value="friends" icon={<SearchIcon />} />
-                        <BottomNavigationAction label="Чаты" value="favorites" icon={<ContactsIcon />} />
-                        <BottomNavigationAction label="События" value="events" icon={<EmojiPeopleIcon />} />
+                        <BottomNavigationAction label="Друзья" value="friends" icon={<EmojiPeopleTwoToneIcon />} />
+                      {/*   <BottomNavigationAction label="Чаты" value="favorites" icon={<ContactsIcon />} /> */}
+                        <BottomNavigationAction label="Поиск" value="all" icon={<SearchIcon />} />
                     </BottomNavigation>
-                    <div className="textField">
-                        <div className="searchResult">
-                            {this.constructorUsersColumn(users, this.state.panelMode)}
-                        </div>
+                    <div className="textField"></div>
+                    <div className="searchResult">
+                        {this.constructorUsersColumn(this.props.contacts, this.props.panelMode)}
                     </div>
                 </div>
                 <Search
@@ -118,6 +89,11 @@ class RegistrationForm extends Component {
 
 
 export default connect(
-    state => ({ panelMode: state.messager.panelMode }),
-    dispatch => ({})
+    state => ({
+        panelMode: state.messager.barMode,
+        contacts: state.messager.users
+    }),
+    dispatch => ({
+        setPanelMode: (modeName) => dispatch(getUsers(modeName)),
+    })
 )(RegistrationForm);

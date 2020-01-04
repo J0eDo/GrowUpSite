@@ -4,31 +4,38 @@ export class SocketConnection {
 
     connection() {
         this.ws = Ws('ws://185.87.194.11:3333').connect()
-        this.ws.on('open', (res) => {
-            console.log(res, "OPEN");
-            this.subscribe(this.ws)
+        this.ws.on('open', () => {
+            console.log("OPEN");
         })
 
-        this.ws.on('close', (res) => {
-            console.log(res, "ERRROR");
-
+        this.ws.on('close', () => {
+            console.log("ERRROR");
         })
+        
         return this
     }
 
-    subscribe = (handler) => {
+    subscribe = ({ sendMessage, pushEvent }) => {
         if (!this.ws) {
             setTimeout(() => this.subscribe('chat'), 1000)
         } else {
-            this.ws.on('error', (res) => {
-                console.log(res, "ERRROR_SUB");
+            const result = this.ws.subscribe('chat');
+            result.on('error', () => {
+                console.log("ERRROR_SUB");
+            })
+            result.on('message', (message) => {
+                if (typeof sendMessage === "function") {
+                    sendMessage(message)
+                }
+            })
+            result.on('push', (action) => {
+                if (typeof  pushEvent === "function") {
+                    pushEvent(action)
+                }
+              
             })
 
-            this.ws.on('message', (message) => {
-                /*handler sometimes an object */
-               typeof handler==="function"&& handler(message)
-            })
-            return this.ws
+            return result
         }
     }
 }

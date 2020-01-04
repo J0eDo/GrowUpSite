@@ -1,5 +1,6 @@
 /**Libarys*/
 import React, { Component } from 'react';
+import { Portal } from 'react-portal';
 import './app.css';
 import {
     BrowserRouter as Router,

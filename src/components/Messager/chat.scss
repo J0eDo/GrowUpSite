@@ -4,26 +4,20 @@ $second-color: rgb(52, 52, 65);
 .messager {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: center;
+  justify-content: stretch;
   height: 100vh;
   .contactPanel {
     width: 25vw;
+    min-width: 200px;
     height: 80vh;
     margin: auto;
-    border: 0.2rem solid $second-color;
     background-color: $primary-color;
-    .searchResult {
-      width: 23vw;
-      min-height: 60vh;
-      background-color: $second-color;
-      margin: auto;
-      overflow: hidden;
-    }
+    border-right: 2px solid $second-color;
+    
   }
   .chat_conteiner {
     margin: auto;
-    border: 0.2rem solid $second-color;
-    width: 65vw;
+    width: 75vw;
     height: 80vh;
     background-color: $primary-color;
     display: flex;
@@ -38,12 +32,12 @@ $second-color: rgb(52, 52, 65);
     .chat_messages__canvas {
       background-color: $second-color;
       overflow-y: auto;
-
-      width: 90%;
+      width: 98%;
       height: 75%;
     }
     .input_message {
       width: 90%;
+      margin: 1rem auto;
     }
   }
   .message_chat {
@@ -64,4 +58,17 @@ $second-color: rgb(52, 52, 65);
       word-wrap: break-word;
     }
   }
+}
+.searchResult {
+  width: 98%;
+  height: 60vh;
+  background-color: $second-color;
+  margin: auto;
+  overflow-y: scroll;
+}
+
+.notifics{
+  display: flexbox;
+  position: absolute;
+  right: 0.2rem;
 }

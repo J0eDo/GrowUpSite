@@ -4,11 +4,18 @@ import './componentsSimple.scss';
 
 
 
-const UserRowIcon = ({ name, idUser,message }) => {
+const UserRowIcon = ({ name, idUser,message ,avatar,addFriend}) => {
     return (
         <div className="userRowIcons">
-            <img src="" alt="" />
+            <img src={`${window.location.origin}/img/avatars/${avatar}.jpg`} alt="" />
             <div>
+                {
+                    addFriend?
+                    <p
+                    className="userRowIcons_pluse"
+                    onClick={()=>{addFriend(idUser)}}>+</p>
+                    :null
+                }
                 <p>ID {idUser}</p>
                 <h3>{name}</h3>
                 {

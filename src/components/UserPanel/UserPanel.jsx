@@ -20,7 +20,7 @@ const Panel = styled(Card)({
 class UserPanel extends Component {
 
     componentDidMount() {
-        this.props.getData()      
+        this.props.getData()
     }
 
     state = {
@@ -78,16 +78,16 @@ class UserPanel extends Component {
     primary() {
         return (
             <Panel className="usp">
-                <div className="imge" 
-                style={{
-                    backgroundImage:
-                        `url(${window.location.origin}/img/avatars/${this.props.userAvatar}.jpg)`
-                }}>
+                <div className="imge"
+                    style={{
+                        backgroundImage:
+                            `url(${window.location.origin}/img/avatars/${this.props.userAvatar}.jpg)`
+                    }}>
                 </div>
                 <div className="usp_panel">
                     <p>Вы автаризованы</p>
                     <h1>{this.props.userName}</h1>
-                    <h2 onClick={() => this.props.setPanelMode("setting")}>настройки</h2>
+                    <h2 onClick={() => this.props.setPanelMode("setting")}>настройки &#9881;</h2>
                 </div>
             </Panel >)
     }

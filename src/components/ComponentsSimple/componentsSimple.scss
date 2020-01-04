@@ -11,6 +11,13 @@ $userRow-secondary: rgb(240, 238, 238);
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    .userRowIcons_pluse{
+        font-weight: 900;
+        color: green;
+        font-size: .8rem;
+        margin: .2rem;
+        text-shadow: 1px 1px 4px yellow;
+    }
     img{
         background-color: wheat;
         height: 4rem;
@@ -47,4 +54,21 @@ $userRow-secondary: rgb(240, 238, 238);
 }
 .userRowIcons:hover{
     background-color: $userRow-secondary;
+}
+
+.flashMessage{
+    background-color:rgb(235, 255, 235);
+    border:2px solid rgb(165, 162, 126);
+    border-radius: 5px;
+    margin: .8rem auto;
+    width: 15rem;
+    .cross{
+        margin: .3rem;
+        color: red;
+        text-align: right;
+        cursor: pointer;
+    }
+    p{
+        margin: .2rem;
+    }
 }

@@ -21,7 +21,6 @@ export const registrated = props => dispatch => {
                 localStorage.setItem("TOKEN", token)
                 dispatch({ type: "LOGIN", token: token })
             } else {
-
                 const { field, validation } = res.data[0] || res.data
                 dispatch({ type: "ERROR_REGISTRATED", errorReg: { field, validation } })
             }
@@ -55,8 +54,10 @@ export const autorizated = props => dispatch => {
 export const getUserData = () => dispatch =>
     axios.get(USER_DATA())
         .then((res) => {
-            const userData = res.data.user
-            const profile = res.data.userProfile;
+            const userData = res.data.user;
+            const profile = res.data.profile;
+            console.log(res);
+
             dispatch({
                 type: "SET_USER_DATA",
                 userName: userData.name,
@@ -79,7 +80,5 @@ export const changeSetting = props => dispatch => {
     })
         .then(() => {
             dispatch({ type: "SAVE_SETTINGS", avatar: props.avatar })
-
         })
-
 }
