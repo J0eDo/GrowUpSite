@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
+/* eslint-disable default-case */
+import React, { Component } from 'react'
 import "./chat.scss";
 //Libarys
 import { connect } from 'react-redux'
 //Actions 
-import { getUsers,addFriend } from '../../API/messagerPanel'
+import { getUsers, addFriend, removeFriend } from '../../API/messagerPanel'
 //Components//
 import UserRowIcon from '../ComponentsSimple/UserRowIcon'
+import FriendRowIcon from '../ComponentsSimple/FriendRowIcon'
 //MaterialUI
 import { styled } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import GroupAddTwoToneIcon from '@material-ui/icons/GroupAddTwoTone';
-
 import SearchIcon from '@material-ui/icons/Search';
-import ContactsIcon from '@material-ui/icons/Contacts';
-import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
+
+import ChatWebSocket from '../../API/WebSocket/Chat'
 
 
 const Search = styled(TextField)({
@@ -24,37 +24,83 @@ const Search = styled(TextField)({
     margin: '.8rem'
 });
 
+const Navigation = styled(BottomNavigation)({
+    width: '90%',
+    textAlign: 'center',
+    margin: ' auto',
+
+});
+
+let subscribe
+let webSocket
+let subscriptionName = "general"
+
 class RegistrationForm extends Component {
 
+
     componentDidMount() {
-        this.props.setPanelMode("friends")
+        if (!webSocket) {
+            webSocket = ChatWebSocket
+            webSocket.connection()
+            this.props.setPanelMode("friends")
+            this.makeSubscription()
+        }
     }
 
+    makeSubscription() {
+        webSocket.chanalTopic = subscriptionName
+        subscribe = webSocket.subscribe()
+        this.props.setWebSocket(subscribe)
+    }
+
+
+    removeFriend = (id, friendName) => {
+        removeFriend(id)
+        let notificParams = { friendName }
+        notificParams.event = "REMOVE_FRIEND"
+        this.props.notification(notificParams)
+    }
+
+    addFriend = (id, friendName) => {
+        addFriend(id)
+        let notificParams = { friendName }
+        notificParams.event = "ADD_FRIEND"
+        this.props.notification(notificParams)
+    }
+
+    privateDialog = (collocutor) => {
+        //ws chanal name calculate: minID + "/" + maxID
+        const chanel = collocutor.id < this.props.userID ?
+            `${collocutor.id}and${this.props.userID}` :
+            `${this.props.userID}and${collocutor.id}`
+        if (chanel !== subscriptionName) {
+            this.props.setChat(collocutor)
+            subscriptionName = chanel
+            webSocket.ws.removeSubscription(subscribe)
+            this.makeSubscription()
+        }
+    }
+
+
+
+
     constructorUsersColumn(users, mode) {
-        console.log(users, "MATTER_USER");
         if (users) {
             switch (mode) {
                 case "friends":
                     return users.map(user =>
-                        <UserRowIcon key={`${user.id}`}
-                            name={user.name}
-                            avatar={user.profile.avatar}
-                            idUser={user.id}
-                            message={null} />)
+                        <FriendRowIcon key={`${user.id}`}
+                            removeFriend={(id) => this.removeFriend(id, user.name)}
+                            user={user}
+                            privateDialog={() => this.privateDialog(user)}
+                        />)
                 case "all":
                     return users.map(user =>
                         <UserRowIcon key={`${user.id}`}
-                        name={user.name}
-                        avatar={user.profile.avatar}
-                        idUser={user.id}
-                        message={null} 
-                        addFriend={addFriend}/>)
-                case "events":
-                    return users.map(user =>
-                        <UserRowIcon key={`${user.id}`}
-                            name={user.name}
-                            idUser={user.id}
-                            message={user.message} />)
+                            user={user}
+                            addFriend={(id) => this.addFriend(id, user.name)}
+                            privateDialog={() => this.privateDialog(user)}
+                        />)
             }
         } else {
             return (<h3>Загрузка</h3>)
@@ -65,23 +111,18 @@ class RegistrationForm extends Component {
         return (
             <div className="contactPanel">
                 <div>
-                    <BottomNavigation value={this.props.panelMode} 
-                    onChange={(event, newValue) => {
-                        this.props.setPanelMode(newValue)
-                    }}>
+                    <Navigation value={this.props.panelMode}
+                        onChange={(event, newValue) => {
+                            this.props.setPanelMode(newValue)
+                        }}>
                         <BottomNavigationAction label="Друзья" value="friends" icon={<EmojiPeopleTwoToneIcon />} />
-                      {/*   <BottomNavigationAction label="Чаты" value="favorites" icon={<ContactsIcon />} /> */}
                         <BottomNavigationAction label="Поиск" value="all" icon={<SearchIcon />} />
-                    </BottomNavigation>
+                    </Navigation>
                     <div className="textField"></div>
                     <div className="searchResult">
                         {this.constructorUsersColumn(this.props.contacts, this.props.panelMode)}
                     </div>
                 </div>
-                <Search
-                    id="searchInput"
-                    helperText="Input name or ID user"
-                />
             </div>
         )
     }
@@ -90,10 +131,16 @@ class RegistrationForm extends Component {
 
 export default connect(
     state => ({
+        userName: state.user.userName,
         panelMode: state.messager.barMode,
-        contacts: state.messager.users
+        contacts: state.messager.users,
+        ws: state.webSocket.ws,
+        userID: state.user.id
     }),
     dispatch => ({
         setPanelMode: (modeName) => dispatch(getUsers(modeName)),
+        notification: (notificParams) => dispatch({ type: "PUSH_NOTIFICATION_ADD", notificParams }),
+        setChat: (collocutor) => dispatch({ type: "SET_CHAT", collocutor }),
+        setWebSocket: (subscribe) => dispatch({ type: "SET_WEBSOCKET", subscribe })
     })
 )(RegistrationForm);

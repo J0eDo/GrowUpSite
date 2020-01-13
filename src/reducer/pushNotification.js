@@ -8,13 +8,13 @@ let notifications = []
 const pushNotification = (state, action) => {
     switch (action.type) {
         case "PUSH_NOTIFICATION_ADD":
-            notifications = []
             action.notificParams.id = idNortification++;
             state.notifications.push(action.notificParams)
-            notifications = state.notifications
+            console.log(state.notifications);
+            
             return {
                 ...state,
-                notifications
+                notifications : state.notifications
             }
         case "PUSH_NOTIFICATION_REMOVE":
             notifications = []

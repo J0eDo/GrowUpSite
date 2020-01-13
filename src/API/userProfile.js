@@ -41,6 +41,7 @@ export const autorizated = props => dispatch => {
             const token = 'Bearer ' + res.data.token
             axios.defaults.headers.common["Authorization"] = token
             localStorage.setItem("TOKEN", token)
+            localStorage.setItem("WS_TOKEN", res.data.token)
             dispatch({ type: "LOGIN", token: token })
         })
         .catch(() => {
@@ -56,12 +57,11 @@ export const getUserData = () => dispatch =>
         .then((res) => {
             const userData = res.data.user;
             const profile = res.data.profile;
-            console.log(res);
-
             dispatch({
                 type: "SET_USER_DATA",
                 userName: userData.name,
-                avatar: profile.avatar
+                avatar: profile.avatar,
+                id :userData.id
             })
         })
 

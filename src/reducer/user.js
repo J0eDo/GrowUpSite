@@ -22,6 +22,7 @@ const userReducer = (state, action) => {
         case "SET_USER_DATA":
             return {
                 ...state,
+                id:action.id,
                 userName: action.userName,
                 avatarName: action.avatar,
                 panelMode: "primary"

@@ -1,9 +1,12 @@
 //Libary
 import axios from 'axios'
 //Routs server
-import { GET_USERS, GET_FRIENDS, ADD_FRIENDS } from './routing'
+import {
+    GET_USERS, GET_FRIENDS,
+    ADD_FRIEND, REMOVE_FRIEND
+} from './routing'
 
-export const getUsers = props => dispatch => {
+export const getUsers = (props, nortific) => dispatch => {
     let route;
     switch (props) {
         case "friends":
@@ -12,11 +15,10 @@ export const getUsers = props => dispatch => {
         case "all":
             route = GET_USERS
             break;
+        default: break;
     }
     axios.get(route())
         .then((res) => {
-            console.log(res,"IT_DISPATCH");
-            
             dispatch({
                 type: "PANEL_MODE",
                 mode: props,
@@ -26,13 +28,18 @@ export const getUsers = props => dispatch => {
 }
 
 export const addFriend = (friendID) => {
-    axios.get(ADD_FRIENDS(), {
+    axios.get(ADD_FRIEND(), {
         params: {
             friendID
         }
     })
-        .then(() => {
-            alert("sucses!")
-        })
+}
+
+export const removeFriend = (friendID) => {
+    axios.get(REMOVE_FRIEND(), {
+        params: {
+            friendID
+        }
+    })
 }
 

@@ -5,7 +5,7 @@ const Message =({data})=> {
     return (
       <div className="message_chat">
         <p>
-          <strong>{data.userName}</strong><br/>{data.body}
+          <strong>{data.user_name}</strong><br/>{data.message}
         </p>
       </div>
     )

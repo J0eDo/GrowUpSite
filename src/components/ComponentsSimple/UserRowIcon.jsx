@@ -4,23 +4,23 @@ import './componentsSimple.scss';
 
 
 
-const UserRowIcon = ({ name, idUser,message ,avatar,addFriend}) => {
+const UserRowIcon = ({ user ,addFriend, privateDialog}) => {
+    const _privateDialog = (event) => {
+        if (event.target.innerHTML !== '+') {
+            privateDialog(user.id)
+        }
+    }
     return (
-        <div className="userRowIcons">
-            <img src={`${window.location.origin}/img/avatars/${avatar}.jpg`} alt="" />
+        <div 
+        onClick={_privateDialog}
+        className="userRowIcons">
+            <img src={`${window.location.origin}/img/avatars/${user.profile.avatar}.jpg`} alt="avatar" />
             <div>
-                {
-                    addFriend?
-                    <p
+                    <div
                     className="userRowIcons_pluse"
-                    onClick={()=>{addFriend(idUser)}}>+</p>
-                    :null
-                }
-                <p>ID {idUser}</p>
-                <h3>{name}</h3>
-                {
-                    message?<p className="message"> {message}</p>:null
-                }
+                    onClick={()=>{addFriend(user.id)}}>+</div>
+                <p>ID {user.id}</p>
+                <h3>{user.name}</h3>
             </div>
 
 

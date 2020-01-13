@@ -1,38 +1,42 @@
-$primary-color: rgb(149, 156, 146);
-$second-color: rgb(52, 52, 65);
-
+$primary-color: #607d8b;
+$second-color: #b2dfdb;
+@mixin animation($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  animation: $property;
+}
 .messager {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: stretch;
-  height: 100vh;
+  max-height: 100vh;
+
   .contactPanel {
-    width: 25vw;
-    min-width: 200px;
-    height: 80vh;
-    margin: auto;
+    width: 100%;
+    max-width: 20vw;
+    height: 90vh;
     background-color: $primary-color;
     border-right: 2px solid $second-color;
-    
+    padding-top: 1rem;
   }
   .chat_conteiner {
-    margin: auto;
-    width: 75vw;
-    height: 80vh;
+    width: 100%;
+    min-width: 80vw;
+    height: 90vh;
     background-color: $primary-color;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
     h1 {
-      margin: 1rem;
+      margin: 2rem;
       color: white;
       text-shadow: black 1px 2px 2px;
     }
     .chat_messages__canvas {
       background-color: $second-color;
       overflow-y: auto;
-      width: 98%;
+      padding-top: 1rem;
+      width: 96%;
       height: 75%;
     }
     .input_message {
@@ -60,15 +64,51 @@ $second-color: rgb(52, 52, 65);
   }
 }
 .searchResult {
-  width: 98%;
-  height: 60vh;
+  width: 90%;
+  height: 75vh;
   background-color: $second-color;
   margin: auto;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
-.notifics{
+.notifics {
   display: flexbox;
   position: absolute;
   right: 0.2rem;
+}
+
+.chat_head {
+  display: flex;
+  flex-flow: row nowrap;
+  left: 0rem;
+  justify-self: left;
+  align-self: flex-start;
+  z-index: 3;
+  height: 13%;
+  margin: 0.5rem;
+  img {
+    width: 7rem;
+    height: 7rem;
+  }
+  h3 {
+    margin-left: 1rem;
+    align-self: center;
+  }
+}
+.unvisiblePanel {
+  @include animation(contactPanel 1s ease-in-out 0.5s alternate)
+}
+
+.visiblePanel {
+  @include animation(contactPanel 1s ease-in-out 0.5s reverse)
+}
+
+@keyframes contactPanel {
+  from {
+    width: 0;
+  }
+  to {
+    width: 400px;
+  }
 }

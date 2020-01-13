@@ -11,6 +11,10 @@ class FlashMessage extends Component {
         switch (this.body.event) {
             case "USER_ONLINE":
                 return <p><strong>{this.body.userName}</strong> онлайн!</p>
+            case "ADD_FRIEND":
+                return <p> {this.body.friendName} добавлен(а) в друзья</p>
+            case "REMOVE_FRIEND":
+                return <p> {this.body.friendName} удален(а)  из друзей</p>
             default:
                 break;
         }
