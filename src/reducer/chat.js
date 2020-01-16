@@ -1,6 +1,4 @@
-const defaultState = {
-    user: "general"
-}
+
 
 const chat = (state, action) => {
     switch (action.type) {
@@ -12,7 +10,7 @@ const chat = (state, action) => {
         default:
             return {
                 ...state,
-                defaultState
+                user: "general"
             }
     }
 

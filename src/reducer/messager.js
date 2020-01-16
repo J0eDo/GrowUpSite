@@ -1,6 +1,3 @@
-const defaultState = {
-    panelMode: "friends"
-}
 
 const messager = (state, action) => {
     switch (action.type) {
@@ -13,7 +10,7 @@ const messager = (state, action) => {
         default:
             return { 
                 ...state,
-                defaultState: "friends" }
+                panelMode: "friends" }
     }
 
 }

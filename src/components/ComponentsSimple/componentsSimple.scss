@@ -4,7 +4,7 @@ $userRow-secondary: rgb(240, 238, 238);
 .userRowIcons {
   width: 98%;
   display: flex;
-  height: 5rem;
+  height: 8rem;
   background-color: $userRow-primary;
   margin: 0.1rem auto;
   border: 1px inset wheat;
@@ -36,8 +36,10 @@ $userRow-secondary: rgb(240, 238, 238);
   }
   img {
     background-color: wheat;
-    height: 4rem;
-    width: 30%;
+    height: 6rem;
+    width: 6rem;
+    margin-left: 1rem;
+/*     width: 30%; */
     justify-self: center;
     align-self: center;
     margin: 0.3rem;
@@ -72,19 +74,38 @@ $userRow-secondary: rgb(240, 238, 238);
   background-color: $userRow-secondary;
 }
 
+
 .flashMessage {
-  background-color: rgb(235, 255, 235);
-  border: 2px solid rgb(165, 162, 126);
+  min-height: 5vh;
   border-radius: 5px;
-  margin: 0.8rem auto;
+  margin: 1rem auto;
   width: 15rem;
-  .cross {
-    margin: 0.3rem;
-    color: red;
-    text-align: right;
-    cursor: pointer;
-  }
   p {
-    margin: 0.2rem;
+    display: block;
+    margin:auto;
   }
+}
+
+.message_chat{
+  margin: 1vh 2vh 0 1vh;
+  width: 80%;
+  float: right;
+  padding: 1rem;
+  border :1px solid black;
+  border-radius: 9px;
+  min-height: 10vh;
+  background-color: rgb(240, 252, 209);
+  .message_chat__nick{
+
+  }
+  .message_chat__text{
+
+  }
+}
+
+.floatRight{
+  float: right;
+}
+.floatLeft{
+  float:left;
 }

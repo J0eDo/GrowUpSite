@@ -6,15 +6,17 @@ import Card from '@material-ui/core/Card';
 import { styled } from '@material-ui/core/styles';
 /*Libarys */
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 //Ations
 import { getUserData, exitedAccount, changeSetting } from '../../API/userProfile'
 //Utils
 import avatarsNames from '../../util/avatarsNames'
+import { Button } from '@material-ui/core';
 
 
 
 const Panel = styled(Card)({
-    backgroundColor: "rgba(12,50,200,.6)",
+    backgroundColor: "#395969",
 });
 
 class UserPanel extends Component {
@@ -44,10 +46,9 @@ class UserPanel extends Component {
             this.props.setSetting(this.state.setedAvatarName)
         }
         this.props.setPanelMode("primary")
-        console.log(this.props.userAvatar);
-
     }
 
+    
 
     avatars = () => avatarsNames.map(fileName =>
         <div
@@ -67,27 +68,49 @@ class UserPanel extends Component {
                 <div className="usp_avatars">
                     {this.avatars()}
                 </div>
-                <ul className="usp_setting">
-                    <li onClick={this.props.exitAccount}>забыть аккаунт</li>
-                    <li onClick={this.saveSetting}>сохранить</li>
-                    <li onClick={() => this.props.setPanelMode("primary")}>назад</li>
-                </ul>
+                <div className="usp_setting">
+                    <Button
+                        className="usp_setting__btn"
+                        onClick={this.props.exitAccount}
+                        variant="contained" color="primary">
+                        забыть аккаунт</Button>
+                    <Button
+                        className="usp_setting__btn"
+                        onClick={this.saveSetting}
+                        variant="contained" color="primary"
+                    >сохранить</Button>
+                    <Button
+                        className="usp_setting__btn"
+                        onClick={() => this.props.setPanelMode("primary")}
+                        variant="contained" color="primary"
+                    >назад</Button>
+                </div>
 
             </Panel>)
     }
     primary() {
         return (
             <Panel className="usp">
-                <div className="imge"
-                    style={{
-                        backgroundImage:
-                            `url(${window.location.origin}/img/avatars/${this.props.userAvatar}.jpg)`
-                    }}>
+                <div className="usp_user">
+                    <div className="usp_avatar"
+                        style={{
+                            backgroundImage:
+                                `url(${window.location.origin}/img/avatars/${this.props.userAvatar}.jpg)`
+                        }}>
+                    </div>
+                    <h1>  {this.props.userName}</h1>
                 </div>
                 <div className="usp_panel">
-                    <p>Вы автаризованы</p>
-                    <h1>{this.props.userName}</h1>
-                    <h2 onClick={() => this.props.setPanelMode("setting")}>настройки &#9881;</h2>
+                    <Button
+                        variant="contained" color="primary"> 
+                        <Link className="usp_panel__startChat" to="/chat" >
+                            чат
+                        </Link></Button>
+                    <Button
+                        className="usp_panel__setting"
+                        onClick={() => this.props.setPanelMode("setting")}
+                        variant="contained" color="primary"
+                    >&#9881; настройки</Button>
                 </div>
             </Panel >)
     }
@@ -105,7 +128,7 @@ class UserPanel extends Component {
 
     render() {
         return (
-            <div>
+            <div className="usp_conteiner">
                 {this.mode(this.props.panelMode)}
             </div>
         )

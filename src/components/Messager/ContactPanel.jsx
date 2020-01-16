@@ -10,7 +10,6 @@ import UserRowIcon from '../ComponentsSimple/UserRowIcon'
 import FriendRowIcon from '../ComponentsSimple/FriendRowIcon'
 //MaterialUI
 import { styled } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import SearchIcon from '@material-ui/icons/Search';
@@ -18,11 +17,6 @@ import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
 
 import ChatWebSocket from '../../API/WebSocket/Chat'
 
-
-const Search = styled(TextField)({
-    width: '23vw',
-    margin: '.8rem'
-});
 
 const Navigation = styled(BottomNavigation)({
     width: '90%',
@@ -68,38 +62,59 @@ class RegistrationForm extends Component {
         this.props.notification(notificParams)
     }
 
-    privateDialog = (collocutor) => {
-        //ws chanal name calculate: minID + "/" + maxID
-        const chanel = collocutor.id < this.props.userID ?
-            `${collocutor.id}and${this.props.userID}` :
-            `${this.props.userID}and${collocutor.id}`
+    setDialog = (collocutor) => {
+        let chanel
+        if (collocutor !== "general") {
+            //ws chanal name calculate: minID + "/" + maxID
+            chanel = collocutor.id < this.props.userID ?
+                `${collocutor.id}and${this.props.userID}` :
+                `${this.props.userID}and${collocutor.id}`
+        } else {
+            chanel = collocutor
+        }
         if (chanel !== subscriptionName) {
+            if (subscribe.topic !== "chat:general") {
+                webSocket.ws.removeSubscription(subscribe)
+                this.makeSubscription()
+            }
             this.props.setChat(collocutor)
             subscriptionName = chanel
-            webSocket.ws.removeSubscription(subscribe)
-            this.makeSubscription()
+          
         }
     }
 
 
-
-
-    constructorUsersColumn(users, mode) {
+    constructorUsersColumn(users, mode, online) {
         if (users) {
             switch (mode) {
                 case "friends":
-                    return users.map(user =>
-                        <FriendRowIcon key={`${user.id}`}
-                            removeFriend={(id) => this.removeFriend(id, user.name)}
-                            user={user}
-                            privateDialog={() => this.privateDialog(user)}
-                        />)
+                    return (
+                        <React.Fragment>
+                            <div
+                                onClick={() => this.setDialog("general")}
+                                className="userRowIcons">
+                                <img src={`${window.location.origin}/img/avatars/chat.png`} alt="chat" />
+                                <div
+                                    style={{ margin: "auto" }}
+                                >
+                                    <h3>Общий</h3>
+                                </div>
+                            </div>
+                            {
+                                users.map(user =>
+                                    <FriendRowIcon key={`${user.id}`}
+                                        removeFriend={(id) => this.removeFriend(id, user.name)}
+                                        user={user}
+                                        privateDialog={() => this.setDialog(user)}
+                                    />)}
+                        </React.Fragment>)
                 case "all":
                     return users.map(user =>
                         <UserRowIcon key={`${user.id}`}
                             user={user}
+                            online={online}
                             addFriend={(id) => this.addFriend(id, user.name)}
-                            privateDialog={() => this.privateDialog(user)}
+                            privateDialog={() => this.setDialog(user)}
                         />)
             }
         } else {
@@ -109,19 +124,17 @@ class RegistrationForm extends Component {
 
     render() {
         return (
-            <div className="contactPanel">
-                <div>
-                    <Navigation value={this.props.panelMode}
-                        onChange={(event, newValue) => {
-                            this.props.setPanelMode(newValue)
-                        }}>
-                        <BottomNavigationAction label="Друзья" value="friends" icon={<EmojiPeopleTwoToneIcon />} />
-                        <BottomNavigationAction label="Поиск" value="all" icon={<SearchIcon />} />
-                    </Navigation>
-                    <div className="textField"></div>
-                    <div className="searchResult">
-                        {this.constructorUsersColumn(this.props.contacts, this.props.panelMode)}
-                    </div>
+            <div id="contactPanel" className="contactPanel visiblePanel" >
+                <Navigation value={this.props.panelMode}
+                    className="contactPanel_navigation"
+                    onChange={(event, newValue) => {
+                        this.props.setPanelMode(newValue)
+                    }}>
+                    <BottomNavigationAction label="Друзья" value="friends" icon={<EmojiPeopleTwoToneIcon />} />
+                    <BottomNavigationAction label="Поиск" value="all" icon={<SearchIcon />} />
+                </Navigation>
+                <div className="searchResult">
+                    {this.constructorUsersColumn(this.props.contacts, this.props.panelMode, this.props.usersOnline)}
                 </div>
             </div>
         )
@@ -135,7 +148,8 @@ export default connect(
         panelMode: state.messager.barMode,
         contacts: state.messager.users,
         ws: state.webSocket.ws,
-        userID: state.user.id
+        userID: state.user.id,
+        usersOnline: state.webSocket.usersOnline
     }),
     dispatch => ({
         setPanelMode: (modeName) => dispatch(getUsers(modeName)),

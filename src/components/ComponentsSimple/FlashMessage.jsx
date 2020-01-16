@@ -10,11 +10,26 @@ class FlashMessage extends Component {
     getBody() {
         switch (this.body.event) {
             case "USER_ONLINE":
-                return <p><strong>{this.body.userName}</strong> онлайн!</p>
+                return (
+                    <div className="flashMessage"
+                    style={{ backgroundColor: 'blue' }}
+                    >
+                        <p><strong>{this.body.userName}</strong> онлайн!</p>
+                    </div>
+                )
             case "ADD_FRIEND":
-                return <p> {this.body.friendName} добавлен(а) в друзья</p>
+                return (<div className="flashMessage"
+                    style={{ backgroundColor: 'blue' }}
+                >
+                    <p> {this.body.friendName} добавлен(а) в друзья</p>
+                </div>)
             case "REMOVE_FRIEND":
-                return <p> {this.body.friendName} удален(а)  из друзей</p>
+                return (
+                    <div className="flashMessage"
+                        style={{ backgroundColor: 'yellow' }}
+                    >
+                        <p> {this.body.friendName} удален(а)  из друзей</p>
+                    </div>)
             default:
                 break;
         }
@@ -23,7 +38,6 @@ class FlashMessage extends Component {
     render() {
         return (
             <div className="flashMessage">
-                <p className="cross">X</p>
                 {this.getBody()}
             </div>)
     }

@@ -1,5 +1,5 @@
 import Ws from '@adonisjs/websocket-client'
-import {getChat} from '../message'
+import { getChat } from '../message'
 export class SocketConnection {
 
     constructor() {
@@ -8,6 +8,9 @@ export class SocketConnection {
         this.sendMessage = null
         this.chanalTopic = null
         this.messagesRefresh = null
+        this.onlineIndicator = null
+        this.dispatchOnline = null
+        this.usersOnlineID =[]
     }
 
 
@@ -16,18 +19,20 @@ export class SocketConnection {
         this.ws = Ws('ws://185.87.194.11:3333')
             .withJwtToken(this.token)
             .connect()
-        this.ws.on('open', () => {
-            console.log("OPEN");
+        this.ws.on('open', (res) => {
+            this.onlineIndicator.style.color = "green"
+            console.log(res, "OPEN_WS");
+
         })
         this.ws.on('close', () => {
-            alert("Close");
+            this.onlineIndicator.style.color = "red"
         })
         return this
     }
 
     refreshChat() {
         if (this.messagesRefresh) {
-            getChat(this.chanalTopic,this.messagesRefresh)
+            getChat(this.chanalTopic, this.messagesRefresh)
         } else {
             setTimeout(() => {
                 this.refreshChat()
@@ -36,21 +41,33 @@ export class SocketConnection {
         }
     }
 
-    subscribe = () => {    
+    refreshOnline() {
+        setInterval(() => {
+            this.dispatchOnline(this.usersOnlineID)
+            this.usersOnlineID = []
+        }, 5000);
+    }
+
+
+    subscribe = () => {
         if (!this.ws) {
             setTimeout(() => this.subscribe('chat:' + this.chanalTopic), 1000)
         } else {
             this.refreshChat()
             const result = this.ws.subscribe('chat:' + this.chanalTopic);
-            result.on('error', () => {
-                console.log("ERRROR_SUB");
+            result.on('error', (res) => {
+                this.onlineIndicator.style.color = "red"
             })
             result.on('message', (message) => {
                 this.sendMessage(message)
-
             })
             result.on('push', (action) => {
                 this.pushEvent(action)
+            })
+            result.on('line', (user) => {
+                if (!this.usersOnlineID.includes(user.id)) {
+                    this.usersOnlineID.push(user.id)
+                }
             })
             return result
         }

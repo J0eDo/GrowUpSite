@@ -1,59 +1,93 @@
+$primary-color: #607d8b;
+$second-color: #b2dfdb;
+
+
+@media (min-width: 300px) {
+  .usp {
+    width: 300px;
+  }
+}
+
+@media(min-width:425px){
+ .usp{
+    width: 400px;
+ }
+}
+@media(min-width:769px){
+  .usp{
+     width: 500px;
+  }
+ }
+
+
+.usp_conteiner{
+  margin: auto;
+}
+
 .usp {
   display: flex;
   flex-flow: row nowrap;
-  align-items: stretch;
-  max-width: 90vw;
-  height: 15rem;
-  color: red;
-  background-color: aliceblue;
+  background-color: $primary-color;
+  height: 20rem;
+  align-self: center;
   .usp_avatars {
     display: flex;
     flex-flow: row wrap;
     width: 21rem;
+    height: 10;
     overflow-y: scroll;
     .usp_icons {
       background-color: white;
-      background-size: contain;
+      background-size: cover;
+      background-position: center;
       margin: 0.5rem;
       width: 5rem;
       height: 5rem;
     }
   }
 
+  .usp_user{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    h1{
+      text-align: center;
+      margin: 0;
+    }
+  }
   .usp_panel {
     margin: .5rem;
     padding: 1rem;
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
-    h2 {
+    justify-content: space-evenly;
+    width: 50%;
+    .usp_panel__startChat{
+      display: block;
+      text-decoration: none;
       color: white;
-      text-decoration: underline;
-      cursor: pointer;
+      font-size: 2rem;
+    }
+    .usp_panel__setting{
+      font-size: 1rem;
+      
     }
   }
-  ul {
-    li {
-      background-color: blue;
-      margin: 1rem .3rem;
-      border-radius: 4px;
-      border :1px solid white;
-      text-align: center;
-      padding-left: .1rem;
-      list-style-type: none;
-      cursor: pointer;
-      color: white;
-
+  .usp_setting{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    .usp_setting__btn{
+      margin:1rem .5rem;
     }
   }
 }
 
-.imge {
+.usp_avatar {
   background-size: cover;
-  width: 12em;
+  width: 12rem;
   background-position: center;
-  height: 14rem;
-  margin: auto;
+  height: 12rem;
   margin-left: 0.5rem;
 }
 

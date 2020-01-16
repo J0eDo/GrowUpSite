@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import "./registrationForm.css";
-/*Libarys */
+import "./registrationForm.scss";
+//Libarys 
 import { connect } from 'react-redux'
-/*Components*/
+//Components
 import Login from './LoginMode'
 import Registration from './RegistrationMode'
-/*Actions */
+//Actions 
 import { autorizated, registrated } from '../../API/userProfile'
+//MaterialUI
+import Card from '@material-ui/core/Card';
+import { styled } from '@material-ui/core/styles';
 
-
+const Panel = styled(Card)({
+  backgroundColor: "#395969",
+});
 
 class RegistrationForm extends Component {
 
@@ -17,15 +22,15 @@ class RegistrationForm extends Component {
   }
 
   registration() {
-    let login = document.querySelector('#login>input').value
-    let password = document.querySelector('#password>input').value
-    let name = document.querySelector('#name>input').value
+    let login = document.getElementById('login').value
+    let password = document.getElementById('password').value
+    let name = document.getElementById('name').value
     this.props.registration(login, password, name)
   }
 
   login() {
-    let login = document.querySelector('#login>input').value
-    let password = document.querySelector('#password>input').value
+    let login = document.getElementById('login').value
+    let password = document.getElementById('password').value
     this.props.autorization(login, password)
 
   }
@@ -33,8 +38,8 @@ class RegistrationForm extends Component {
 
   render() {
     return (
-      <div>
-        <div className="initialForm">
+      <div className="usp_conteiner">
+        <Panel className="initialForm">
           <div className="initialForm_type">
             <div onClick={() => this.setState({ mode: false })}>Регистрация</div>
             <div onClick={() => this.setState({ mode: true })}>Войти</div>
@@ -47,20 +52,17 @@ class RegistrationForm extends Component {
               </div>
               }
           </div>
-        </div>
+        </Panel>
       </div>
     )
   }
 }
 
-let mapStateToProps = (state) => {
-  return {
-    user: state.user
-  }
-}
 
 export default connect(
-  mapStateToProps,
+  state => ({
+    user : state
+}),
   dispatch => ({
     autorization: (login, password) => dispatch(autorizated({ login, password })),
     registration: (login, password, name) => dispatch(registrated({ login, password, name }))

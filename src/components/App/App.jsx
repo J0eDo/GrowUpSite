@@ -1,6 +1,6 @@
 //Libarys
 import React, { Component } from 'react';
-import './app.css';
+import './app.scss';
 import {
     BrowserRouter as Router,
     Switch,
@@ -8,12 +8,11 @@ import {
 } from "react-router-dom";
 //Components
 import GeneralPage from '../GeneralPage/GeneralPage';
-import FighterInfo from '../Fighters/Fighters';
 import Messager from '../Messager/Messager'
 //UI
 import { ThemeProvider } from '@material-ui/core/styles';
-import TableFooter from '@material-ui/core/TableFooter';
-import theme from '../../util/UItheme'
+import theme from '../../util/theme'
+import MenuBar from '../Menu/MenuBar';
 
 class App extends Component {
 
@@ -22,14 +21,22 @@ class App extends Component {
         return (
             <div className="app">
                 <ThemeProvider theme={theme}>
-                    <Router className="content">
-                        <Switch>
-                            <Route exact path="/" component={GeneralPage} />
-                            <Route path="/fighters" component={FighterInfo} />
-                            <Route path="/chat" component={Messager} />
-                        </Switch>
+                    <Router >
+                        <MenuBar />
+                        <div className="app">
+                            <Switch>
+                                <Route exact path="/" component={GeneralPage} />
+                                <Route path="/chat" component={Messager} />
+                            </Switch>
+                        </div>
+                        <footer>
+                            <div className="footer_contacts">
+                                <p>noreduard93@gmail.com</p>
+                                <a href="https://github.com/J0eDo">github.com/J0eDo</a>
+                                <p>+7(995)312-98-05</p>
+                            </div>
+                        </footer>
                     </Router>
-                   <TableFooter></TableFooter>
                 </ThemeProvider>
             </div>)
     }

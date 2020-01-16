@@ -7,11 +7,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import IconButton from '@material-ui/core/IconButton';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-
-
+import Button from '@material-ui/core/Button';
+import PublicIcon from '@material-ui/icons/Public';
 
 
 
@@ -43,47 +40,22 @@ class MenuBar extends Component {
                         <Typography variant="h5" className="menu_title">
                             GrowUpChat
                         </Typography>
-                        <div className="menu_btn">
-                            <NavLink to="/"
-                                style={{
-                                    textDecoration: 'none',
-                                    color: 'white'
-                                }}>
-                                <MenuItem>Главная</MenuItem>
-                            </NavLink>
-                            <MenuItem >Бойцы</MenuItem>
-                            <MenuItem >Страница2</MenuItem>
-                            <MenuItem >Страница3</MenuItem>
-                            <MenuItem >Страница4</MenuItem>
-                        </div>
-                        <div className='menu_userIcon'>
-                            <IconButton
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={this.handleMenu}
-                                color="inherit"
+                        <div className="menu_bar">
+                            <div className="menu_btn">
+                                <NavLink to="/"
+                                    style={{
+                                        textDecoration: 'none',
+                                        color: 'white'
+                                    }}>
+                                    <MenuItem>Главная</MenuItem>
+                                </NavLink>
+                            </div>
+                            <Button
+                                id="online_indicator"
+                                className="menu_btn"
                             >
-                                <AccountCircle />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={this.state.anchorEL}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={this.state.userMenu}
-                                onClose={this.handleClose}
-                            >
-                                <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                            </Menu>
+                                <PublicIcon />
+                            </Button>
                         </div>
 
                     </Toolbar>

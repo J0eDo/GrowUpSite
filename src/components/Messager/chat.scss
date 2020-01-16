@@ -5,110 +5,129 @@ $second-color: #b2dfdb;
   -ms-transform: $property;
   animation: $property;
 }
+
+@media (max-width: 579px) {
+  .chat_head {
+    justify-content: flex-end;
+    margin-right: 4vw;
+  }
+}
+
+@media (min-width: 580px) {
+  .chat_head {
+    justify-content: center;
+  }
+}
+
 .messager {
+  width: 100vw;
   display: flex;
   flex-flow: row nowrap;
-  max-height: 100vh;
+}
 
-  .contactPanel {
-    width: 100%;
-    max-width: 20vw;
-    height: 90vh;
-    background-color: $primary-color;
-    border-right: 2px solid $second-color;
-    padding-top: 1rem;
-  }
-  .chat_conteiner {
-    width: 100%;
-    min-width: 80vw;
-    height: 90vh;
-    background-color: $primary-color;
+.notification_conteiner{
+  position: fixed;
+  right: 4vw;
+  top: 10vh;
+  z-index: 100;
+  display: flex;
+  flex-flow: column nowrap;
+}
+.chat_conteiner {
+  z-index: 50;
+  width: 100%;
+  flex-grow: 4;
+  height: 82vh;
+  display: flex;
+  flex-flow: column nowrap;
+  .chat_head {
+    height: 12vh;
     display: flex;
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    h1 {
-      margin: 2rem;
-      color: white;
-      text-shadow: black 1px 2px 2px;
+    flex-flow: row nowrap;
+    img {
+      width: 10vh;
+      height: 10vh;
+      margin: auto 0;
     }
-    .chat_messages__canvas {
-      background-color: $second-color;
-      overflow-y: auto;
-      padding-top: 1rem;
-      width: 96%;
-      height: 75%;
-    }
-    .input_message {
-      width: 90%;
-      margin: 1rem auto;
-    }
-  }
-  .message_chat {
-    background: rgb(128, 141, 144);
-    background: -moz-linear-gradient(90deg, rgba(128, 141, 144, 1) 14%, rgba(167, 179, 182, 0.30885857761073177) 100%);
-    background: -webkit-linear-gradient(
-      90deg,
-      rgba(128, 141, 144, 1) 14%,
-      rgba(167, 179, 182, 0.30885857761073177) 100%
-    );
-    background: linear-gradient(90deg, rgba(128, 141, 144, 1) 14%, rgba(167, 179, 182, 0.30885857761073177) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#808d90",endColorstr="#a7b3b6",GradientType=1);
-    padding: 0.8rem;
-    margin: 0.3rem;
-    width: 80%;
-    border-radius: 3px;
-    p {
-      word-wrap: break-word;
+    h3{
+      margin: auto 1rem;
     }
   }
 }
-.searchResult {
-  width: 90%;
-  height: 75vh;
-  background-color: $second-color;
-  margin: auto;
+.chat_messages {
+
+  width: 100%;
+  height: 60vh;
+  margin: 0 auto;
+}
+.chat_messages__canvas {
   overflow-y: auto;
-  overflow-x: hidden;
+  margin: 0 auto;
+  background-color: grey;
+  width: 90%;
+  height: 61vh;
+  border: 1px solid rgb(196, 191, 191);
+  border-radius: 9px 9px 0 0;
 }
 
-.notifics {
-  display: flexbox;
-  position: absolute;
-  right: 0.2rem;
+.avatar {
+  border-radius: 100px;
 }
-
-.chat_head {
-  display: flex;
-  flex-flow: row nowrap;
-  left: 0rem;
-  justify-self: left;
-  align-self: flex-start;
-  z-index: 3;
-  height: 13%;
-  margin: 0.5rem;
-  img {
-    width: 7rem;
-    height: 7rem;
-  }
-  h3 {
-    margin-left: 1rem;
-    align-self: center;
+.chat_input__conteiner {
+  margin: auto;
+  width: 90%;
+  .chat_input {
+    width: 100%;
+    background-color: rgba(145, 138, 201, 0.603);
   }
 }
-.unvisiblePanel {
-  @include animation(contactPanel 1s ease-in-out 0.5s alternate)
-}
 
-.visiblePanel {
-  @include animation(contactPanel 1s ease-in-out 0.5s reverse)
-}
-
-@keyframes contactPanel {
-  from {
-    width: 0;
+.contactPanel {
+  background-color: $primary-color;
+  height: 82vh;
+  .contactPanel_navigation{
+    margin: 2vh;
   }
-  to {
-    width: 400px;
+}
+
+.searchResult{
+  height: 68vh;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+}
+
+.searchResult::-webkit-scrollbar {
+  display: none;
+}
+
+.visiblePanel{
+  width: 300px;
+  animation: showPanel 500ms 0s ease-in ;
+}
+
+.unvisiblePanel{
+  width: 0;
+  animation: hidenPanel 500ms 0s ease-out ;
+  opacity: 0;
+}
+
+
+@keyframes hidenPanel{
+  from{
+    width:300px
+  }
+  to{
+    width: 1px;
+    opacity: 0;
+  }
+}
+
+@keyframes showPanel{
+  from{
+    width:1px
+  }
+  to{
+    width: 300px;
+    opacity: 1;
   }
 }

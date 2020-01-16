@@ -1,0 +1,46 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400);
+$primary-color: #607d8b;
+$second-color: #b2dfdb;
+*{
+    box-sizing: border-box;
+    border-collapse: separate;
+    font-family: roboto;
+    margin: 0;
+    padding: 0;
+}
+
+@media(max-width:425px){
+    :root{
+       font-size: 10px;
+    }
+   }
+   @media(min-width:501px){
+     .usp{
+       font-size: 12px;
+     }
+    }
+
+body{
+    font-size: 1.1rem;
+    font-family: roboto;
+    color: black;
+    background-color:$second-color;
+}
+
+.app{
+    width: 100vw;
+    height: 82vh;
+}
+
+footer{
+    width: 100vw;
+    height: 10vh;
+    background-color: rgb(6, 5, 8);
+    color:white;
+    font-size: .8rem;
+    .footer_contacts{
+        text-align: right;
+        line-height: 3vh;
+        margin-right: 1rem;
+    }
+}

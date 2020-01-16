@@ -22,7 +22,6 @@ export const getChat = (chanal, handlerChat) => {
     })
         .then((res) => {
             handlerChat(res.data.messages)
-            console.log(res.data.messages)
         }
         )
 }

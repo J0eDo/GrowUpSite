@@ -1,17 +1,19 @@
 .menu{
     width: 100vw;
+    height: 8vh;
     display: flex;
-    .menu_title{
-        flex-grow: 12;
-    }
-    .menu_btn{
-        flex-grow: 2;
-        display:flex;
-        flex-flow: row nowrap;
-    }
-    .menu_userIcon{
-        flex-grow: 1;
-    }
+   .menu_title{
+       flex-grow: 8;
+   }
+   .menu_bar{
+       display: flex;
+       flex-flow: row nowrap;
+       height: 100%;
+       .menu_btn{
+        height: 7vh;
+        margin: 1vh;
+       }
+   }
 }
 
 

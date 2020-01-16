@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -7,11 +9,11 @@ class RegistrationMode extends Component {
 
   errorConstruct(id, field, valid) {
     const fieldName = {
-      login:[ "логин","логином"],
-      password: ["пароль","паролем"],
-      name: ["имя","именем"]
+      login: ["логин", "логином"],
+      password: ["пароль", "паролем"],
+      name: ["имя", "именем"]
     }
-    
+
     const errorMessageConstruct = (name, validMessage) => `${name} ${validMessage}`
     let errorMessage = ''
 
@@ -34,7 +36,7 @@ class RegistrationMode extends Component {
           break;
       }
       return (
-        <div><p>{errorMessage}</p></div>
+        <p>{errorMessage}</p>
       )
     } else {
       return (<div><p></p></div>)
@@ -44,22 +46,39 @@ class RegistrationMode extends Component {
   render() {
     return (
       <div className="initialForm_sub">
-        <div id="login" >
-          <h3>Логин</h3>
-          <input type="text" placeholder="login" />
-          {this.errorConstruct("login", this.props.field, this.props.valid)}
+        <div className="form">
+          <TextField
+            className="initialForm_input"
+            id="login"
+            label="login"
+            variant="outlined" />
+          <div className="initialForm_error">
+            {this.errorConstruct("login", this.props.field, this.props.valid)}
+          </div>
+          <TextField
+            className="initialForm_input"
+            id="password"
+            label="password"
+            type="password"
+            variant="outlined" />
+          <div className="initialForm_error">
+            {this.errorConstruct("password", this.props.field, this.props.valid)}
+          </div>
+          <TextField
+            className="initialForm_input"
+            id="name"
+            label="name"
+            variant="outlined" />
+          <div className="initialForm_error">
+            {this.errorConstruct("name", this.props.field, this.props.valid)}
+          </div>
         </div>
-        <div id="password">
-          <h3>Пароль</h3>
-          <input type="password" placeholder="password" />
-          {this.errorConstruct("password", this.props.field, this.props.valid)}
-        </div>
-        <div id="name">
-          <h3>Имя</h3>
-          <input type="text" placeholder="nickname" />
-          {this.errorConstruct("name", this.props.field, this.props.valid)}
-        </div>
-        <button onClick={this.props.submit}>Зарегестрировать</button>
+        <Button
+          className="initialForm_button"
+          onClick={this.props.submit}
+          variant="contained" color="primary">
+          Зарегестрироваться
+      </Button>
       </div>
     )
   }
@@ -74,7 +93,4 @@ let mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  dispatch => ({
-
-  })
 )(RegistrationMode)
