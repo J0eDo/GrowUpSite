@@ -20,7 +20,7 @@ const UserRowIcon = ({ user, addFriend, privateDialog, online }) => {
                     className="userRowIcons_pluse"
                     onClick={() => { addFriend(user.id) }}>+</div>
                 {
-                    online.includes(user.id) ? <p
+                    online.includes&&online.includes(user.id) ? <p
                         style={{
                             color: "green",
                             fontWeight: 600

@@ -2,59 +2,44 @@ import axios from 'axios';
 
 
 const userReducer = (state, action) => {
+    let newState = {...state}
     switch (action.type) {
         case "GET_TOKEN":
-            return { token: action.token }
+            newState.token = action.token
+            return newState
         case "REGISTRATION_ERROR":
-            return {
-                ...state,
-            }
+            return newState
         case "ERROR_REGISTRATED":
-            return {
-                ...state,
-                errorReg: action.errorReg
-            }
+            newState.errorReg = action.errorReg
+            return newState
         case "LOGIN_ERROR":
-            return {
-                ...state,
-                loginError: action.loginError
-            }
+            newState.loginError = action.loginError
+            return newState
         case "SET_USER_DATA":
-            return {
-                ...state,
-                id:action.id,
-                userName: action.userName,
-                avatarName: action.avatar,
-                panelMode: "primary"
-            }
+            newState.id = action.id
+            newState.userName = action.userName
+            newState.avatarName = action.avatar
+            newState.panelMode = "primary"
+            return newState
         case "SET_PANEL_MODE":
-            return {
-                ...state,
-                panelMode: action.panelMode
-            }
+            newState.panelMode = action.panelMode
+            return newState
         case "SAVE_SETTINGS":
-            return {
-                ...state,
-                avatarName: action.avatar
-            }
+            newState.avatarName = action.avatar
+            return newState
         case "EXIT_ACCOUNT":
             return ({})
         default:
             if (localStorage.getItem("TOKEN")) {
                 const token = localStorage.getItem("TOKEN")
                 axios.defaults.headers.common["Authorization"] = token
-                return {
-                    ...state,
-                    token: token,
-                    panelMode: "Loading"
-                }
+                newState.token = token
+                return newState
             }
-            return {
-                ...state,
-                token: null,
-            }
+            newState.token = null
+            newState.panelMode = "Loading"
+            return newState
     }
-
 }
 
 export default userReducer

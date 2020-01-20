@@ -5,7 +5,6 @@ import "./chat.scss";
 //Libarys 
 import { connect } from 'react-redux'
 //Actions 
-import ChatWebSocket from '../../API/WebSocket/Chat'
 import { addNotification } from '../../actions/notification'
 import { saveMessage } from '../../API/message'
 //Components
@@ -26,39 +25,20 @@ const ContactBtn = styled(Button)({
     marginLeft: "5vw"
 });
 
-
+let ws
+let subscription
+let keyMessages = 0
 
 class Chat extends React.Component {
 
     state = {
-        keyMessages: 0,
         messages: [],
         push: [],
         ready: false
     }
 
-    waitWS() {
-        setTimeout(() => {
-            if (ChatWebSocket.ws._connectionState === "open") {
-                this.props.subscribe.emit('push', {
-                    event: "USER_ONLINE",
-                    userName: this.props.userName,
-                })
-                this.onlineHandler = this.selfOnline()
-            } else {
-                this.waitWS()
-            }
-        }, 1000);
-    }
 
 
-    selfOnline() {
-        setInterval(() => {
-            if (ChatWebSocket.ws._connectionState === "open") {
-                this.props.subscribe.emit('line', {id:this.props.userID})
-            }
-        }, 3000);
-    }
 
 
     messagesRefresh(newMessages) {
@@ -66,32 +46,36 @@ class Chat extends React.Component {
     }
 
     componentDidMount() {
+        ws = this.props.ws
+
+
         this.chatConteiner = document.getElementById('chat_canvas')
-        this.onlineIndicator = document.getElementById('online_indicator')
 
-        ChatWebSocket.onlineIndicator = this.onlineIndicator
-        ChatWebSocket.pushEvent = this.pushEvent.bind(this)
-        ChatWebSocket.sendMessage = this.sendMessage.bind(this)
-        ChatWebSocket.messagesRefresh = this.messagesRefresh.bind(this)
-        ChatWebSocket.dispatchOnline = this.props.setUserOnLine.bind(this)
 
-        ChatWebSocket.refreshOnline(); 
-        this.props.setUserOnLine(1)
-        this.waitWS()
-     
+        ws.pushEvent = this.pushEvent.bind(this)
+        ws.sendMessage = this.sendMessage.bind(this)
+        ws.messagesRefresh = this.messagesRefresh.bind(this)
+
 
         const input = document.getElementById("inputMessage");
         const handleChange = this.handleChange.bind(this);
+        const getCollocutor = this.getCollocutor.bind(this)
         input.addEventListener("keydown", function (event) {
             if (event.key === "Enter" && input.value !== ""
-                && ChatWebSocket.ws._connectionState == "open"
-            ) {
+                && ws.ws._connectionState == "open") {
+                let collocutor = getCollocutor()
                 handleChange(input.value)
-                saveMessage(ChatWebSocket.chanalTopic, input.value)
+                saveMessage(ws.chanalTopic, input.value, collocutor)
                 input.value = ""
             }
         })
 
+    }
+
+    getCollocutor() {
+        if (this.props.collocutor.id)
+            return this.props.collocutor.id
+        return "generalChat"
     }
 
     pushEvent(event) {
@@ -102,23 +86,28 @@ class Chat extends React.Component {
     }
 
     sendMessage(message) {
-        const messages = this.state.messages
-        messages.push(message)
-        this.setState({ messages })
-        let lastMessage = this.chatConteiner.lastChild
-        scrollIntoView(lastMessage, this.chatConteiner);
+        if (message.chanal === ws.chanalTopic) {
+            const messages = this.state.messages
+            messages.push(message)
+            this.setState({ messages })
+            let lastMessage = this.chatConteiner.lastChild
+            scrollIntoView(lastMessage, this.chatConteiner);
+        }
     }
 
 
-    handleChange(inputText) {
-        if (inputText.trim()) {
+    handleChange = (inputText) => {
+        if (inputText.trim() &&this.props.subscribe._state==="open") {
             this.props.subscribe.emit('message', this.messageConstructor(inputText))
+        }else{
+           
         }
     };
 
     messageConstructor = (text) => ({
         user_name: this.props.userName || "UNCNOWN",
-        message: text
+        message: text,
+        chanal: ws.chanalTopic
     })
 
 
@@ -157,7 +146,7 @@ class Chat extends React.Component {
                         id="chat_canvas"
                     >
                         {this.state.messages.map(element =>
-                            <Messages key={"keyMes" + (++this.state.keyMessages)} data={element}
+                            <Messages key={"keyMes" + (++keyMessages)} data={element}
                                 isCollocutor={this.props.userName === element.user_name}
                             />)}
                     </div>
@@ -177,15 +166,16 @@ class Chat extends React.Component {
 
 export default connect(
     state => ({
-        userName: state.user.userName || "TEST_NAME",
+        userName: state.user.userName,
         panelMode: state.messager.panelMode,
         collocutor: state.chat.collocutor,
         subscribe: state.webSocket.subscribe,
-        userID : state.user.id
+        userID: state.user.id,
+        wsIsReady: state.webSocket.isReady
     }),
     dispatch => ({
         addNotification: (nortific) => dispatch(addNotification(nortific)),
-        setUserOnLine:(usersOnline)=>dispatch({type:"SET_USERS_ONLINE",usersOnline})
+        setWebSocket: (ws) => dispatch({ type: "SET_WEBSOCKET", ws }),
 
     })
 )(Chat);

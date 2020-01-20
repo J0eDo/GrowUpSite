@@ -4,6 +4,8 @@ import '../animation.css'
 //MaterialUI
 import Card from '@material-ui/core/Card';
 import { styled } from '@material-ui/core/styles';
+
+
 /*Libarys */
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -26,7 +28,8 @@ class UserPanel extends Component {
     }
 
     state = {
-        changedAvatar: undefined
+        changedAvatar: undefined,
+        mode:0
     }
 
     setAvatar = (event) => {
@@ -48,7 +51,7 @@ class UserPanel extends Component {
         this.props.setPanelMode("primary")
     }
 
-    
+
 
     avatars = () => avatarsNames.map(fileName =>
         <div
@@ -102,7 +105,7 @@ class UserPanel extends Component {
                 </div>
                 <div className="usp_panel">
                     <Button
-                        variant="contained" color="primary"> 
+                        variant="contained" color="primary">
                         <Link className="usp_panel__startChat" to="/chat" >
                             чат
                         </Link></Button>
@@ -126,11 +129,12 @@ class UserPanel extends Component {
         }
     }
 
+
     render() {
         return (
-            <div className="usp_conteiner">
+            <Panel className="usp_conteiner" >
                 {this.mode(this.props.panelMode)}
-            </div>
+            </Panel>
         )
     }
 }

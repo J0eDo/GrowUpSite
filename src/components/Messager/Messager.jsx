@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import "./chat.scss";
-/*Libarys */
+//Libarys
 import { connect } from 'react-redux'
-/*Actions */
+//Actions 
 import { addNotification } from '../../actions/notification'
-/*Components */
+//WebSockets
+import wsGeneral from '../../API/WebSocket/General'
+import wsChat from '../../API/WebSocket/Chat'
+//Components 
 import ContactPanel from './ContactPanel'
 import Chat from './Chat'
 import FlashMessage from '../ComponentsSimple/FlashMessage'
 import { getUserData } from '../../API/userProfile'
+
 
 let countNortification = 0;
 
@@ -19,16 +23,47 @@ class RegistrationForm extends Component {
         panelOpen: true
     }
 
+    inputEvent() {
+        setTimeout(() => {
+            if (this.props.userName) {
+                this.subscribeGeneral.emit('push', {
+                    event: "USER_ONLINE",
+                    userName: this.props.userName,
+                })
+            } else {
+                this.inputEvent()
+            }
+        }, 1000);
+    }
+
+    wsGeneralStart() {
+        wsGeneral.dispatchOnlineUsers = this.props.getUsersOnLine.bind(this)
+        wsGeneral.connection(this.conectionIndicated.bind(this))
+        wsGeneral.refreshOnline()
+        this.subscribeGeneral = wsGeneral.subscribe()
+        this.selfOnline()
+        wsGeneral.addNotification = this.props.addNotification.bind(this)
+        this.inputEvent()
+    }
 
     componentDidMount() {
         this.props.getData()
         this.contactPanel = document.getElementById("contactPanel")
-        //weakness
-        setInterval(() => {
-            this.setState({})
-        }, 500);
-        //
+        this.onlineIndicator = document.getElementById('online_indicator')
+        this.wsGeneralStart()
+        wsChat.connection()
+    }
 
+    conectionIndicated(ready) {
+        let color = ready ? 'green' : 'red'
+        this.onlineIndicator.style.color = color
+    }
+
+
+    selfOnline() {
+        this.selfOnlineInterval = setInterval(() => {
+            this.subscribeGeneral.emit('line', { id: this.props.userID })
+        }, 3000);
     }
 
 
@@ -37,7 +72,7 @@ class RegistrationForm extends Component {
         return (
             events.map(element =>
                 <div
-                className = "notification_conteiner"
+                    className="notification_conteiner"
                     key={`keyNotific ${++countNortification}`}
                     onClick={
                         () => this.props.removeNortifications(element.id)}>
@@ -61,11 +96,21 @@ class RegistrationForm extends Component {
         }
     }
 
+    componentWillUnmount() {
+        wsGeneral.close()
+        wsChat.close()
+        clearInterval(this.selfOnlineInterval)
+ 
+    }
+
     render() {
         return (
             <div className="messager">
-                <ContactPanel /> 
-                <Chat panelVisible={this.panelVisible.bind(this)} />
+                <ContactPanel ws={wsChat} />
+                <Chat
+                    ws={wsChat}
+                    generalChanal={this.subscribeGeneral}
+                    panelVisible={this.panelVisible.bind(this)} />
                 <div className="notification_conteiner">
                     {
                         this.nortifications(this.props.notifications)
@@ -80,7 +125,9 @@ class RegistrationForm extends Component {
 export default connect(
     state => ({
         userName: state.user.userName,
-        notifications: state.notifications.notifications
+        notifications: state.notifications.notifications,
+        userID: state.user.id,
+        subscribe: state.webSocket.subscribe
     }),
     dispatch => ({
         removeNortifications: (ID) => {
@@ -88,9 +135,9 @@ export default connect(
                 type: "PUSH_NOTIFICATION_REMOVE",
                 notificationID: ID
             })
-
         },
-        addNotification: (nortific) => dispatch(addNotification(nortific)),
         getData: () => dispatch(getUserData()),
+        getUsersOnLine: (usersOnline) => dispatch({ type: "SET_USERS_ONLINE", usersOnline }),
+        addNotification: (nortific) => dispatch(addNotification(nortific))
     })
 )(RegistrationForm);

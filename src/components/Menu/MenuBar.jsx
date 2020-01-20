@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './menu.scss'
 
-import { NavLink } from "react-router-dom";
-
+//MaterialUI
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-import PublicIcon from '@material-ui/icons/Public';
+//Components
+import Bar from './Bar'
 
 
 
@@ -41,23 +40,10 @@ class MenuBar extends Component {
                             GrowUpChat
                         </Typography>
                         <div className="menu_bar">
-                            <div className="menu_btn">
-                                <NavLink to="/"
-                                    style={{
-                                        textDecoration: 'none',
-                                        color: 'white'
-                                    }}>
-                                    <MenuItem>Главная</MenuItem>
-                                </NavLink>
+                            <div className="menu_elem">
+                                <Bar/>
                             </div>
-                            <Button
-                                id="online_indicator"
-                                className="menu_btn"
-                            >
-                                <PublicIcon />
-                            </Button>
                         </div>
-
                     </Toolbar>
                 </AppBar>
             </div>

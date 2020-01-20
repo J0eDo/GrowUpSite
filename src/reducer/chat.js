@@ -1,19 +1,20 @@
+let defaultState = {
+    collocutor: "general",
+    unread:[]
+}
 
-
-const chat = (state, action) => {
+const chat = (state = defaultState, action) => {
+    let newState = { ...state }
     switch (action.type) {
         case "SET_CHAT":
-            return {          
-                ...state,
-                collocutor:action.collocutor
-            }
+            newState.collocutor = action.collocutor
+            return newState
+        case "GET_UNREAD":
+            newState.unread =  JSON.parse(JSON.stringify(action.unread))
+            return newState
         default:
-            return {
-                ...state,
-                user: "general"
-            }
+            return newState
     }
-
 }
 
 export default chat

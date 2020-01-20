@@ -17,5 +17,5 @@ export const REMOVE_FRIEND = () => { return `${SERVER_IP}/removeFriend` }
 //Message
 export const SAVE_MESSAGE = () =>{return `${SERVER_IP}/saveMessage`}
 export const GET_CHAT = () => {return `${SERVER_IP}/getDialog`}
-
-
+export const GET_UNREAD = () => {return `${SERVER_IP}/getUnread`}
+export const READ_MESSAGE = () => {return `${SERVER_IP}/readMessages`}

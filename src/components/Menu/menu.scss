@@ -1,20 +1,27 @@
-.menu{
-    width: 100vw;
-    height: 8vh;
+.menu {
+  width: 100vw;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+  .menu_title {
+    flex-grow: 8;
+  }
+  .menu_bar {
+    height: 7vh;
     display: flex;
-   .menu_title{
-       flex-grow: 8;
-   }
-   .menu_bar{
-       display: flex;
-       flex-flow: row nowrap;
-       height: 100%;
-       .menu_btn{
-        height: 7vh;
-        margin: 1vh;
-       }
-   }
+    flex-flow: row nowrap;
+    justify-content: baseline;
+    margin: 0;
+    .bar_element {
+      margin-top: -1vh;
+      height: 7vh;
+      .bar_element__accountBtn {
+        border: 1px solid white
+      }
+    }
+    .bar_element__small {
+      margin: auto 1vw;
+    }
+  }
 }
-
-
-

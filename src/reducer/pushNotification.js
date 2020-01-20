@@ -5,15 +5,14 @@ const defaultState = {
 let idNortification = 0
 let notifications = []
 
-const pushNotification = (state, action) => {
+const pushNotification = (state = defaultState, action) => {
+    let newState = {...state}
     switch (action.type) {
         case "PUSH_NOTIFICATION_ADD":
             action.notificParams.id = idNortification++;
-            state.notifications.push(action.notificParams)
-            return {
-                ...state,
-                notifications : state.notifications
-            }
+            newState.notifications = JSON.parse(JSON.stringify(state.notifications))
+            newState.notifications.push(action.notificParams)
+            return newState
         case "PUSH_NOTIFICATION_REMOVE":
             notifications = []
             notifications = state.notifications.filter(
@@ -23,11 +22,7 @@ const pushNotification = (state, action) => {
                 notifications
             }
         default:
-            defaultState.notifications = []
-            return {
-                ...state,
-                notifications:[]
-            }
+            return newState
     }
 
 }

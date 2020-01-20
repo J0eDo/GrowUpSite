@@ -1,24 +1,21 @@
 
-const webSocket = (state, action) => {
-    switch (action.type) {
+const defaultState = {
+    isReady :false,
+    usersOnline :[]
+}
 
-        case "SET_WEBSOCKET":
-            return {
-                ...state,
-                subscribe:action.subscribe
-            }
+const webSocket = (state=defaultState, action) => {
+    let newState = { ...state }
+    switch (action.type) {
+        case "SET_SUBSCRIBE":   
+            newState.subscribe = action.subscribe
+            return newState
         case "SET_USERS_ONLINE":
-            console.log(action,"DISPATCH");
-            return{
-                ...state,
-                usersOnline : action.usersOnline
-            }
+            let usersOnline  = JSON.parse(JSON.stringify(action.usersOnline))
+            newState.usersOnline = usersOnline
+            return newState
         default:
-      
-            return {
-                ...state,   
-                usersOnline:[]
-            }
+            return newState
     }
 
 }

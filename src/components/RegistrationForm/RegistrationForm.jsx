@@ -10,6 +10,8 @@ import { autorizated, registrated } from '../../API/userProfile'
 //MaterialUI
 import Card from '@material-ui/core/Card';
 import { styled } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
 const Panel = styled(Card)({
   backgroundColor: "#395969",
@@ -41,8 +43,18 @@ class RegistrationForm extends Component {
       <div className="usp_conteiner">
         <Panel className="initialForm">
           <div className="initialForm_type">
-            <div onClick={() => this.setState({ mode: false })}>Регистрация</div>
-            <div onClick={() => this.setState({ mode: true })}>Войти</div>
+            <Tabs
+              value={this.state.mode}
+              onChange={(event, newValue) => {
+                this.setState({ mode: newValue })
+              }}
+              indicatorColor="primary"
+              variant = "fullWidth"
+              centered
+            >
+              <Tab label="Регистрация"/>
+              <Tab label="Вход"/>
+            </Tabs>
           </div>
           <div className="initialForm_input">
             {this.state.mode ?
@@ -50,7 +62,7 @@ class RegistrationForm extends Component {
               <div>
                 <Registration submit={this.registration.bind(this)} />
               </div>
-              }
+            }
           </div>
         </Panel>
       </div>
@@ -60,9 +72,9 @@ class RegistrationForm extends Component {
 
 
 export default connect(
-  state => ({
-    user : state
-}),
+  state =>({
+    user : state.user
+  }),
   dispatch => ({
     autorization: (login, password) => dispatch(autorizated({ login, password })),
     registration: (login, password, name) => dispatch(registrated({ login, password, name }))

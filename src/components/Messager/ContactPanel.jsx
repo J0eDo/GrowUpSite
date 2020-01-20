@@ -4,6 +4,7 @@ import "./chat.scss";
 //Libarys
 import { connect } from 'react-redux'
 //Actions 
+import { getUnread, setReadChanal } from '../../API/message'
 import { getUsers, addFriend, removeFriend } from '../../API/messagerPanel'
 //Components//
 import UserRowIcon from '../ComponentsSimple/UserRowIcon'
@@ -15,8 +16,6 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import SearchIcon from '@material-ui/icons/Search';
 import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
 
-import ChatWebSocket from '../../API/WebSocket/Chat'
-
 
 const Navigation = styled(BottomNavigation)({
     width: '90%',
@@ -24,27 +23,30 @@ const Navigation = styled(BottomNavigation)({
     margin: ' auto',
 
 });
-
+let ws
 let subscribe
-let webSocket
 let subscriptionName = "general"
 
 class RegistrationForm extends Component {
 
-
     componentDidMount() {
-        if (!webSocket) {
-            webSocket = ChatWebSocket
-            webSocket.connection()
-            this.props.setPanelMode("friends")
-            this.makeSubscription()
-        }
+        ws = this.props.ws
+        this.props.getUnread()
+        this.makeSubscription()
+        this.props.setPanelMode('friends')
     }
 
     makeSubscription() {
-        webSocket.chanalTopic = subscriptionName
-        subscribe = webSocket.subscribe()
-        this.props.setWebSocket(subscribe)
+        if (ws.ready) {
+            ws.chanalTopic = subscriptionName
+            subscribe = ws.subscribe()
+            console.log(subscribe,"MAKED");
+            this.props.setWsSubscribe(subscribe)
+        } else {
+            setTimeout(() => {
+                this.makeSubscription()
+            }, 500);
+        }
     }
 
 
@@ -73,13 +75,13 @@ class RegistrationForm extends Component {
             chanel = collocutor
         }
         if (chanel !== subscriptionName) {
-            if (subscribe.topic !== "chat:general") {
-                webSocket.ws.removeSubscription(subscribe)
-                this.makeSubscription()
-            }
             this.props.setChat(collocutor)
             subscriptionName = chanel
-          
+            this.props.ws.chanalTopic = chanel
+            this.props.ws.refreshChat()
+            this.props.getUnread()
+            this.makeSubscription()
+            setReadChanal(chanel)
         }
     }
 
@@ -105,7 +107,9 @@ class RegistrationForm extends Component {
                                     <FriendRowIcon key={`${user.id}`}
                                         removeFriend={(id) => this.removeFriend(id, user.name)}
                                         user={user}
-                                        privateDialog={() => this.setDialog(user)}
+                                        privateDialog={() => {
+                                            this.setDialog(user)
+                                        }}
                                     />)}
                         </React.Fragment>)
                 case "all":
@@ -121,6 +125,7 @@ class RegistrationForm extends Component {
             return (<h3>Загрузка</h3>)
         }
     }
+
 
     render() {
         return (
@@ -147,14 +152,14 @@ export default connect(
         userName: state.user.userName,
         panelMode: state.messager.barMode,
         contacts: state.messager.users,
-        ws: state.webSocket.ws,
         userID: state.user.id,
-        usersOnline: state.webSocket.usersOnline
+        usersOnline: state.webSocket.usersOnline,
     }),
     dispatch => ({
+        getUnread: () => dispatch(getUnread()),
         setPanelMode: (modeName) => dispatch(getUsers(modeName)),
         notification: (notificParams) => dispatch({ type: "PUSH_NOTIFICATION_ADD", notificParams }),
         setChat: (collocutor) => dispatch({ type: "SET_CHAT", collocutor }),
-        setWebSocket: (subscribe) => dispatch({ type: "SET_WEBSOCKET", subscribe })
+        setWsSubscribe: (subscribe) => dispatch({ type: "SET_SUBSCRIBE", subscribe }),
     })
 )(RegistrationForm);

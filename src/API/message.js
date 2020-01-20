@@ -2,16 +2,17 @@
 import axios from 'axios'
 //Routs server
 import {
-    SAVE_MESSAGE, GET_CHAT
+    SAVE_MESSAGE, GET_CHAT, GET_UNREAD, READ_MESSAGE
 } from './routing'
 
-export const saveMessage = (chanal, message) => {
+export const saveMessage = (chanal, message, collocutor_id) => {
     axios.get(SAVE_MESSAGE(), {
         params: {
             chanal,
-            message
+            message,
+            collocutor_id
         }
-    }).then((res) => console.log(res))
+    })
 }
 
 export const getChat = (chanal, handlerChat) => {
@@ -24,4 +25,23 @@ export const getChat = (chanal, handlerChat) => {
             handlerChat(res.data.messages)
         }
         )
+}
+export const getUnread = () => dispatch => {
+    axios.get(GET_UNREAD())
+        .then((res) => {
+            console.log(res, "RES");
+
+            dispatch({
+                type: "GET_UNREAD",
+                unread: res.data.unreadMessages
+            })
+        })
+}
+
+export const setReadChanal = (chanal) => {
+    axios.get(READ_MESSAGE(), {
+        params: {
+            chanal
+        }
+    })
 }
