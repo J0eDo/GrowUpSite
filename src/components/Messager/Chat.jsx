@@ -1,5 +1,3 @@
-/* eslint-disable eqeqeq */
-/* eslint-disable jsx-a11y/accessible-emoji */
 import React from 'react';
 import "./chat.scss";
 //Libarys 
@@ -26,7 +24,6 @@ const ContactBtn = styled(Button)({
 });
 
 let ws
-let subscription
 let keyMessages = 0
 
 class Chat extends React.Component {
@@ -37,25 +34,16 @@ class Chat extends React.Component {
         ready: false
     }
 
-
-
-
-
     messagesRefresh(newMessages) {
         this.setState({ messages: newMessages })
     }
 
     componentDidMount() {
         ws = this.props.ws
-
-
         this.chatConteiner = document.getElementById('chat_canvas')
-
-
         ws.pushEvent = this.pushEvent.bind(this)
         ws.sendMessage = this.sendMessage.bind(this)
         ws.messagesRefresh = this.messagesRefresh.bind(this)
-
 
         const input = document.getElementById("inputMessage");
         const handleChange = this.handleChange.bind(this);
@@ -97,19 +85,25 @@ class Chat extends React.Component {
 
 
     handleChange = (inputText) => {
-        if (inputText.trim() &&this.props.subscribe._state==="open") {
+        if (inputText.trim() && this.props.subscribe._state === "open") {
             this.props.subscribe.emit('message', this.messageConstructor(inputText))
-        }else{
-           
+            if (this.props.collocutor !== "general") {
+                this.props.generalChanal.emit('push', {
+                    event: "NEW_MESSAGE",
+                    userID: this.props.userID,
+                    collocutorID: this.props.collocutor.id
+                })
+            }
+        } else {
+
         }
     };
 
     messageConstructor = (text) => ({
-        user_name: this.props.userName || "UNCNOWN",
+        user_name: this.props.userName,
         message: text,
         chanal: ws.chanalTopic
     })
-
 
     head = (user) => {
         if (user && user !== "general") {
@@ -128,8 +122,6 @@ class Chat extends React.Component {
         }
 
     }
-
-
 
     render() {
         return (
@@ -171,7 +163,6 @@ export default connect(
         collocutor: state.chat.collocutor,
         subscribe: state.webSocket.subscribe,
         userID: state.user.id,
-        wsIsReady: state.webSocket.isReady
     }),
     dispatch => ({
         addNotification: (nortific) => dispatch(addNotification(nortific)),

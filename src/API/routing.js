@@ -13,9 +13,11 @@ export const GET_USERS = () => { return `${SERVER_IP}/getUsers` }
 export const GET_FRIENDS = () => { return `${SERVER_IP}/getFriend` }
 export const ADD_FRIEND = () => { return `${SERVER_IP}/addFriend` }
 export const REMOVE_FRIEND = () => { return `${SERVER_IP}/removeFriend` }
+export const USERS_BY_ID = () =>{ return `${SERVER_IP}/usersByID`}
 
 //Message
 export const SAVE_MESSAGE = () =>{return `${SERVER_IP}/saveMessage`}
 export const GET_CHAT = () => {return `${SERVER_IP}/getDialog`}
 export const GET_UNREAD = () => {return `${SERVER_IP}/getUnread`}
 export const READ_MESSAGE = () => {return `${SERVER_IP}/readMessages`}
+

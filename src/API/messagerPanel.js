@@ -3,10 +3,11 @@ import axios from 'axios'
 //Routs server
 import {
     GET_USERS, GET_FRIENDS,
-    ADD_FRIEND, REMOVE_FRIEND
+    ADD_FRIEND, REMOVE_FRIEND,
+    USERS_BY_ID
 } from './routing'
 
-export const getUsers = (props, nortific) => dispatch => {
+export const getUsers = (props,id) => dispatch => {
     let route;
     switch (props) {
         case "friends":
@@ -15,15 +16,28 @@ export const getUsers = (props, nortific) => dispatch => {
         case "all":
             route = GET_USERS
             break;
-        default: break;
+        case "online":
+            route = USERS_BY_ID
+            break;
+        default:
+            route = GET_USERS
+            break;
     }
-    axios.get(route())
+    console.log(id,"ID");
+    
+    axios.get(route(),{
+        params:{
+            id
+        }
+    })
         .then((res) => {
-            dispatch({
-                type: "PANEL_MODE",
-                mode: props,
-                users: res.data.users
-            })
+            if (res.data !== null) {
+                dispatch({
+                    type: "PANEL_MODE",
+                    mode: props,
+                    users: res.data.users
+                })
+            }
         })
 }
 

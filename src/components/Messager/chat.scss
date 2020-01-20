@@ -85,8 +85,14 @@ $second-color: #b2dfdb;
 .contactPanel {
   background-color: $primary-color;
   height: 82vh;
-  .contactPanel_navigation{
-    margin: 2vh;
+  .contactPanel_navigation__conteiner{
+    margin:2vh 0 auto;
+    .contactPanel_navigation{
+      
+      .contactPanel_navigation__elem{
+        box-shadow:  0 0 10px rgba(0,0,0,0.5);
+      }
+    }
   }
 }
 

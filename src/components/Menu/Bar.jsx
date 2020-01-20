@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux'
 //MaterialUI
 import Badge from '@material-ui/core/Badge';
-import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -19,14 +18,14 @@ class MenuBar extends Component {
     messages(unread) {
         const unreadCount = unread.length
         return (
-            <Badge className="bar_element__small" badgeContent={unreadCount} color="primary">
+            <Badge className="bar_element__small" badgeContent={unreadCount} color="secondary">
                 <MailIcon />
             </Badge>)
     }
 
     onlineIndicator(char) {
         return (
-            <Badge className="bar_element__small" color="primary">
+            <Badge className="bar_element__small" color="secondary">
                 <PublicIcon id="online_indicator" />
             </Badge>)
     }
@@ -34,7 +33,7 @@ class MenuBar extends Component {
     notification(notifications) {
         const count = notifications.length
         return (
-            <Badge className="bar_element__small" badgeContent={count} color="primary">
+            <Badge className="bar_element__small" badgeContent={count} color="secondary">
                 <NotificationsIcon />
             </Badge>)
     }
@@ -44,7 +43,6 @@ class MenuBar extends Component {
         return (
             <Badge className="bar_element__small" >
                 <span style={{margin: "auto"}}>ONLINE : {count} </span>
-               
             </Badge>)
     }
 

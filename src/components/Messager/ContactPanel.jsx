@@ -13,16 +13,26 @@ import FriendRowIcon from '../ComponentsSimple/FriendRowIcon'
 import { styled } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import SearchIcon from '@material-ui/icons/Search';
 import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
+import ChatIcon from '@material-ui/icons/Chat';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 
-
-const Navigation = styled(BottomNavigation)({
-    width: '90%',
+const TabElem = styled(Tab)({
+    width: '9px',
     textAlign: 'center',
-    margin: ' auto',
+    margin: '0',
+    padding:'0'
 
 });
+
+const TabPanel = styled(Tabs)({
+    width: '10px'
+})
+
 let ws
 let subscribe
 let subscriptionName = "general"
@@ -40,7 +50,7 @@ class RegistrationForm extends Component {
         if (ws.ready) {
             ws.chanalTopic = subscriptionName
             subscribe = ws.subscribe()
-            console.log(subscribe,"MAKED");
+            console.log(subscribe, "MAKED");
             this.props.setWsSubscribe(subscribe)
         } else {
             setTimeout(() => {
@@ -120,6 +130,14 @@ class RegistrationForm extends Component {
                             addFriend={(id) => this.addFriend(id, user.name)}
                             privateDialog={() => this.setDialog(user)}
                         />)
+                case "online":
+                    return users.map(user =>
+                        <UserRowIcon key={`${user.id}`}
+                            user={user}
+                            online={online}
+                            addFriend={(id) => this.addFriend(id, user.name)}
+                            privateDialog={() => this.setDialog(user)}
+                        />)
             }
         } else {
             return (<h3>Загрузка</h3>)
@@ -130,14 +148,33 @@ class RegistrationForm extends Component {
     render() {
         return (
             <div id="contactPanel" className="contactPanel visiblePanel" >
-                <Navigation value={this.props.panelMode}
-                    className="contactPanel_navigation"
-                    onChange={(event, newValue) => {
-                        this.props.setPanelMode(newValue)
-                    }}>
-                    <BottomNavigationAction label="Друзья" value="friends" icon={<EmojiPeopleTwoToneIcon />} />
-                    <BottomNavigationAction label="Поиск" value="all" icon={<SearchIcon />} />
-                </Navigation>
+                <AppBar
+                    position="static"
+                    className="contactPanel_navigation__conteiner">
+                    <Tabs
+                        className="contactPanel_navigation"
+                        variant="scrollable"
+                        scrollButtons="on"
+                        indicatorColor="secondary"
+                        textColor="secondary"
+                        value={this.props.panelMode}
+                        onChange={(event, newValue) => {
+                            this.props.setPanelMode(newValue,this.props.usersOnline)
+                        }}>
+                        <TabElem
+                            className="contactPanel_navigation__elem"
+                            label="Друзья" value="friends" icon={<EmojiPeopleTwoToneIcon fontSize="small" />} />
+                        <TabElem
+                            className="contactPanel_navigation__elem"
+                            label="Онлайн" value="online" icon={<FiberManualRecordIcon fontSize="small"/>} />
+                        <TabElem
+                            className="contactPanel_navigation__elem"
+                            label="Переписки" value="chats" icon={<ChatIcon fontSize="small"/>} />
+                        <TabElem
+                            className="contactPanel_navigation__elem"
+                            label="Поиск" value="all" icon={<SearchIcon fontSize="small"/>} />
+                    </Tabs>
+                </AppBar>
                 <div className="searchResult">
                     {this.constructorUsersColumn(this.props.contacts, this.props.panelMode, this.props.usersOnline)}
                 </div>
@@ -157,7 +194,7 @@ export default connect(
     }),
     dispatch => ({
         getUnread: () => dispatch(getUnread()),
-        setPanelMode: (modeName) => dispatch(getUsers(modeName)),
+        setPanelMode: (modeName,id) => dispatch(getUsers(modeName,id)),
         notification: (notificParams) => dispatch({ type: "PUSH_NOTIFICATION_ADD", notificParams }),
         setChat: (collocutor) => dispatch({ type: "SET_CHAT", collocutor }),
         setWsSubscribe: (subscribe) => dispatch({ type: "SET_SUBSCRIBE", subscribe }),

@@ -12,6 +12,9 @@ const chat = (state = defaultState, action) => {
         case "GET_UNREAD":
             newState.unread =  JSON.parse(JSON.stringify(action.unread))
             return newState
+        case "ADD_UNREAD":
+            ++newState.unread.length
+            return newState
         default:
             return newState
     }
