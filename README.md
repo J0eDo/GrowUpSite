@@ -1,1 +1,1 @@
-# GrowUpSitec - my study project porn-site)
+# GrowUpSitec
