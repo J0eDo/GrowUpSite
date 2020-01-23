@@ -50,7 +50,6 @@ class RegistrationForm extends Component {
         if (ws.ready) {
             ws.chanalTopic = subscriptionName
             subscribe = ws.subscribe()
-            console.log(subscribe, "MAKED");
             this.props.setWsSubscribe(subscribe)
         } else {
             setTimeout(() => {

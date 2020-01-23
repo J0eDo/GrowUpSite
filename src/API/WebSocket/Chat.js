@@ -54,12 +54,11 @@ export class SocketConnection {
             let result = this.ws.getSubscription('chat:' + this.chanalTopic)
             if (!result) {
                 result = this.ws.subscribe('chat:' + this.chanalTopic);
+                result.on('message', (message) => {
+                    this.sendMessage(message)
+                })
             }
-            result.on('error', (res) => {
-            })
-            result.on('message', (message) => {
-                this.sendMessage(message)
-            })
+
             return result
         }
     }
