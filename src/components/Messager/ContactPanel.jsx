@@ -25,7 +25,7 @@ const TabElem = styled(Tab)({
     width: '9px',
     textAlign: 'center',
     margin: '0',
-    padding:'0'
+    padding: '0'
 
 });
 
@@ -134,6 +134,14 @@ class RegistrationForm extends Component {
                             addFriend={(id) => this.addFriend(id, user.name)}
                             privateDialog={() => this.setDialog(user)}
                         />)
+                case "chats":
+                    return users.map(user =>
+                        <UserRowIcon key={`${user.id}`}
+                            user={user}
+                            online={online}
+                            addFriend={(id) => this.addFriend(id, user.name)}
+                            privateDialog={() => this.setDialog(user)}
+                        />)
             }
         } else {
             return (<h3>Загрузка</h3>)
@@ -155,20 +163,20 @@ class RegistrationForm extends Component {
                         textColor="secondary"
                         value={this.props.panelMode}
                         onChange={(event, newValue) => {
-                            this.props.setPanelMode(newValue,this.props.usersOnline)
+                            this.props.setPanelMode(newValue, this.props.usersOnline)
                         }}>
                         <TabElem
                             className="contactPanel_navigation__elem"
                             label="Друзья" value="friends" icon={<EmojiPeopleTwoToneIcon fontSize="small" />} />
                         <TabElem
                             className="contactPanel_navigation__elem"
-                            label="Онлайн" value="online" icon={<FiberManualRecordIcon fontSize="small"/>} />
+                            label="Онлайн" value="online" icon={<FiberManualRecordIcon fontSize="small" />} />
                         <TabElem
                             className="contactPanel_navigation__elem"
-                            label="Переписки" value="chats" icon={<ChatIcon fontSize="small"/>} />
+                            label="Переписки" value="chats" icon={<ChatIcon fontSize="small" />} />
                         <TabElem
                             className="contactPanel_navigation__elem"
-                            label="Поиск" value="all" icon={<SearchIcon fontSize="small"/>} />
+                            label="Поиск" value="all" icon={<SearchIcon fontSize="small" />} />
                     </Tabs>
                 </AppBar>
                 <div className="searchResult">
@@ -190,7 +198,7 @@ export default connect(
     }),
     dispatch => ({
         getUnread: () => dispatch(getUnread()),
-        setPanelMode: (modeName,id) => dispatch(getUsers(modeName,id)),
+        setPanelMode: (modeName, id) => dispatch(getUsers(modeName, id)),
         notification: (notificParams) => dispatch({ type: "PUSH_NOTIFICATION_ADD", notificParams }),
         setChat: (collocutor) => dispatch({ type: "SET_CHAT", collocutor }),
         setWsSubscribe: (subscribe) => dispatch({ type: "SET_SUBSCRIBE", subscribe }),

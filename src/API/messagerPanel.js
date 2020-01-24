@@ -2,12 +2,15 @@
 import axios from 'axios'
 //Routs server
 import {
-    GET_USERS, GET_FRIENDS,
-    ADD_FRIEND, REMOVE_FRIEND,
-    USERS_BY_ID
+    GET_USERS,
+    GET_FRIENDS,
+    ADD_FRIEND,
+    REMOVE_FRIEND,
+    USERS_BY_ID,
+    GET_COLLOCUTORS
 } from './routing'
 
-export const getUsers = (props,id) => dispatch => {
+export const getUsers = (props, id) => dispatch => {
     let route;
     switch (props) {
         case "friends":
@@ -20,16 +23,16 @@ export const getUsers = (props,id) => dispatch => {
             route = USERS_BY_ID
             break;
         default:
-            route = GET_USERS
+            route = GET_COLLOCUTORS
             break;
     }
-    console.log(id,"ID");
-    
-    axios.get(route(),{
-        params:{
-            id
-        }
-    })
+
+
+    axios.get(route(), {
+            params: {
+                id
+            }
+        })
         .then((res) => {
             if (res.data !== null) {
                 dispatch({
@@ -56,4 +59,3 @@ export const removeFriend = (friendID) => {
         }
     })
 }
-
