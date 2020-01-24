@@ -19,6 +19,9 @@ export class SocketConnection {
         this.ws.on('close', () => {
             conectionIndicated(false)
         })
+        this.ws.on('error', () => {
+            conectionIndicated(false)
+        })
         return this
     }
 
@@ -41,16 +44,13 @@ export class SocketConnection {
             setTimeout(() => this.subscribe('chat:general'), 1000)
         } else {
             const result = this.ws.subscribe('chat:general');
-            result.on('error', (res) => {
-
-            })
             result.on('push', (action) => {
-               this.addNotification(action)
+                this.addNotification(action)
             })
             result.on('line', (user) => {
                 if (!this.usersOnlineID.includes(user.id)) {
                     this.usersOnlineID.push(user.id)
-                   
+
                 }
             })
             return result

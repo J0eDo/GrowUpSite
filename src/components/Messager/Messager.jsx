@@ -41,6 +41,8 @@ class RegistrationForm extends Component {
         wsGeneral.connection(this.conectionIndicated.bind(this))
         wsGeneral.refreshOnline()
         this.subscribeGeneral = wsGeneral.subscribe()
+        console.log(this.subscribeGeneral,"GENERAL");
+        
         this.selfOnline()
         wsGeneral.addNotification = this.notificationHandler.bind(this)
         this.inputEvent()

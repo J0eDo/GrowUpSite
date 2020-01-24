@@ -42,18 +42,17 @@ class RegistrationForm extends Component {
     componentDidMount() {
         ws = this.props.ws
         this.props.getUnread()
-        this.makeSubscription()
+        this.changeSubscription()
         this.props.setPanelMode('friends')
     }
 
-    makeSubscription() {
+    changeSubscription() {
         if (ws.ready) {
-            ws.chanalTopic = subscriptionName
-            subscribe = ws.subscribe()
+            subscribe = ws.subscribe(subscriptionName)
             this.props.setWsSubscribe(subscribe)
         } else {
             setTimeout(() => {
-                this.makeSubscription()
+                this.changeSubscription()
             }, 500);
         }
     }
@@ -86,10 +85,8 @@ class RegistrationForm extends Component {
         if (chanel !== subscriptionName) {
             this.props.setChat(collocutor)
             subscriptionName = chanel
-            this.props.ws.chanalTopic = chanel
-            this.props.ws.refreshChat()
             this.props.getUnread()
-            this.makeSubscription()
+            this.changeSubscription()
             setReadChanal(chanel)
         }
     }

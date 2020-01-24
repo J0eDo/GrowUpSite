@@ -48,23 +48,25 @@ class Chat extends React.Component {
 
         const input = document.getElementById("inputMessage");
         const handleChange = this.handleChange.bind(this);
-        const getCollocutor = this.getCollocutor.bind(this)
+        const getCollocutorID = this.getCollocutorID.bind(this)
         input.addEventListener("keydown", function (event) {
             if (event.key === "Enter" && input.value !== ""
-                && ws.ws._connectionState == "open") {
-                let collocutor = getCollocutor()
+                && ws.ws._connectionState === "open") {
+                let collocutorID = getCollocutorID()
                 handleChange(input.value)
-                saveMessage(ws.chanalTopic, input.value, collocutor)
+                console.log(ws,"DATAA");
+                
+                saveMessage(ws.chanalTopic, input.value, collocutorID)
                 input.value = ""
             }
         })
 
     }
 
-    getCollocutor() {
+    getCollocutorID() {
         if (this.props.collocutor.id)
             return this.props.collocutor.id
-        return "generalChat"
+        return 0
     }
 
     pushEvent(event) {
