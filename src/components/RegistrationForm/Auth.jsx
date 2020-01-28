@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./registrationForm.scss";
+import "./auth.scss";
 //Libarys 
 import { connect } from 'react-redux'
 //Components
@@ -58,7 +58,7 @@ class RegistrationForm extends Component {
           </div>
           <div className="initialForm_input">
             {this.state.mode ?
-              <Login submit={this.login.bind(this)} loginError={this.props.user.loginError} /> :
+              <Login submit={this.login.bind(this)} loginError={this.props.auth} /> :
               <div>
                 <Registration submit={this.registration.bind(this)} />
               </div>
@@ -73,7 +73,8 @@ class RegistrationForm extends Component {
 
 export default connect(
   state =>({
-    user : state.user
+    user : state.user,
+    auth : state.user.auth
   }),
   dispatch => ({
     autorization: (login, password) => dispatch(autorizated({ login, password })),

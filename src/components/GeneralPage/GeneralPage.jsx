@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import './generalPage.scss'
 import { connect } from 'react-redux'
 /*Component*/
-import RegistrationForm from "../RegistrationForm/RegistrationForm"
+import RegistrationForm from "../RegistrationForm/Auth"
 import UserPanel from "../UserPanel/UserPanel"
 
 

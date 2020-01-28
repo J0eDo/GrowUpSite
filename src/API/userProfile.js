@@ -48,6 +48,8 @@ export const autorizated = props => dispatch => {
         })
         .catch(() => {
             dispatch({ type: "AUTH_ERROR" })
+            localStorage.removeItem("TOKEN")
+            localStorage.removeItem("WS_TOKEN")
         })
 }
 
@@ -67,6 +69,7 @@ export const getUserData = () => dispatch =>
 
 export const exitedAccount = () => dispatch => {
     localStorage.removeItem("TOKEN")
+    localStorage.removeItem("WS_TOKEN")
     dispatch({ type: "EXIT_ACCOUNT" })
     window.location.reload()
 }

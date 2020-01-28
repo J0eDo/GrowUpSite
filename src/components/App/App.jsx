@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 //Components
 import GeneralPage from '../GeneralPage/GeneralPage';
-import Messager from '../Messager/Messager'
+import AuthChat from '../HOC/AuthChat'
 //UI
 import { ThemeProvider } from '@material-ui/core/styles';
 import theme from '../../util/theme'
@@ -26,7 +26,7 @@ class App extends Component {
                         <div className="app">
                             <Switch>
                                 <Route exact path="/" component={GeneralPage} />
-                                <Route path="/chat" component={Messager} />
+                                <Route path="/chat" component={AuthChat} />
                             </Switch>
                         </div>
                         <footer>

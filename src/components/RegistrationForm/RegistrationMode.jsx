@@ -45,7 +45,7 @@ class RegistrationMode extends Component {
 
   render() {
     return (
-      <div className="initialForm_sub">
+      <div className="initialForm_sub ">
         <div className="form">
           <TextField
             className="initialForm_input"

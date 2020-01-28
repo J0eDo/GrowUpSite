@@ -7,9 +7,6 @@ export default function loginMode({ submit, loginError }) {
     <div className="initialForm_sub">
       <div className="form">
         <TextField
-          style={{
-            margin:" 1rem auto"
-          }}
           className="initialForm_input"
           id="login"
           label="login" 

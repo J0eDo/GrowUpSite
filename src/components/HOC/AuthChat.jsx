@@ -1,6 +1,6 @@
 import React from 'react';
-import "./chat.scss";
-import Redirect from 'react-router-dom'
+import Auth from '../RegistrationForm/Auth'
+import Messager from '../Messager/Messager'
 //Libarys 
 import { connect } from 'react-redux'
 
@@ -11,17 +11,14 @@ class Chat extends React.Component {
 
     render() {
         if (!this.props.isAuth) {
-            return <Redirect to='/'/>
+            return <Auth/>
         }
-        let Component = this.props.component
-        return <Component/>
+        return <Messager/>
     }
 }
 
 export default connect(
     state => ({
-        isAuth: true
-    }),
-    dispatch => ({
+        isAuth: state.user.auth
     })
 )(Chat);
