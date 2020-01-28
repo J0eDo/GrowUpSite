@@ -121,7 +121,9 @@ class RegistrationForm extends Component {
     render() {
         return (
             <div className="messager">
-                <ContactPanel ws={wsChat} />
+                <ContactPanel ws={wsChat} 
+                generalChanal={this.subscribeGeneral}
+                />
                 <Chat
                     ws={wsChat}
                     generalChanal={this.subscribeGeneral}
