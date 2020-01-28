@@ -11,8 +11,6 @@ import UserRowIcon from '../ComponentsSimple/UserRowIcon'
 import FriendRowIcon from '../ComponentsSimple/FriendRowIcon'
 //MaterialUI
 import { styled } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import SearchIcon from '@material-ui/icons/Search';
 import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
@@ -29,9 +27,7 @@ const TabElem = styled(Tab)({
 
 });
 
-const TabPanel = styled(Tabs)({
-    width: '10px'
-})
+
 
 let ws
 let subscribe

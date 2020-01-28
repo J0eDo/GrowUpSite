@@ -12,7 +12,7 @@ class FlashMessage extends Component {
             case "USER_ONLINE":
                 return (
                     <div className="flashMessage"
-                    style={{ backgroundColor: 'blue' }}
+                    style={{ backgroundColor: 'green' }}
                     >
                         <p><strong>{this.body.userName}</strong> онлайн!</p>
                     </div>
@@ -37,7 +37,7 @@ class FlashMessage extends Component {
 
     render() {
         return (
-            <div className="flashMessage">
+            <div>
                 {this.getBody()}
             </div>)
     }

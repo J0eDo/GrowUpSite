@@ -19,7 +19,7 @@ export class SocketConnection {
             this.ready = true
         })
         this.ws.on('close', () => {
-
+            this.ready = false
         })
         return this
     }
@@ -35,8 +35,10 @@ export class SocketConnection {
     }
 
     close = () => {
-        this.ws.close()
-        clearTimeout(this.refreshChatTimeout)
+        if (this.ws) {
+            this.ws.close()
+            clearTimeout(this.refreshChatTimeout)
+        }
     }
 
     subscribe = (chanal) => {

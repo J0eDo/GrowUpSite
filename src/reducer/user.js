@@ -2,18 +2,13 @@ import axios from 'axios';
 
 
 const userReducer = (state, action) => {
-    let newState = {...state}
+    let newState = {...state }
     switch (action.type) {
         case "GET_TOKEN":
             newState.token = action.token
             return newState
         case "REGISTRATION_ERROR":
-            return newState
-        case "ERROR_REGISTRATED":
-            newState.errorReg = action.errorReg
-            return newState
-        case "LOGIN_ERROR":
-            newState.loginError = action.loginError
+            newState.auth = false
             return newState
         case "SET_USER_DATA":
             newState.id = action.id

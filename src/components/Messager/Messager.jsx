@@ -20,12 +20,12 @@ let countNortification = 0;
 class RegistrationForm extends Component {
 
     state = {
-        panelOpen: true
+        panelOpen: false
     }
 
     inputEvent() {
         setTimeout(() => {
-            if (this.props.userName) {
+            if ( this.subscribeGeneral._state==='open') {
                 this.subscribeGeneral.emit('push', {
                     event: "USER_ONLINE",
                     userName: this.props.userName,
@@ -64,6 +64,7 @@ class RegistrationForm extends Component {
 
     selfOnline() {
         this.selfOnlineInterval = setInterval(() => {
+            this.subscribeGeneral._state==='open'&&
             this.subscribeGeneral.emit('line', { id: this.props.userID })
         }, 3000);
     }

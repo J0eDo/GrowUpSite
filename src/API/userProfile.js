@@ -25,8 +25,9 @@ export const registrated = props => dispatch => {
                 const { field, validation } = res.data[0] || res.data
                 dispatch({ type: "ERROR_REGISTRATED", errorReg: { field, validation } })
             }
-
-        })
+        }).catch(() =>
+            dispatch({ type: "AUTH_ERROR" })
+        )
 }
 
 export const autorizated = props => dispatch => {
@@ -46,10 +47,7 @@ export const autorizated = props => dispatch => {
             dispatch({ type: "LOGIN", token: token })
         })
         .catch(() => {
-            dispatch({ type: "LOGIN_ERROR", loginError: true })
-            setTimeout(() => {
-                dispatch({ type: "LOGIN_ERROR", loginError: false })
-            }, 2000)
+            dispatch({ type: "AUTH_ERROR" })
         })
 }
 

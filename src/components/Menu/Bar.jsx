@@ -6,9 +6,7 @@ import { connect } from 'react-redux'
 //MaterialUI
 import Badge from '@material-ui/core/Badge';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import PublicIcon from '@material-ui/icons/Public';
 import MailIcon from '@material-ui/icons/Mail';
 
