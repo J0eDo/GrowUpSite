@@ -59,9 +59,7 @@ class RegistrationForm extends Component {
           <div className="initialForm_input">
             {this.state.mode ?
               <Login submit={this.login.bind(this)} loginError={this.props.auth} /> :
-              <div>
-                <Registration submit={this.registration.bind(this)} />
-              </div>
+              <Registration submit={this.registration.bind(this)} />
             }
           </div>
         </Panel>
@@ -74,7 +72,7 @@ class RegistrationForm extends Component {
 export default connect(
   state =>({
     user : state.user,
-    auth : state.user.auth
+    auth : state.user.authERR
   }),
   dispatch => ({
     autorization: (login, password) => dispatch(autorizated({ login, password })),

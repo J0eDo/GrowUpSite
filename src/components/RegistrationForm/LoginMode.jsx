@@ -19,7 +19,7 @@ export default function loginMode({ submit, loginError }) {
           variant="outlined"/>
       </div>
       <div className="initialForm_error">
-        {loginError ? <p>неверные логин или пароль</p> : null}
+        {loginError&&<p>неверные логин или пароль</p>}
       </div>
       <Button
         className="initialForm_button"

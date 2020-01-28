@@ -40,9 +40,7 @@ class RegistrationForm extends Component {
         wsGeneral.dispatchOnlineUsers = this.props.getUsersOnLine.bind(this)
         wsGeneral.connection(this.conectionIndicated.bind(this))
         wsGeneral.refreshOnline()
-        this.subscribeGeneral = wsGeneral.subscribe()
-        console.log(this.subscribeGeneral,"GENERAL");
-        
+        this.subscribeGeneral = wsGeneral.subscribe() 
         this.selfOnline()
         wsGeneral.addNotification = this.notificationHandler.bind(this)
         this.inputEvent()
