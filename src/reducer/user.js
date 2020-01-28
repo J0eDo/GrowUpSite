@@ -8,8 +8,10 @@ const userReducer = (state, action) => {
             newState.token = action.token
             return newState
         case "AUTH_ERROR":
-            alert("ERROR")
             newState.auth = false
+            return newState
+        case "ERROR_REGISTRATED":
+            newState.errorReg = action.errorReg
             return newState
         case "SET_USER_DATA":
             newState.auth = true
@@ -31,7 +33,7 @@ const userReducer = (state, action) => {
                 const token = localStorage.getItem("TOKEN")
                 axios.defaults.headers.common["Authorization"] = token
                 newState.token = token
-                newState.auth = true
+                newState.auth = false
                 return newState
             }
             newState.auth = false

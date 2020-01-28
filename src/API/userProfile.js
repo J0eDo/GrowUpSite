@@ -25,9 +25,9 @@ export const registrated = props => dispatch => {
                 const { field, validation } = res.data[0] || res.data
                 dispatch({ type: "ERROR_REGISTRATED", errorReg: { field, validation } })
             }
-        }).catch(() =>
-            dispatch({ type: "AUTH_ERROR" })
-        )
+        }).catch(() => {
+            ///WindowError
+        })
 }
 
 export const autorizated = props => dispatch => {
@@ -50,6 +50,7 @@ export const autorizated = props => dispatch => {
             dispatch({ type: "AUTH_ERROR" })
             localStorage.removeItem("TOKEN")
             localStorage.removeItem("WS_TOKEN")
+                //Window Error
         })
 }
 
