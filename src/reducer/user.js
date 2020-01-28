@@ -19,6 +19,7 @@ const userReducer = (state, action) => {
             newState.userName = action.userName
             newState.avatarName = action.avatar
             newState.panelMode = "primary"
+            newState.auth = true
             return newState
         case "SET_PANEL_MODE":
             newState.panelMode = action.panelMode
@@ -34,6 +35,7 @@ const userReducer = (state, action) => {
                 axios.defaults.headers.common["Authorization"] = token
                 newState.token = token
                 newState.authERR = false
+                newState.auth = true
                 return newState
             }
             newState.authERR = false

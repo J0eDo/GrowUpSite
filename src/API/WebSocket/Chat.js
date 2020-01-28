@@ -4,7 +4,6 @@ import { getChat } from '../message'
 export class SocketConnection {
 
     constructor() {
-        this.token = localStorage.getItem("WS_TOKEN")
         this.ready = false
         this.pushEvent = null
         this.sendMessage = null
@@ -13,7 +12,7 @@ export class SocketConnection {
 
     connection() {
         this.ws = Ws('ws://185.87.194.11:3333')
-            .withJwtToken(this.token)
+            .withJwtToken(localStorage.getItem("WS_TOKEN"))
             .connect()
         this.ws.on('open', (res) => {
             this.ready = true
@@ -41,7 +40,7 @@ export class SocketConnection {
         }
     }
 
-    subscribe = (chanal) => {
+    subscribe = (chanal = "general") => {
         if (!this.ws) {
             setTimeout(() => this.subscribe('chat:' + chanal), 1000)
         } else {
@@ -51,6 +50,8 @@ export class SocketConnection {
             if (!result) {
                 result = this.ws.subscribe('chat:' + chanal);
                 result.on('message', (message) => {
+                    console.log("enter", message);
+
                     this.sendMessage(message)
                 })
             }

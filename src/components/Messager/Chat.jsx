@@ -88,6 +88,8 @@ class Chat extends React.Component {
 
 
     handleChange = (inputText) => {
+        console.log( this.props.subscribe);
+        
         if (inputText.trim() && this.props.subscribe._state === "open") {
             this.props.subscribe.emit('message', this.messageConstructor(inputText))
             if (this.props.collocutor !== "general") {
